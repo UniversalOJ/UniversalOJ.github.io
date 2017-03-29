@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+	<title>安装UOJ - UOJ部署指北</title>
+
+	<!-- css -->
+	<link href="/css/base.min.css" rel="stylesheet">
+	<link href="/css/project.min.css" rel="stylesheet">
+	<link href="/css/styles.css" rel="stylesheet">
+
+</head>
+<body class="page-brand">
+	
+	<nav class="menu menu-left nav-drawer nav-drawer-md" id="ui_menu">
+		<div class="menu-scroll">
+			<div class="menu-content">
+				<a class="menu-logo" href="/">UOJ部署指北</a>
+				<ul class="nav">
+					<li>
+					
+						<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#posts">部署</a>	
+						<ul class="menu-collapse collapse in" id="posts">
+							
+							<li class="active">
+								<a class="waves-attach" href="/post/install.html">安装UOJ</a>
+							</li>						</ul>
+
+
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<header class="header header-transparent header-waterfall ui-header">
+		<ul class="nav nav-list pull-left hidden-md hidden-lg">
+			<li>
+				<a data-toggle="menu" href="#ui_menu">
+					<span class="icon icon-lg">menu</span>
+				</a>
+			</li>
+		</ul>
+		<span class="header-logo header-affix visible-md-block visible-lg-block margin-right-no" data-offset-top="0" data-spy="affix">
+			<p class="pagetitle">安装UOJ</p>
+		</span>
+		
+		<ul class="nav nav-list pull-right">
+			<li>
+				<a data-toggle="menu" href="/">
+					<span class="avatar avatar-sm"><img alt="logo" src="https://p1.bpimg.com/519918/1da8328ee5b4147a.png"></span>
+				</a>
+			</li>
+		</ul>
+	</header>
+	<main class="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1">
+					<section class="content-inner margin-top-no">
+						<br>
+						
+<h1>UOJ部署指北</h1>
+<div class="card"><div class="card-main"><div class="card-inner">
+<p>请注意，这篇教程与vfk的readme文档有严重不同。<br />
+建议您按照本文的方式安装，这将省去很多不必要的麻烦。</p>
+</div></div></div>
+<h2>安装前的准备</h2>
+<p>您需要准备一台<strong>64位</strong>的Linux系统。</p>
+<p>然后您需要安装<code>docker</code>。它是一个容器技术，暂且可以理解成虚拟机。</p>
+<div class="codehilite"><pre><span></span>sudo apt install docker.io          <span class="c1"># ubuntu, debian系统请使用这条指令</span>
+sudo yum install docker             <span class="c1"># CentOS系统请使用这条指令</span>
+
+
+sudo service docker start           <span class="c1"># 启动docker服务</span>
+</pre></div>
+
+
+<p>另外，您可以通过下面的代码安装docker加速器（强烈推荐）：</p>
+<div class="codehilite"><pre><span></span>sudo su
+curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://3a834d99.m.daocloud.io
+service docker restart
+</pre></div>
+
+
+<p>下载UOJ的源码：  </p>
+<ul>
+<li>如果您准备内网部署，请下载<a href="https://github.com/roastduck/uoj">roastduck的版本</a>。这个版本，博客将以<strong>子目录</strong>的形式出现。例如：http://pyoj.ml/blogof/blue/blog/60  </li>
+<li>如果您准备外网部署，请下载<a href="https://github.com/vfleaking/uoj">vfleaking的原版</a>。这个版本，博客将以<strong>子域名</strong>的形式出现。例如：http://vfleaking.blog.uoj.ac/blog/2062  </li>
+</ul>
+<p>如果您不准备绑定外网域名，强烈推荐使用roastduck的版本。<br />
+下载之后解压到某个目录。</p>
+<p><strong>如果您需要支持java</strong>，请下载这两个文件：  </p>
+<ul>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u76-oth-JPR">JDK7u76</a>  </li>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html#jdk-8u31-oth-JPR">JDK8u31</a>  </li>
+</ul>
+<p>然后把它们放进<code>docker/</code>目录，命名为<code>jdk-7u76-linux-x64.tar.gz</code>和<code>jdk-8u31-linux-x64.tar.gz</code>。</p>
+<p><strong>如果您不需要支持java</strong>，请放两个同名的空文件在那里。</p>
+<p>在最后，您的文件夹应该长成这样：</p>
+<p><img style="max-width:100%" alt="文件夹" src="https://i1.piimg.com/519918/4e2b3366c1054568.png" /></p>
+<h2>安装</h2>
+<p>接着，您需要执行下面的指令来开始安装。请注意不是<code>docker/</code>目录下的同名文件。</p>
+<div class="codehilite"><pre><span></span>./install 
+</pre></div>
+
+
+<p>如果安装过程顺利的话，您将会看到<code>Successfully built &lt;image-id&gt;</code>。</p>
+<p>安装过程：  </p>
+<p><img style="max-width:100%" alt="安装过程" src="https://i2.buimg.com/519918/0cd7d21eefa3c0bd.png" /></p>
+<p>安装完成：  </p>
+<p><img style="max-width:100%" alt="安装完成" src="https://i4.buimg.com/519918/2f19d46c1b742c0f.png" /></p>
+<h2>启动</h2>
+<p>安装完成后，您取得了一个镜像。现在您需要建立一个容器，用于运行UOJ：</p>
+<div class="codehilite"><pre><span></span>docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  &lt;image-id&gt;
+</pre></div>
+
+
+<p>接下来这个容器将在后台运行。</p>
+<p>您需要通过这几条命令管理容器：</p>
+<div class="codehilite"><pre><span></span>docker start uoj                # 启动uoj容器
+docker stop uoj                 # 暂停uoj容器
+docker restart uoj              # 重启uoj容器
+
+docker exec -it uoj /bin/bash   # 进入容器的终端！
+</pre></div>
+
+
+<p>现在请您进入容器的终端，编辑<code>/var/www/uoj/app/.config.php</code>，把<code>local_uoj.ac</code>改成下面这一段代码：</p>
+<div class="codehilite"><pre><span></span><span class="x">&#39;host&#39; =&gt; isset($_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;]) ? $_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;] : (isset($_SERVER[&#39;HTTP_HOST&#39;]) ? $_SERVER[&#39;HTTP_HOST&#39;] : &#39;&#39;),</span>
+</pre></div>
+
+
+<p>现在这个文件应该如下图所示：</p>
+<p><img style="max-width:100%" alt="config.php" src="https://i4.buimg.com/519918/956d841d7a8169a0.png" /></p>
+<p>访问服务器的ip，您现在应该能看到UOJ正在运行了。</p>
+						
+					</section>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1">
+					<section class="content-inner margin-top-no">
+						<hr>
+							MIT协议 @ UOJ部署指北 2017.
+					</section>
+				</div>
+			</div>
+
+			<!-- 多说评论框 start -->
+			<div class="ds-thread" data-thread-key="post/install" data-title="安装UOJ" data-url="/post/install.html"></div>
+			<!-- 多说评论框 end -->
+			<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+			<script type="text/javascript">
+			var duoshuoQuery = {short_name:"uojuoj"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = 'https://dn-hb0716.qbox.me/duoshuo.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+				|| document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+			</script>
+		<!-- 多说公共JS代码 end -->
+
+
+		</div>
+
+
+	</main>
+	
+	<div class="fbtn-container">
+		<div class="fbtn-inner">
+			<a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown">
+				<span class="fbtn-text fbtn-text-left">Home</span>
+				<span class="fbtn-ori icon">apps</span>
+				<span class="fbtn-sub icon">close</span>
+			</a>
+			<div class="fbtn-dropup">
+				<a class="fbtn waves-attach waves-circle" href="https://coding.net/u/ruanxingzhi/p/blog/topic" target="_blank">
+					<span class="fbtn-text fbtn-text-left">反馈</span><span class="icon">feedback</span>
+				</a>
+				<a class="fbtn fbtn-green waves-attach waves-circle" href="/" target="_self">
+					<span class="fbtn-text fbtn-text-left">返回主页</span><span class="icon">home</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<!-- js -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/base.min.js"></script>
+</body>
+</html>
