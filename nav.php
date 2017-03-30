@@ -5,29 +5,41 @@
 				<ul class="nav">
 					<li>
 					
-						<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#posts">部署</a>	
-						<ul class="menu-collapse collapse in" id="posts">
+						
 							
 							<?php
 
 							require_once("content.php");
 
-							foreach ($content as $name => $file)
+							foreach ($content as $title=>$posts)
 							{
-								$file = str_replace(".md",".html",$file);
+								?>
 
-								if($name == $argv[2]) echo 
-							"<li class=\"active\">
-								<a class=\"waves-attach\" href=\"/$file\">$name</a>
-							</li>";
-								else echo 
-							"<li>
-								<a class=\"waves-attach\" href=\"/$file\">$name</a>
-							</li>";
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#<?php echo $title; ?>"><?php echo $title ?></a>	
+								<ul class="menu-collapse collapse in" id="<?php echo $title; ?>">
+
+								<?php
+								foreach ($posts as $name => $file)
+								{
+									$file = str_replace(".md",".html",$file);
+
+									if($name == $argv[2]) echo 
+								"<li class=\"active\">
+									<a class=\"waves-attach\" href=\"/$file\">$name</a>
+								</li>";
+									else echo 
+								"<li>
+									<a class=\"waves-attach\" href=\"/$file\">$name</a>
+								</li>";
+								}
+
+								echo "</ul>";
 							}
 
+							
+
 							?>
-						</ul>
+						
 
 
 					</li>

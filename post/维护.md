@@ -4,7 +4,7 @@
 
 docker容器很容易维护。您只需要掌握以下命令：
 
-```
+```bash
 docker start uoj                # 启动uoj容器
 docker stop uoj                 # 暂停uoj容器
 docker restart uoj              # 重启uoj容器
@@ -20,7 +20,7 @@ docker commit uoj uoj_back      # 保存uoj容器的快照为"uoj_back"镜像
 
 下面是一次典型的数据恢复：
 
-```
+```bash
 docker commit uoj uoj_back_20170101     # 例行备份
 docker commit uoj uoj_back_20170201     # 例行备份
 docker commit uoj uoj_back_20170301     # 例行备份
@@ -36,16 +36,16 @@ docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back_
 ## 数据迁移
 
 下面的命令可以把`uoj_back`这个容器导出为`uoj.tar`这个文件：
-```
+```bash
 docker save -o uoj.tar uoj_back
 ```
 把`uoj.tar`复制到其他机器上，然后可以运行下面的命令导入`uoj_back`镜像：
-```
+```bash
 docker load --input uoj.tar
 ```
 
 下面是一次典型的数据迁移：
-```
+```bash
 # 服务器A：
 docker commit uoj uoj_back              # 把uoj容器存储为镜像
 docker save -o uoj.tar uoj_back         # 把uoj_back镜像导出
