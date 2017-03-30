@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<title>维护UOJ - UOJ部署指北</title>
+	<title>传题的前置技能 - UOJ部署指北</title>
 
 	<!-- css -->
 	<link href="/css/base.min.css" rel="stylesheet">
@@ -29,13 +29,13 @@
 
 								<li>
 									<a class="waves-attach" href="/post/安装.html">安装UOJ</a>
-								</li><li class="active">
+								</li><li>
 									<a class="waves-attach" href="/post/维护.html">维护UOJ</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
 								<ul class="menu-collapse collapse in" id="题目">
 
-								<li>
+								<li class="active">
 									<a class="waves-attach" href="/post/传题的前置技能.html">传题的前置技能</a>
 								</li></ul>						
 
@@ -55,7 +55,7 @@
 			</li>
 		</ul>
 		<span class="header-logo header-affix visible-md-block visible-lg-block margin-right-no" data-offset-top="0" data-spy="affix">
-			<p class="pagetitle">维护UOJ</p>
+			<p class="pagetitle">传题的前置技能</p>
 		</span>
 		
 		<ul class="nav nav-list pull-right">
@@ -73,58 +73,24 @@
 					<section class="content-inner margin-top-no">
 						<br>
 						
-<h1>维护UOJ</h1>
-<h2>容器维护</h2>
-<p>docker容器很容易维护。您只需要掌握以下命令：</p>
-<div class="codehilite"><pre><span></span>docker start uoj                <span class="c1"># 启动uoj容器</span>
-docker stop uoj                 <span class="c1"># 暂停uoj容器</span>
-docker restart uoj              <span class="c1"># 重启uoj容器</span>
-
-docker <span class="nb">exec</span> -it uoj /bin/bash   <span class="c1"># 进入uoj容器的终端</span>
-
-docker rm uoj                   <span class="c1"># 删除uoj容器（慎用）</span>
-
-docker commit uoj uoj_back      <span class="c1"># 保存uoj容器的快照为&quot;uoj_back&quot;镜像</span>
-</pre></div>
-
-
-<p>在docker中，每个容器需要基于一个镜像来运行。最开始，我们的<code>uoj</code>容器是基于安装过程中构建的镜像。</p>
-<p>下面是一次典型的数据恢复：</p>
-<div class="codehilite"><pre><span></span>docker commit uoj uoj_back_20170101     <span class="c1"># 例行备份</span>
-docker commit uoj uoj_back_20170201     <span class="c1"># 例行备份</span>
-docker commit uoj uoj_back_20170301     <span class="c1"># 例行备份</span>
-
-<span class="c1"># 3月15日，黑恶势力破坏了uoj，uoj容器已经无用，必须恢复</span>
-
-docker stop uoj
-docker rm uoj                           <span class="c1"># 删除uoj容器</span>
-docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back_20170301
-<span class="c1"># 创建新的uoj容器，使用3月1日的备份</span>
-</pre></div>
-
-
-<h2>数据迁移</h2>
-<p>下面的命令可以把<code>uoj_back</code>这个容器导出为<code>uoj.tar</code>这个文件：</p>
-<div class="codehilite"><pre><span></span>docker save -o uoj.tar uoj_back
-</pre></div>
-
-
-<p>把<code>uoj.tar</code>复制到其他机器上，然后可以运行下面的命令导入<code>uoj_back</code>镜像：</p>
-<div class="codehilite"><pre><span></span>docker load --input uoj.tar
-</pre></div>
-
-
-<p>下面是一次典型的数据迁移：</p>
-<div class="codehilite"><pre><span></span><span class="c1"># 服务器A：</span>
-docker commit uoj uoj_back              <span class="c1"># 把uoj容器存储为镜像</span>
-docker save -o uoj.tar uoj_back         <span class="c1"># 把uoj_back镜像导出</span>
-<span class="c1"># 然后通过某些恶毒的手段把uoj.tar拷到服务器B</span>
-
-
-<span class="c1"># 服务器B：</span>
-docker load --input uoj.tar             <span class="c1"># 导入uoj_back镜像</span>
-docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back
-<span class="c1"># 建立uoj容器，基于之前服务器A的数据，迁移完成</span>
+<h1>传题的前置技能</h1>
+<p>首先您需要准备好一道题的数据。参见：<a href="https://vfleaking.github.io/uoj/problem/">vfk的文档</a></p>
+<p>在这份uoj版本中，svn仍然是有效的；但是您可以使用zip上传题目。</p>
+<p>您需要将所有的数据压缩到一个zip文件（注意不要建子目录），如下图所示：
+<img style="max-width:100%" alt="压缩" src="http://i1.piimg.com/567571/fa8e54f093b6ede2.png" /></p>
+<p>然后点击<code>管理 -&gt; 数据</code>，在“zip上传数据”那一栏上传数据。在上传数据之后，需要点击“与svn同步”。</p>
+<div class="card"><div class="card-main"><div class="card-inner">
+<p>注意：如果您的题目不支持hack，请在上传数据后直接点击“禁止使用hack”。<br />
+“禁止使用hack”会在禁用hack之后自动同步数据。</p>
+</div></div></div>
+<p>这是一份传统题的<code>problem.conf</code>：</p>
+<div class="codehilite"><pre><span></span>n_tests 10
+n_ex_tests 2
+n_sample_tests 1
+time_limit 1
+memory_limit 256
+output_limit 64
+use_builtin_judger on
 </pre></div>
 						
 					</section>
@@ -141,7 +107,7 @@ docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back
 			</div>
 
 			<!-- 多说评论框 start -->
-			<div class="ds-thread" data-thread-key="post/维护" data-title="维护UOJ" data-url="/post/维护.html"></div>
+			<div class="ds-thread" data-thread-key="post/传题的前置技能" data-title="传题的前置技能" data-url="/post/传题的前置技能.html"></div>
 			<!-- 多说评论框 end -->
 			<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 			<script type="text/javascript">
