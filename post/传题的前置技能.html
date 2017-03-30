@@ -37,6 +37,8 @@
 
 								<li class="active">
 									<a class="waves-attach" href="/post/传题的前置技能.html">传题的前置技能</a>
+								</li><li>
+									<a class="waves-attach" href="/post/特殊题目配置.html">特殊题目配置</a>
 								</li></ul>						
 
 
@@ -85,12 +87,17 @@
 </div></div></div>
 <p>这是一份传统题的<code>problem.conf</code>：</p>
 <div class="codehilite"><pre><span></span>n_tests 10
-n_ex_tests 2
+n_ex_tests 1
 n_sample_tests 1
 time_limit 1
-memory_limit 256
+memory_limit 512
 output_limit 64
 use_builtin_judger on
+use_builtin_checker ncmp
+input_pre bit
+input_suf in
+output_pre bit
+output_suf out
 </pre></div>
 						
 					</section>
