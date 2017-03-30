@@ -95,7 +95,7 @@
 				<span class="fbtn-sub icon">close</span>
 			</a>
 			<div class="fbtn-dropup">
-				<a class="fbtn waves-attach waves-circle" href="https://coding.net/u/ruanxingzhi/p/blog/topic" target="_blank">
+				<a class="fbtn waves-attach waves-circle" href="https://github.com/UniversalOJ/UniversalOJ.github.io/issues" target="_blank">
 					<span class="fbtn-text fbtn-text-left">反馈</span><span class="icon">feedback</span>
 				</a>
 				<a class="fbtn fbtn-green waves-attach waves-circle" href="/" target="_self">
