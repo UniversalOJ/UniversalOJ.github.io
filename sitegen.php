@@ -20,7 +20,10 @@ foreach ($content as $posts)
         system("php generate.php $file $name >$ht");
         echo "\033[32m\033[1m✓\033[0m\n";
 	}
+	echo "\n";
 }
+
+echo "Done.\n";
 
 
 ?>
