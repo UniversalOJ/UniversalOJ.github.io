@@ -64,6 +64,8 @@ docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  <image-id
 ```
 接下来这个容器将在后台运行。
 
+> 如果您不希望用80端口来运行uoj，您可以把上面的`-p 80:80`改成`-p <port>:80`。
+
 您需要通过这几条命令管理容器：
 ```
 docker start uoj    			# 启动uoj容器

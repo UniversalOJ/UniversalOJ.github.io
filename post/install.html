@@ -118,6 +118,9 @@ service docker restart
 
 
 <p>接下来这个容器将在后台运行。</p>
+<div class="card"><div class="card-main"><div class="card-inner">
+<p>如果您不希望用80端口来运行uoj，您可以把上面的<code>-p 80:80</code>改成<code>-p &lt;port&gt;:80</code>。</p>
+</div></div></div>
 <p>您需要通过这几条命令管理容器：</p>
 <div class="codehilite"><pre><span></span>docker start uoj                # 启动uoj容器
 docker stop uoj                 # 暂停uoj容器
