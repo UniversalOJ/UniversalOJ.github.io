@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<title>首页 - UOJ部署指北</title>
+	<title>维护UOJ - UOJ部署指北</title>
 
 	<!-- css -->
 	<link href="/css/base.min.css" rel="stylesheet">
@@ -26,7 +26,7 @@
 							
 							<li>
 								<a class="waves-attach" href="/post/install.html">安装UOJ</a>
-							</li><li>
+							</li><li class="active">
 								<a class="waves-attach" href="/post/maintenance.html">维护UOJ</a>
 							</li>						</ul>
 
@@ -46,7 +46,7 @@
 			</li>
 		</ul>
 		<span class="header-logo header-affix visible-md-block visible-lg-block margin-right-no" data-offset-top="0" data-spy="affix">
-			<p class="pagetitle">首页</p>
+			<p class="pagetitle">维护UOJ</p>
 		</span>
 		
 		<ul class="nav nav-list pull-right">
@@ -64,9 +64,59 @@
 					<section class="content-inner margin-top-no">
 						<br>
 						
-<h1>UOJ部署指北</h1>
-<p>这是一份UOJ部署指北，希望对您有帮助。</p>
-<p>文章在左边。UOJ开服群：560621197</p>
+<h1>维护UOJ</h1>
+<h2>容器维护</h2>
+<p>docker容器很容易维护。您只需要掌握以下命令：</p>
+<div class="codehilite"><pre><span></span>docker start uoj                # 启动uoj容器
+docker stop uoj                 # 暂停uoj容器
+docker restart uoj              # 重启uoj容器
+
+docker exec -it uoj /bin/bash   # 进入uoj容器的终端
+
+docker rm uoj                   # 删除uoj容器（慎用）
+
+docker commit uoj uoj_back      # 保存uoj容器的快照为&quot;uoj_back&quot;镜像
+</pre></div>
+
+
+<p>在docker中，每个容器需要基于一个镜像来运行。最开始，我们的<code>uoj</code>容器是基于安装过程中构建的镜像。</p>
+<p>下面是一次典型的数据恢复：</p>
+<div class="codehilite"><pre><span></span>docker commit uoj uoj_back_20170101     # 例行备份
+docker commit uoj uoj_back_20170201     # 例行备份
+docker commit uoj uoj_back_20170301     # 例行备份
+
+# 3月15日，黑恶势力破坏了uoj，uoj容器已经无用，必须恢复
+
+docker stop uoj
+docker rm uoj                           # 删除uoj容器
+docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back_20170301
+# 创建新的uoj容器，使用3月1日的备份
+</pre></div>
+
+
+<h2>数据迁移</h2>
+<p>下面的命令可以把<code>uoj_back</code>这个容器导出为<code>uoj.tar</code>这个文件：</p>
+<div class="codehilite"><pre><span></span>docker save -o uoj.tar uoj_back
+</pre></div>
+
+
+<p>把<code>uoj.tar</code>复制到其他机器上，然后可以运行下面的命令导入<code>uoj_back</code>镜像：</p>
+<div class="codehilite"><pre><span></span>docker load --input uoj.tar
+</pre></div>
+
+
+<p>下面是一次典型的数据迁移：</p>
+<div class="codehilite"><pre><span></span># 服务器A：
+docker commit uoj uoj_back              # 把uoj容器存储为镜像
+docker save -o uoj.tar uoj_back         # 把uoj_back镜像导出
+# 然后通过某些恶毒的手段把uoj.tar拷到服务器B
+
+
+# 服务器B：
+docker load --input uoj.tar             # 导入uoj_back镜像
+docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back
+# 建立uoj容器，基于之前服务器A的数据，迁移完成
+</pre></div>
 						
 					</section>
 				</div>
@@ -82,7 +132,7 @@
 			</div>
 
 			<!-- 多说评论框 start -->
-			<div class="ds-thread" data-thread-key="index" data-title="首页" data-url="/index.html"></div>
+			<div class="ds-thread" data-thread-key="post/maintenance" data-title="维护UOJ" data-url="/post/maintenance.html"></div>
 			<!-- 多说评论框 end -->
 			<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 			<script type="text/javascript">
