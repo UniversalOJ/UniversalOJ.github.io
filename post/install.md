@@ -18,7 +18,7 @@ sudo service docker start 			# 启动docker服务
 ```
 
 另外，您可以通过下面的代码安装docker加速器（强烈推荐）：
-```
+```bash
 sudo su
 curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://3a834d99.m.daocloud.io
 service docker restart
@@ -26,7 +26,7 @@ service docker restart
 
 下载UOJ的源码：  
 
-```
+```bash
 git clone https://github.com/UniversalOJ/UOJ-System.git
 ```
 
@@ -67,7 +67,7 @@ docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  <image-id
 > 如果您不希望用80端口来运行uoj，您可以把上面的`-p 80:80`改成`-p <port>:80`。
 
 您需要通过这几条命令管理容器：
-```
+```bash
 docker start uoj    			# 启动uoj容器
 docker stop uoj					# 暂停uoj容器
 docker restart uoj				# 重启uoj容器
