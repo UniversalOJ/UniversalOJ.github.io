@@ -26,28 +26,19 @@ service docker restart
 
 下载UOJ的源码：  
 
-- 如果您准备内网部署，请下载[roastduck的版本](https://github.com/roastduck/uoj)。这个版本，博客将以**子目录**的形式出现。例如：http://pyoj.ml/blogof/blue/blog/60  
-- 如果您准备外网部署，请下载[vfleaking的原版](https://github.com/vfleaking/uoj)。这个版本，博客将以**子域名**的形式出现。例如：http://vfleaking.blog.uoj.ac/blog/2062  
+```
+git clone https://github.com/UniversalOJ/UOJ-System.git
+```
 
-如果您不准备绑定外网域名，强烈推荐使用roastduck的版本。  
-下载之后解压到某个目录。
+> **如果您需要支持java**，请下载这两个文件：  
 
-**如果您需要支持java**，请下载这两个文件：  
+> - [JDK7u76](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u76-oth-JPR)  
+> - [JDK8u31](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html#jdk-8u31-oth-JPR)  
 
-- [JDK7u76](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u76-oth-JPR)  
-- [JDK8u31](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html#jdk-8u31-oth-JPR)  
+> 然后把它们放进`docker/`目录，替换掉`jdk-7u76-linux-x64.tar.gz`和`jdk-8u31-linux-x64.tar.gz`。
 
-然后把它们放进`docker/`目录，命名为`jdk-7u76-linux-x64.tar.gz`和`jdk-8u31-linux-x64.tar.gz`。
-
-**如果您不需要支持java**，请放两个同名的空文件在那里。
-
-在最后，您的文件夹应该长成这样：
-
-![文件夹](https://i1.piimg.com/519918/4e2b3366c1054568.png)
 
 ## 安装
-
-
 
 接着，您需要执行下面的指令来开始安装。请注意不是`docker/`目录下的同名文件。
 ```bash
