@@ -40,7 +40,7 @@
 								</li><li>
 									<a class="waves-attach" href="/post/传统题配置.html">传统题配置</a>
 								</li><li>
-									<a class="waves-attach" href="/post/特殊题目配置.html">特殊题目配置</a>
+									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
 								</li><li>
 									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
 								</li></ul>						
@@ -79,8 +79,7 @@
 					<section class="content-inner margin-top-no">
 						<br>
 						
-<h1>传题的前置技能</h1>
-<h1>管理题目</h1>
+<h1>题目管理概述</h1>
 <h2>新建题目和管理界面</h2>
 <p>只有超级管理员有权限新建题目，每次新建题目都必须由超级管理员完成。</p>
 <p>请点击题库页面右下角的<code>添加新题</code>按钮，并确认添加新题。</p>
@@ -100,21 +99,13 @@
 <p>理论上，题面是可以自由编写的，但还是有一些推荐的格式和规则：</p>
 <ol>
 <li>中文与英文、数字之间加一个空格隔开。</li>
-<li>输入输出样例用 <code>&lt;pre&gt;</code> 标签包围，并且以一个空行结尾。（方便复制样例到终端后不用再打回车）</li>
-<li>题面中最高级标题为三级标题。题目名称是一级标题。</li>
+<li>输入输出样例视为代码块，使用Markdown的 <code>```</code> 语法。</li>
+<li>题面中最高级标题为三级标题。</li>
 <li>一切数字、数学符号、运算符、变量名、公式应当用 LaTeX 语法编写。UOJ 自带 MathJax 插件来显示数学公式，行中公式用<code>$ &lt;formula&gt; $</code>分隔，独立公式用<code>$$ &lt;formula&gt; $$</code>分隔。</li>
-<li>一行内的计算机输入输出和常量字符串表达式请用 <code>&lt;samp&gt;</code> 标签，例如 <code>请输出 “&lt;samp&gt;NO SOLUTION&lt;/samp&gt;”</code>， <code>&lt;samp&gt;aaa&lt;/samp&gt; 中有三个 &lt;samp&gt;a&lt;/samp&gt;</code>。</li>
-<li>一行内的计算机代码请用 <code>`</code> 括起来，就像上面的规则那样。</li>
 </ol>
 <div class="card"><div class="card-main"><div class="card-inner">
-<p>参考下面这个例子：
-```markdown
-读入一个整数 <mathjax>$n$</mathjax>，表示题目中提到的 <mathjax>$3$</mathjax> 位大爷 AC 的总题数。请输出他们分别 AC 的总题数。如果你不能正确读入，那么将获得 <mathjax>$0$</mathjax> 分。前 <mathjax>$3$</mathjax> 个测试点你正确读入即可获得 <mathjax>$6$</mathjax> 分，第 4 个测试点你正确读入只能获得 <mathjax>$3$</mathjax> 分。如果你不会做这道题，请直接输出 “<samp>WOBUHUI</samp>”</p>
-<p>下面有一个样例：
-<pre>
-233</p>
-<p></pre>
-```</p>
+<p>上面的规则不必强行遵守。<br />
+这是一份示例：http://paste.ubuntu.com/24280516/</p>
 </div></div></div>
 <h3>编辑标签</h3>
 <p>直接填入文本框即可，用英文半角逗号分隔多个标签。</p>
@@ -128,17 +119,17 @@
 <li>接下来，如果这道题是不用脑子想就能做出的题，例如 NOIP 第一题难度，用一个标签注明 “水题”。</li>
 <li>最后，如果这题的来源比较重要，用一个标签注明。比如 “UOJ Round”、“NOI”、“WC”。</li>
 <li>前置技能中，“数学” 太过宽泛不能作为标签，但 “数论” 可以作为前置技能。</li>
-<li>如果有多个解法，每个解法的前值技能和大方法都不太一样，那么尽可能都标上去。</li>
+<li>如果有多个解法，每个解法的前置技能和大方法都不太一样，那么尽可能都标上去。</li>
 <li>“乱搞” 标签不宜滥用。</li>
 </ol>
 <h2>管理者</h2>
-<p>这个选项卡用来增加和删除该题目的管理员，只有该题目的管理员可以管理这个题目的数据。</p>
+<p>这个选项卡用来增加和删除该题目的管理员。如果使用 <code>svn</code> ，则只有该题目的管理员可以管理这个题目的数据。</p>
 <h2>数据</h2>
-<p>UOJ 原版使用 svn 管理题目数据。在这份uoj版本中，svn仍然是有效的，但您可以使用<code>*.zip</code>数据包上传数据。</p>
-<p>首先您需要准备好一道题的数据。参见：<a href="https://vfleaking.github.io/uoj/problem/">vfk的文档</a>和传统题配置、特殊题目配置。包括测试数据、额外测试数据、标准程序、数据检验器和题目配置文件。</p>
+<p>UOJ 原版使用 svn 管理题目数据。在这份uoj版本中，svn仍然是有效的，但您可以使用<code>zip</code>数据包上传数据。</p>
+<p>首先您需要准备好一道题的数据，参见：<a href="https://vfleaking.github.io/uoj/problem/">vfk的文档</a></p>
 <p>您需要将所有的数据压缩到一个zip文件（注意不要建子目录），如下图所示：
 <img style="max-width:100%" alt="压缩" src="http://i1.piimg.com/567571/fa8e54f093b6ede2.png" /></p>
-<p>点击右侧的<code>上传数据</code>按钮上传<code>*.zip</code>数据包，之后点击<code>与 svn 仓库同步</code>按钮。如果能在右侧看到数据解析的结果，就说明上传成功。</p>
+<p>点击右侧的<code>上传数据</code>按钮上传<code>*.zip</code>数据包，之后点击<code>与 svn 仓库同步</code>按钮。如果能在左侧看到数据解析的结果，就说明上传成功。</p>
 <div class="card"><div class="card-main"><div class="card-inner">
 <p>注意：如果您的题目不支持hack，请在上传数据后直接点击“禁止使用hack”。
 “禁止使用hack”会在禁用hack之后自动同步数据。</p>
