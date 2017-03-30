@@ -79,6 +79,61 @@
 					<section class="content-inner margin-top-no">
 						<br>
 						
+<h1>传统题配置</h1>
+<p>题目配置文件应当命名为<code>problem.conf</code>。这是一份配置的样例：</p>
+<pre class="codehilite"><code>n_tests 10
+n_ex_tests 1
+n_sample_tests 1
+input_pre www
+input_suf in
+output_pre www
+output_suf out
+time_limit 1
+memory_limit 512
+output_limit 64
+use_builtin_judger on
+use_builtin_checker ncmp</code></pre>
+
+
+<h2>测试点</h2>
+<pre class="codehilite"><code>n_tests 10
+n_ex_tests 1
+n_sample_tests 1</code></pre>
+
+
+<p>这三行分别代表标准测试点、额外测试点和测试样例的数量。其中，额外测试点的前几个一定是测试样例，所以你必须把题目中给出的测试样例放到额外测试点当中。</p>
+<p>UOJ 的 extra test 是指在 AC 的情况下会测额外数据，如果某个额外数据通不过会被倒扣3分。</p>
+<pre class="codehilite"><code>input_pre www
+input_suf in
+output_pre www
+output_suf out</code></pre>
+
+
+<p>这四行分别指明了每个测试点输入文件的前缀、扩展名、输出文件的前缀、扩展名。</p>
+<p>标准测试点的文件名应当形如：<code>www1.in</code>、<code>www1.out</code>、<code>www2.in</code>、<code>www2.out</code>……</p>
+<p>额外测试点的文件名应当形如：<code>ex_www1.in</code>、<code>ex_www1.out</code>、<code>ex_www2.in</code>、<code>ex_www2.out</code>……</p>
+<h2>限制</h2>
+<pre class="codehilite"><code>time_limit 1
+memory_limit 512
+output_limit 64</code></pre>
+
+
+<p>这三行配置了评测时对选手程序的时间限制、内存空间限制和输出限制。</p>
+<p>时间限制的单位为秒，不能为小数。内存空间和输出限制的单位为 MB。</p>
+<h2>比较方式</h2>
+<pre class="codehilite"><code>use_builtin_judger on
+use_builtin_checker ncmp</code></pre>
+
+
+<p>第一行表示使用内建比较器，第二行表示使用的比较器类型：</p>
+<ul>
+<li>ncmp （单行整数序列）为逐个整数比较。</li>
+<li>wcmp （单行字符串序列）为逐个单词比较，忽略多余的空白字符。</li>
+<li>fcmp （多行数据）为全文比较，<strong>不忽略行末空格</strong>，忽略文末回车。</li>
+</ul>
+<h2>其他</h2>
+<p>您还可以在管理界面通过<code>试题配置</code>按钮进行配置。</p>
+<p>但这里的比对函数处，对多行数据的解释应当以上文为准。</p>
 						
 					</section>
 				</div>

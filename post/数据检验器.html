@@ -79,6 +79,128 @@
 					<section class="content-inner margin-top-no">
 						<br>
 						
+<h1>数据检验器</h1>
+<p>uoj的数据检验器(<code>val.cpp</code>)使用testlib。</p>
+<p>下面是<code>A+B Problem</code>的检验器：</p>
+<pre class="codehilite"><code class="language-cpp">#include&quot;testlib.h&quot;
+using namespace std;
+
+int main(void)
+{
+    registerValidation();
+
+    inf.readInt(0,1000000000,&quot;A&quot;);
+    inf.readSpace();
+    inf.readInt(0,1000000000,&quot;B&quot;);
+    inf.readEoln();
+
+    inf.readEof();
+    return 0;
+}</code></pre>
+
+
+<p>上面的代码是这样工作的：</p>
+<ul>
+<li><code>registerValidation()</code>：初始化。  </li>
+<li><code>inf.readInt(0,1000000000,"A")</code>：读入叫做“A”的整形变量，范围必须在<code>[0,1000000000]</code>以内。如果不满足要求，则判定数据无效。  </li>
+<li><code>inf.readSpace()</code>：读取一个空格。  </li>
+<li><code>inf.readEoln()</code>：读取一个换行符。  </li>
+<li><code>inf.readEof()</code>：读取文件结束符。  </li>
+</ul>
+<p>上面的读取中，只要有任意一个出现了偏差，则判定数据无效。</p>
+<p>如果数据需要保证某个要求，您可以使用<code>ensuref()</code>：</p>
+<pre class="codehilite"><code class="language-cpp">ensuref(cmd=='Q' || cmd=='A' || cmd=='C' , &quot;您输入的操作不合法&quot;);</code></pre>
+
+
+<p>在上面的代码中，如果<code>cmd</code>既不是'Q'，也不是'A'或'C'，则判定数据无效，并提示<code>您输入的操作不合法</code>。</p>
+<hr />
+<h2>函数表</h2>
+<table class="table">
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>void registerValidation()</code></td>
+<td>初始化，应该在程序开始时调用</td>
+</tr>
+<tr>
+<td><code>char readChar()</code></td>
+<td>读取一个字符</td>
+</tr>
+<tr>
+<td><code>char readChar(char ch)</code></td>
+<td>读取一个字符，必须是指定的<code>ch</code></td>
+</tr>
+<tr>
+<td><code>char readSpace()</code></td>
+<td>读取一个空格</td>
+</tr>
+<tr>
+<td><code>void unreadChar(char ch)</code></td>
+<td>将<code>ch</code>添加到输入流的最后面</td>
+</tr>
+<tr>
+<td><code>string readToken()</code></td>
+<td>读取一个字符串，相当于scanf中的<code>%s</code></td>
+</tr>
+<tr>
+<td><code>string readToken(string regex)</code></td>
+<td>读取一个字符串，必须满足给定的表达式<code>regex</code>，表达式语法类似于正则</td>
+</tr>
+<tr>
+<td><code>string readWord()</code></td>
+<td>同<code>readToken()</code></td>
+</tr>
+<tr>
+<td><code>string readWord(string regex)</code></td>
+<td>同<code>readToken(string regex)</code></td>
+</tr>
+<tr>
+<td><code>long long readLong()</code></td>
+<td>读取一个<code>long long</code>变量</td>
+</tr>
+<tr>
+<td><code>long long readLong(long long L, long long R)</code></td>
+<td>读取一个<code>long long</code>变量，必须在<code>[L,R]</code>以内</td>
+</tr>
+<tr>
+<td><code>int readInt()</code>或<code>readInteger()</code></td>
+<td>读取一个<code>int</code>变量</td>
+</tr>
+<tr>
+<td><code>int readInt(int L, int R)</code></td>
+<td>读取一个<code>int</code>变量，必须在<code>[L,R]</code>以内</td>
+</tr>
+<tr>
+<td><code>double readDouble()</code>或<code>readReal()</code></td>
+<td>读取一个<code>double</code>类型变量</td>
+</tr>
+<tr>
+<td><code>double readDouble(double L, double R)</code></td>
+<td>读取一个<code>double</code>类型变量，必须在<code>[L,R]</code>以内</td>
+</tr>
+<tr>
+<td><code>string readLine()</code>或<code>readString()</code></td>
+<td>读取一整行，相当于<code>gets()</code></td>
+</tr>
+<tr>
+<td><code>string readLine(string regex)</code></td>
+<td>读取一整行，必须满足给定的表达式<code>regex</code></td>
+</tr>
+<tr>
+<td><code>void readEoln()</code></td>
+<td>读取一个换行符</td>
+</tr>
+<tr>
+<td><code>void readEof()</code></td>
+<td>读取文件结束符</td>
+</tr>
+</tbody>
+</table>
 						
 					</section>
 				</div>

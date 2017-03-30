@@ -79,6 +79,50 @@
 					<section class="content-inner margin-top-no">
 						<br>
 						
+<h1>特殊题目配置</h1>
+<p>由于很多题目有乱七八糟的配置，uoj用了一些不清真的方法来实现。</p>
+<h2>子任务</h2>
+<p>子任务模式中，必须把某个subtest的数据全部通过才能拿到对应的分数。</p>
+<p>在<code>problem.conf</code>中，可以设置每个子任务在哪个测试点结束，并给每个子任务分配对应的分数。</p>
+<p>它的写法如下：</p>
+<pre class="codehilite"><code>n_tests 40
+
+...
+
+n_subtasks 6
+subtask_end_1 5
+subtask_score_1 10
+subtask_end_2 10
+subtask_score_2 10
+subtask_end_3 15
+subtask_score_3 10
+subtask_end_4 20
+subtask_score_4 20
+subtask_end_5 25
+subtask_score_5 20
+subtask_end_6 40
+subtask_score_6 30</code></pre>
+
+
+<h2>每个测试点不同分值</h2>
+<p>如果需要对每个测试点给不同的分数，可以在<code>problem.conf</code>中用<code>point_score_x</code>实现。</p>
+<p>它的写法如下：</p>
+<pre class="codehilite"><code>n_tests 7
+
+... 
+
+point_score_1 5
+point_score_2 10
+point_score_3 15
+point_score_4 30
+point_score_5 10
+point_score_6 15
+point_score_7 15</code></pre>
+
+
+<h2>ACM模式</h2>
+<p>ACM模式的题目，如果错掉任何一个测试点就不得分。  </p>
+<p>可以通过将所有的数据都放进一个subtask来实现。</p>
 						
 					</section>
 				</div>
