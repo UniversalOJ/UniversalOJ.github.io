@@ -14,7 +14,28 @@
 </head>
 <body class="page-brand">
 	
-	<nav class="menu menu-left nav-drawer nav-drawer-md" id="ui_menu">
+	<header class="header header-transparent header-waterfall ui-header">
+		<ul class="nav nav-list pull-left">
+			<li>
+				<a data-toggle="menu" href="#menu">
+					<span class="icon icon-lg">menu</span>
+				</a>
+			</li>
+		</ul>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">特殊需求配置</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">特殊需求配置</span>
+
+		<ul class="nav nav-list pull-right">
+			<li>
+				<a data-toggle="menu" href="/">
+					<span class="avatar avatar-sm"><img alt="logo" src="https://i2.buimg.com/519918/1da8328ee5b4147a.png"></span>
+				</a>
+			</li>
+		</ul>
+
+	</header>
+
+	<nav aria-hidden="true" class="menu" id="menu" tabindex="-1">
 		<div class="menu-scroll">
 			<div class="menu-content">
 				<a class="menu-logo" href="/">UOJ部署指北</a>
@@ -54,32 +75,19 @@
 			</div>
 		</div>
 	</nav>
-	<header class="header header-transparent header-waterfall ui-header">
-		<ul class="nav nav-list pull-left hidden-md hidden-lg">
-			<li>
-				<a data-toggle="menu" href="#ui_menu">
-					<span class="icon icon-lg">menu</span>
-				</a>
-			</li>
-		</ul>
-		<span class="header-logo header-affix visible-md-block visible-lg-block margin-right-no" data-offset-top="0" data-spy="affix">
-			<p class="pagetitle">特殊需求配置</p>
-		</span>
-		
-		<ul class="nav nav-list pull-right">
-			<li>
-				<a data-toggle="menu" href="/">
-					<span class="avatar avatar-sm"><img alt="logo" src="https://i2.buimg.com/519918/1da8328ee5b4147a.png"></span>
-				</a>
-			</li>
-		</ul>
-	</header>
 	<main class="content">
+		<div class="content-header ui-content-header">
+			<div class="container">
+				<tit class="content-heading">特殊需求配置</tit>
+			</div>
+		</div>
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1">
-					<section class="content-inner margin-top-no">
-						<br>
+			<section class="content-inner margin-top-no">
+				<div class="row">
+					<div class="col-lg-13 col-md-13">
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner page-card-inner">
 						
 <h1>特殊题目配置</h1>
 <p>由于很多题目有乱七八糟的配置，uoj用了一些不清真的方法来实现。</p>
@@ -127,7 +135,16 @@ point_score_7 15
 <h2>ACM模式</h2>
 <p>ACM模式的题目，如果错掉任何一个测试点就不得分。  </p>
 <p>可以通过将所有的数据都放进一个subtask来实现。</p>
-						
+
+								<hr>
+
+								<!-- 多说评论框 start -->
+								<div class="ds-thread" data-thread-key="post/特殊需求配置" data-title="特殊需求配置" data-url="/post/特殊需求配置.html"></div>
+								<!-- 多说评论框 end -->
+
+								</div>
+							</div>
+						</div>
 					</section>
 				</div>
 			</div>
@@ -136,27 +153,13 @@ point_score_7 15
 				<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1">
 					<section class="content-inner margin-top-no">
 						<hr>
-							MIT协议 @ UOJ部署指北 2017.
+							<center>MIT协议 @ UOJ部署指北 2017.</center>
 					</section>
 				</div>
 			</div>
 
-			<!-- 多说评论框 start -->
-			<div class="ds-thread" data-thread-key="post/特殊需求配置" data-title="特殊需求配置" data-url="/post/特殊需求配置.html"></div>
-			<!-- 多说评论框 end -->
-			<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-			<script type="text/javascript">
-			var duoshuoQuery = {short_name:"uojuoj"};
-			(function() {
-				var ds = document.createElement('script');
-				ds.type = 'text/javascript';ds.async = true;
-				ds.src = 'https://dn-hb0716.qbox.me/duoshuo.js';
-				ds.charset = 'UTF-8';
-				(document.getElementsByTagName('head')[0] 
-				|| document.getElementsByTagName('body')[0]).appendChild(ds);
-			})();
-			</script>
-			<!-- 多说公共JS代码 end -->
+			
+			
 
 
 		</div>
@@ -187,5 +190,19 @@ point_score_7 15
 	<!-- js -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/base.min.js"></script>
+
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"uojuoj"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'https://dn-hb0716.qbox.me/duoshuo.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
 </body>
 </html>

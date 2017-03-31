@@ -14,20 +14,17 @@
 </head>
 <body class="page-brand">
 	
-	<?php require_once("nav.php"); ?>
-
 	<header class="header header-transparent header-waterfall ui-header">
-		<ul class="nav nav-list pull-left hidden-md hidden-lg">
+		<ul class="nav nav-list pull-left">
 			<li>
-				<a data-toggle="menu" href="#ui_menu">
+				<a data-toggle="menu" href="#menu">
 					<span class="icon icon-lg">menu</span>
 				</a>
 			</li>
 		</ul>
-		<span class="header-logo header-affix visible-md-block visible-lg-block margin-right-no" data-offset-top="0" data-spy="affix">
-			<p class="pagetitle"><?php echo $argv[2];?></p>
-		</span>
-		
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix"><?php echo $argv[2];?></a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix"><?php echo $argv[2];?></span>
+
 		<ul class="nav nav-list pull-right">
 			<li>
 				<a data-toggle="menu" href="/">
@@ -35,13 +32,24 @@
 				</a>
 			</li>
 		</ul>
+
 	</header>
+
+	<?php require_once("nav.php"); ?>
+
 	<main class="content">
+		<div class="content-header ui-content-header">
+			<div class="container">
+				<tit class="content-heading"><?php echo $argv[2];?></tit>
+			</div>
+		</div>
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1">
-					<section class="content-inner margin-top-no">
-						<br>
+			<section class="content-inner margin-top-no">
+				<div class="row">
+					<div class="col-lg-13 col-md-13">
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner page-card-inner">
 						
 <?php 
 
@@ -50,7 +58,16 @@
 	
 
 ?>
-						
+
+								<hr>
+
+								<!-- 多说评论框 start -->
+								<div class="ds-thread" data-thread-key="<?php echo "$argv[1]" ?>" data-title="<?php echo $argv[2] ?>" data-url="<?php echo "/$argv[1].html" ?>"></div>
+								<!-- 多说评论框 end -->
+
+								</div>
+							</div>
+						</div>
 					</section>
 				</div>
 			</div>
@@ -59,27 +76,13 @@
 				<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1">
 					<section class="content-inner margin-top-no">
 						<hr>
-							MIT协议 @ UOJ部署指北 2017.
+							<center>MIT协议 @ UOJ部署指北 2017.</center>
 					</section>
 				</div>
 			</div>
 
-			<!-- 多说评论框 start -->
-			<div class="ds-thread" data-thread-key="<?php echo "$argv[1]" ?>" data-title="<?php echo $argv[2] ?>" data-url="<?php echo "/$argv[1].html" ?>"></div>
-			<!-- 多说评论框 end -->
-			<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-			<script type="text/javascript">
-			var duoshuoQuery = {short_name:"uojuoj"};
-			(function() {
-				var ds = document.createElement('script');
-				ds.type = 'text/javascript';ds.async = true;
-				ds.src = 'https://dn-hb0716.qbox.me/duoshuo.js';
-				ds.charset = 'UTF-8';
-				(document.getElementsByTagName('head')[0] 
-				|| document.getElementsByTagName('body')[0]).appendChild(ds);
-			})();
-			</script>
-			<!-- 多说公共JS代码 end -->
+			
+			
 
 
 		</div>
@@ -110,5 +113,19 @@
 	<!-- js -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/base.min.js"></script>
+
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"uojuoj"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'https://dn-hb0716.qbox.me/duoshuo.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
 </body>
 </html>

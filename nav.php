@@ -1,4 +1,4 @@
-<nav class="menu menu-left nav-drawer nav-drawer-md" id="ui_menu">
+<nav aria-hidden="true" class="menu" id="menu" tabindex="-1">
 		<div class="menu-scroll">
 			<div class="menu-content">
 				<a class="menu-logo" href="/">UOJ部署指北</a>

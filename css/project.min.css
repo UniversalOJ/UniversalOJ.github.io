@@ -24,3 +24,19 @@ h1,h2,h3,h4,h5,h6,body{
 }
 
 h1{margin:50px 0 20px;font-size:30px}h2{margin:35px 0 20px;font-size:26px}h3{margin:20px 0;font-size:21px}h4{font-size:18px}h5,h6{font-size:16px}
+
+tit{
+		color:rgb(255, 255, 255);
+		display:block;
+		font-family:Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size:44px;
+		font-weight:300;
+		height:48px;
+		line-height:48px;
+		margin-bottom:12px;
+		margin-top:48px;
+	}
+
+.page-card-inner{
+	margin: 40px;
+}
