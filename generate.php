@@ -72,18 +72,10 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1">
-					<section class="content-inner margin-top-no">
-						<hr>
-							<center>MIT协议 @ UOJ部署指北 2017.</center>
-					</section>
-				</div>
-			</div>
-
 			
+			<hr>
+			<center>MIT协议 @ UOJ部署指北 2017.</center>
 			
-
 
 		</div>
 
