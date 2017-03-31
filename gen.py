@@ -37,8 +37,7 @@ text = markdown.markdown(text, extensions=['markdown.extensions.tables','markdow
 
 text = text.replace('<table','<table class="table"')
 text = text.replace('<img','<img style="max-width:100%"')
-text = text.replace('<blockquote>','<div class="card"><div class="card-main"><div class="card-inner">')
-text = text.replace('</blockquote>','</div></div></div>')   
+text = text.replace('<blockquote>','<blockquote class="note">')
 
 
 

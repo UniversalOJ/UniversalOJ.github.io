@@ -42,3 +42,10 @@ tit{
 	margin: 40px;
 	font-family: "PingFang SC","Hiragino Sans GB","Helvetica Neue","Microsoft Yahei","WenQuanYi Micro Hei","sans-serif";
 }
+
+blockquote{position:relative;color:#999;font-weight:400;border-left:3px solid #ddd;padding:1rem;margin:.5rem 0 1rem;font-size:14px}
+blockquote:before{display:block;margin-bottom:.6rem}
+blockquote.note{border-color:#5f9fd6;background:#f8f8f8;color:#666}
+blockquote.note:before{content:"NOTE:";color:#5f9fd6}
+blockquote.warn{border-color:#ff4136;background:#f8f8f8;color:#666}
+blockquote.warn:before{content:"WARNING:";color:#ff4136}

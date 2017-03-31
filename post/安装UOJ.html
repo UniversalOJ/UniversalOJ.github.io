@@ -114,14 +114,14 @@ service docker restart
 </pre></div>
 
 
-<div class="card"><div class="card-main"><div class="card-inner">
+<blockquote class="note">
 <p><strong>如果您需要支持java</strong>，请下载这两个文件：  </p>
 <ul>
 <li><a href="http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u76-oth-JPR">JDK7u76</a>  </li>
 <li><a href="http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html#jdk-8u31-oth-JPR">JDK8u31</a>  </li>
 </ul>
 <p>然后把它们放进<code>docker/</code>目录，替换掉<code>jdk-7u76-linux-x64.tar.gz</code>和<code>jdk-8u31-linux-x64.tar.gz</code>。</p>
-</div></div></div>
+</blockquote>
 <h2>安装</h2>
 <p>接着，您需要执行下面的指令来开始安装。请注意不是<code>docker/</code>目录下的同名文件。</p>
 <div class="codehilite"><pre><span></span>./install 
@@ -140,9 +140,9 @@ service docker restart
 
 
 <p>接下来这个容器将在后台运行。</p>
-<div class="card"><div class="card-main"><div class="card-inner">
+<blockquote class="note">
 <p>如果您不希望用80端口来运行uoj，您可以把上面的<code>-p 80:80</code>改成<code>-p &lt;port&gt;:80</code>。</p>
-</div></div></div>
+</blockquote>
 <p>您需要通过这几条命令管理容器：</p>
 <div class="codehilite"><pre><span></span>docker start uoj                <span class="c1"># 启动uoj容器</span>
 docker stop uoj                 <span class="c1"># 暂停uoj容器</span>
