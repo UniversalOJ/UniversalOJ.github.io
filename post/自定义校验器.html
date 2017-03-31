@@ -106,9 +106,9 @@
     <span class="n">jans</span><span class="o">=</span><span class="n">ans</span><span class="p">.</span><span class="n">readInt</span><span class="p">();</span>      <span class="c1">// 读取答案</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">pans</span> <span class="o">==</span> <span class="n">jans</span><span class="p">)</span>
-        <span class="n">quitf</span><span class="p">(</span><span class="n">_ok</span><span class="p">,</span> <span class="s">&quot;答案正确.&quot;</span><span class="p">);</span>
+        <span class="n">quitf</span><span class="p">(</span><span class="n">_ok</span><span class="p">,</span> <span class="s">&quot;Correct.&quot;</span><span class="p">);</span>
     <span class="k">else</span>
-        <span class="n">quitf</span><span class="p">(</span><span class="n">_wa</span><span class="p">,</span> <span class="s">&quot;恭喜你WA掉了。正确答案是 %d, 选手输出了 %d&quot;</span><span class="p">,</span> <span class="n">jans</span><span class="p">,</span> <span class="n">pans</span><span class="p">);</span>
+        <span class="n">quitf</span><span class="p">(</span><span class="n">_wa</span><span class="p">,</span> <span class="s">&quot;WA! expect=%d recieve=%d&quot;</span><span class="p">,</span> <span class="n">jans</span><span class="p">,</span> <span class="n">pans</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 
