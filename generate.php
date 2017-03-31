@@ -75,7 +75,6 @@
 			
 			<hr>
 			<center>[CC协议 BY-NC-SA] 署名 - 非商业性使用 - 相同方式共享  @ UOJ部署指北 2017.</center>
-			
 
 		</div>
 
