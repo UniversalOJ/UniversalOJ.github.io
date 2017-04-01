@@ -94,21 +94,24 @@
 <h2>安装前的准备</h2>
 <p>您需要准备一台<strong>64位</strong>的Linux系统。</p>
 <p>然后您需要安装<code>docker</code>。它是一个容器技术，暂且可以理解成虚拟机。</p>
-<pre class="codehilite"><code class="language-bash">sudo apt install docker.io          # ubuntu, debian系统请使用这条指令
-sudo yum install docker             # CentOS系统请使用这条指令
+<div class="codehilite"><pre><span></span>sudo apt install docker.io          <span class="c1"># ubuntu, debian系统请使用这条指令</span>
+sudo yum install docker             <span class="c1"># CentOS系统请使用这条指令</span>
 
 
-sudo service docker start           # 启动docker服务</code></pre>
+sudo service docker start           <span class="c1"># 启动docker服务</span>
+</pre></div>
 
 
 <p>另外，您可以通过下面的代码安装docker加速器（强烈推荐）：</p>
-<pre class="codehilite"><code class="language-bash">sudo su
-curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://3a834d99.m.daocloud.io
-service docker restart</code></pre>
+<div class="codehilite"><pre><span></span>sudo su
+curl -sSL https://get.daocloud.io/daotools/set_mirror.sh <span class="p">|</span> sh -s http://3a834d99.m.daocloud.io
+service docker restart
+</pre></div>
 
 
 <p>下载UOJ的源码：  </p>
-<pre class="codehilite"><code class="language-bash">git clone https://github.com/UniversalOJ/UOJ-System.git</code></pre>
+<div class="codehilite"><pre><span></span>git clone https://github.com/UniversalOJ/UOJ-System.git
+</pre></div>
 
 
 <blockquote class="note">
@@ -121,7 +124,8 @@ service docker restart</code></pre>
 </blockquote>
 <h2>安装</h2>
 <p>接着，您需要执行下面的指令来开始安装。请注意不是<code>docker/</code>目录下的同名文件。</p>
-<pre class="codehilite"><code class="language-bash">./install </code></pre>
+<div class="codehilite"><pre><span></span>./install 
+</pre></div>
 
 
 <p>如果安装过程顺利的话，您将会看到<code>Successfully built &lt;image-id&gt;</code>。</p>
@@ -131,7 +135,8 @@ service docker restart</code></pre>
 <p><img style="max-width:100%" alt="安装完成" src="https://i4.buimg.com/519918/2f19d46c1b742c0f.png" /></p>
 <h2>启动</h2>
 <p>安装完成后，您取得了一个镜像。现在您需要建立一个容器，用于运行UOJ：</p>
-<pre class="codehilite"><code class="language-bash">docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  &lt;image-id&gt;</code></pre>
+<div class="codehilite"><pre><span></span>docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  &lt;image-id&gt;
+</pre></div>
 
 
 <p>接下来这个容器将在后台运行。</p>
@@ -139,15 +144,17 @@ service docker restart</code></pre>
 <p>如果您不希望用80端口来运行uoj，您可以把上面的<code>-p 80:80</code>改成<code>-p &lt;port&gt;:80</code>。</p>
 </blockquote>
 <p>您需要通过这几条命令管理容器：</p>
-<pre class="codehilite"><code class="language-bash">docker start uoj                # 启动uoj容器
-docker stop uoj                 # 暂停uoj容器
-docker restart uoj              # 重启uoj容器
+<div class="codehilite"><pre><span></span>docker start uoj                <span class="c1"># 启动uoj容器</span>
+docker stop uoj                 <span class="c1"># 暂停uoj容器</span>
+docker restart uoj              <span class="c1"># 重启uoj容器</span>
 
-docker exec -it uoj /bin/bash   # 进入容器的终端！</code></pre>
+docker <span class="nb">exec</span> -it uoj /bin/bash   <span class="c1"># 进入容器的终端！</span>
+</pre></div>
 
 
 <p>现在请您进入容器的终端，编辑<code>/var/www/uoj/app/.config.php</code>，把<code>local_uoj.ac</code>改成下面这一段代码：</p>
-<pre class="codehilite"><code class="language-php">'host' =&gt; isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ''),</code></pre>
+<div class="codehilite"><pre><span></span><span class="x">&#39;host&#39; =&gt; isset($_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;]) ? $_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;] : (isset($_SERVER[&#39;HTTP_HOST&#39;]) ? $_SERVER[&#39;HTTP_HOST&#39;] : &#39;&#39;),</span>
+</pre></div>
 
 
 <p>现在这个文件应该如下图所示：</p>

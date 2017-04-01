@@ -95,21 +95,22 @@
 <p>如果您准备使用自定义校验器，请在<code>problem.conf</code>中去掉<code>use_builtin_checker</code>那一行。</p>
 </blockquote>
 <p>下面是<code>A+B Problem</code>的校验器：</p>
-<pre class="codehilite"><code class="language-cpp">#include &quot;testlib.h&quot;
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;testlib.h&quot;</span><span class="cp"></span>
 
-int main(int argc, char* argv[])
-{
-    registerTestlibCmd(argc, argv);
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">registerTestlibCmd</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
 
-    int pans,jans;
-    pans=ouf.readInt();      // 读取选手输出
-    jans=ans.readInt();      // 读取答案
+    <span class="kt">int</span> <span class="n">pans</span><span class="p">,</span><span class="n">jans</span><span class="p">;</span>
+    <span class="n">pans</span><span class="o">=</span><span class="n">ouf</span><span class="p">.</span><span class="n">readInt</span><span class="p">();</span>      <span class="c1">// 读取选手输出</span>
+    <span class="n">jans</span><span class="o">=</span><span class="n">ans</span><span class="p">.</span><span class="n">readInt</span><span class="p">();</span>      <span class="c1">// 读取答案</span>
 
-    if (pans == jans)
-        quitf(_ok, &quot;Correct.&quot;);
-    else
-        quitf(_wa, &quot;WA! expect=%d recieve=%d&quot;, jans, pans);
-}</code></pre>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pans</span> <span class="o">==</span> <span class="n">jans</span><span class="p">)</span>
+        <span class="n">quitf</span><span class="p">(</span><span class="n">_ok</span><span class="p">,</span> <span class="s">&quot;Correct.&quot;</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">quitf</span><span class="p">(</span><span class="n">_wa</span><span class="p">,</span> <span class="s">&quot;WA! expect=%d recieve=%d&quot;</span><span class="p">,</span> <span class="n">jans</span><span class="p">,</span> <span class="n">pans</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <p>在调用<code>registerTestlibCmd</code>之后，我们可以使用下面的三个流：</p>
@@ -120,7 +121,8 @@ int main(int argc, char* argv[])
 </ul>
 <p>从流中读取数据的方式，和【数据检验器】一致。</p>
 <p>如果程序AC或者爆零，您可以使用<code>quitf()</code>。但是如果您想给选手部分分，请使用下面的代码：</p>
-<pre class="codehilite"><code class="language-cpp">quitp(ceil(100.0 * p / a) / 100, &quot;QAQ&quot;);</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">quitp</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="n">p</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="s">&quot;QAQ&quot;</span><span class="p">);</span>
+</pre></div>
 
 
 <p>这将会给选手p分。</p>
