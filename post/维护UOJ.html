@@ -89,6 +89,9 @@
 							<div class="card-main">
 								<div class="card-inner page-card-inner">
 						
+<h2>docker简介</h2>
+<p>之前说过，docker相当于一台虚拟机。</p>
+<p>我们把虚拟机称作“容器”，容器需要基于“镜像”来运行。</p>
 <h2>容器维护</h2>
 <p>docker容器很容易维护。您只需要掌握以下命令：</p>
 <div class="codehilite"><pre><span></span>docker start uoj                <span class="c1"># 启动uoj容器</span>
@@ -113,7 +116,7 @@ docker commit uoj uoj_back_20170301     <span class="c1"># 例行备份</span>
 
 docker stop uoj
 docker rm uoj                           <span class="c1"># 删除uoj容器</span>
-docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back_20170301
+docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE  uoj_back_20170301
 <span class="c1"># 创建新的uoj容器，使用3月1日的备份</span>
 </pre></div>
 
@@ -138,7 +141,7 @@ docker save -o uoj.tar uoj_back         <span class="c1"># 把uoj_back镜像导�
 
 <span class="c1"># 服务器B：</span>
 docker load --input uoj.tar             <span class="c1"># 导入uoj_back镜像</span>
-docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back
+docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE  uoj_back
 <span class="c1"># 建立uoj容器，基于之前服务器A的数据，迁移完成</span>
 </pre></div>
 

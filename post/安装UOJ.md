@@ -1,6 +1,5 @@
-请注意，这篇教程与vfk的readme文档有严重不同。    
-建议您按照本文的方式安装，这将省去很多不必要的麻烦。  
-
+> 请注意，这篇教程与vfk的readme文档有严重不同。    
+> 建议您按照本文的方式安装，这将省去很多不必要的麻烦。  
 
 ## 安装前的准备
 
@@ -40,10 +39,10 @@ git clone https://github.com/UniversalOJ/UOJ-System.git
 
 接着，您需要执行下面的指令来开始安装。请注意不是`docker/`目录下的同名文件。
 ```bash
-./install 
+sudo ./install 
 ```
 
-如果安装过程顺利的话，您将会看到`Successfully built <image-id>`。
+如果安装过程顺利的话，您将会看到`Successfully built`。
 
 安装过程：  
 
@@ -58,30 +57,13 @@ git clone https://github.com/UniversalOJ/UOJ-System.git
 ## 启动
 安装完成后，您取得了一个镜像。现在您需要建立一个容器，用于运行UOJ：
 ```bash
-docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  <image-id>
+sudo docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE uoj
 ```
 接下来这个容器将在后台运行。
 
+> 上面的代码是用于**新建一个UOJ**，重启服务器后**不要**使用`docker run`来启动容器。具体参阅维护文档。
 > 如果您不希望用80端口来运行uoj，您可以把上面的`-p 80:80`改成`-p <port>:80`。
 
-您需要通过这几条命令管理容器：
-```bash
-docker start uoj    			# 启动uoj容器
-docker stop uoj					# 暂停uoj容器
-docker restart uoj				# 重启uoj容器
 
-docker exec -it uoj /bin/bash	# 进入容器的终端！
-```
-
-现在请您进入容器的终端，编辑`/var/www/uoj/app/.config.php`，把`local_uoj.ac`改成下面这一段代码：
-
-```php
-'host' => isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ''),
-```
-
-现在这个文件应该如下图所示：
-
-![config.php](https://i4.buimg.com/519918/956d841d7a8169a0.png)
-
-访问服务器的ip，您现在应该能看到UOJ正在运行了。
+访问服务器的ip，您现在应该能看到UOJ正在运行了。下一步，请参阅《维护UOJ》。
 

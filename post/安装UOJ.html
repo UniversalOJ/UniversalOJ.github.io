@@ -89,8 +89,10 @@
 							<div class="card-main">
 								<div class="card-inner page-card-inner">
 						
+<blockquote class="note">
 <p>请注意，这篇教程与vfk的readme文档有严重不同。  <br />
 建议您按照本文的方式安装，这将省去很多不必要的麻烦。  </p>
+</blockquote>
 <h2>安装前的准备</h2>
 <p>您需要准备一台<strong>64位</strong>的Linux系统。</p>
 <p>然后您需要安装<code>docker</code>。它是一个容器技术，暂且可以理解成虚拟机。</p>
@@ -124,42 +126,27 @@ service docker restart
 </blockquote>
 <h2>安装</h2>
 <p>接着，您需要执行下面的指令来开始安装。请注意不是<code>docker/</code>目录下的同名文件。</p>
-<div class="codehilite"><pre><span></span>./install 
+<div class="codehilite"><pre><span></span>sudo ./install 
 </pre></div>
 
 
-<p>如果安装过程顺利的话，您将会看到<code>Successfully built &lt;image-id&gt;</code>。</p>
+<p>如果安装过程顺利的话，您将会看到<code>Successfully built</code>。</p>
 <p>安装过程：  </p>
 <p><img style="max-width:100%" alt="安装过程" src="https://i2.buimg.com/519918/0cd7d21eefa3c0bd.png" /></p>
 <p>安装完成：  </p>
 <p><img style="max-width:100%" alt="安装完成" src="https://i4.buimg.com/519918/2f19d46c1b742c0f.png" /></p>
 <h2>启动</h2>
 <p>安装完成后，您取得了一个镜像。现在您需要建立一个容器，用于运行UOJ：</p>
-<div class="codehilite"><pre><span></span>docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  &lt;image-id&gt;
+<div class="codehilite"><pre><span></span>sudo docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE uoj
 </pre></div>
 
 
 <p>接下来这个容器将在后台运行。</p>
 <blockquote class="note">
-<p>如果您不希望用80端口来运行uoj，您可以把上面的<code>-p 80:80</code>改成<code>-p &lt;port&gt;:80</code>。</p>
+<p>上面的代码是用于<strong>新建一个UOJ</strong>，重启服务器后<strong>不要</strong>使用<code>docker run</code>来启动容器。具体参阅维护文档。
+如果您不希望用80端口来运行uoj，您可以把上面的<code>-p 80:80</code>改成<code>-p &lt;port&gt;:80</code>。</p>
 </blockquote>
-<p>您需要通过这几条命令管理容器：</p>
-<div class="codehilite"><pre><span></span>docker start uoj                <span class="c1"># 启动uoj容器</span>
-docker stop uoj                 <span class="c1"># 暂停uoj容器</span>
-docker restart uoj              <span class="c1"># 重启uoj容器</span>
-
-docker <span class="nb">exec</span> -it uoj /bin/bash   <span class="c1"># 进入容器的终端！</span>
-</pre></div>
-
-
-<p>现在请您进入容器的终端，编辑<code>/var/www/uoj/app/.config.php</code>，把<code>local_uoj.ac</code>改成下面这一段代码：</p>
-<div class="codehilite"><pre><span></span><span class="x">&#39;host&#39; =&gt; isset($_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;]) ? $_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;] : (isset($_SERVER[&#39;HTTP_HOST&#39;]) ? $_SERVER[&#39;HTTP_HOST&#39;] : &#39;&#39;),</span>
-</pre></div>
-
-
-<p>现在这个文件应该如下图所示：</p>
-<p><img style="max-width:100%" alt="config.php" src="https://i4.buimg.com/519918/956d841d7a8169a0.png" /></p>
-<p>访问服务器的ip，您现在应该能看到UOJ正在运行了。</p>
+<p>访问服务器的ip，您现在应该能看到UOJ正在运行了。下一步，请参阅《维护UOJ》。</p>
 
 								<hr>
 
