@@ -1,0 +1,39 @@
+> 这篇文档将指导您快速安装UOJ。  
+> 本文与《传统安装UOJ》只需选择一个执行。
+
+## 安装前的准备
+
+您需要准备一台**64位**的Linux系统。
+
+然后您需要安装`docker`。它是一个容器技术，暂且可以理解成虚拟机。
+```bash
+sudo apt install docker.io          # ubuntu, debian系统请使用这条指令
+sudo yum install docker				# CentOS系统请使用这条指令
+
+
+sudo service docker start 			# 启动docker服务
+```
+
+另外，您可以通过下面的代码安装docker加速器（强烈推荐）：
+```bash
+sudo su
+curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://3a834d99.m.daocloud.io
+service docker restart
+```
+
+## 安装
+
+您需要执行下面的指令来开始安装安装UOJ：
+
+```bash
+sudo docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE ruanxingzhi/uoj
+```
+
+接下来，UOJ将在后台运行。
+
+> 上面的代码是用于**新建一个UOJ容器**，重启服务器后**不要**使用`docker run`来启动容器。具体参阅维护文档。  
+> 如果您不希望用80端口来运行uoj，您可以把上面的`-p 80:80`改成`-p <port>:80`。  
+
+
+访问服务器的ip，您现在应该能看到UOJ正在运行了。下一步，请参阅《维护UOJ》。
+

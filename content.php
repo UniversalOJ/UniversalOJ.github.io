@@ -4,7 +4,8 @@ $content = array
 (
 
     '安装' => array(
-    '安装UOJ'=>'post/安装UOJ.md',
+    '一键安装UOJ'=>'post/一键安装UOJ.md',
+    '传统安装UOJ'=>'post/传统安装UOJ.md',
     '维护UOJ'=>'post/维护UOJ.md'
     ),
     
