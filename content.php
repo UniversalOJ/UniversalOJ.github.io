@@ -6,7 +6,8 @@ $content = array
     '安装' => array(
     '一键安装UOJ'=>'post/一键安装UOJ.md',
     '传统安装UOJ'=>'post/传统安装UOJ.md',
-    '维护UOJ'=>'post/维护UOJ.md'
+    '维护UOJ'=>'post/维护UOJ.md',
+    '外网映射教程'=>'post/外网映射教程.md'
     ),
     
     '题目' => array(

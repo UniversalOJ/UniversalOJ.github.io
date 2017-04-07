@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<title>自定义校验器 - UOJ部署指北</title>
+	<title>外网映射教程 - UOJ部署指北</title>
 
 	<!-- css -->
 	<link href="/css/base.min.css" rel="stylesheet">
@@ -22,8 +22,8 @@
 				</a>
 			</li>
 		</ul>
-		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">自定义校验器</a>
-		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">自定义校验器</span>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">外网映射教程</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">外网映射教程</span>
 
 		<ul class="nav nav-list pull-right">
 			<li>
@@ -54,7 +54,7 @@
 									<a class="waves-attach" href="/post/传统安装UOJ.html">传统安装UOJ</a>
 								</li><li>
 									<a class="waves-attach" href="/post/维护UOJ.html">维护UOJ</a>
-								</li><li>
+								</li><li class="active">
 									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
@@ -68,7 +68,7 @@
 									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
 								</li><li>
 									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
-								</li><li class="active">
+								</li><li>
 									<a class="waves-attach" href="/post/自定义校验器.html">自定义校验器</a>
 								</li></ul>						
 
@@ -82,7 +82,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<tit class="content-heading">自定义校验器</tit>
+				<tit class="content-heading">外网映射教程</tit>
 			</div>
 		</div>
 		<div class="container">
@@ -93,51 +93,66 @@
 							<div class="card-main">
 								<div class="card-inner page-card-inner">
 						
-<p>本文将引导您写一个自定义的checker（<code>chk.cpp</code>）。<br />
-按照套路，uoj的校验器也应该使用testlib编写。</p>
 <blockquote class="note">
-<p>如果您准备使用自定义校验器，请在<code>problem.conf</code>中去掉<code>use_builtin_checker</code>那一行。</p>
+<p>如果您希望让外网访问UOJ，但是服务器没有外网ip，那么您可能需要这篇教程。<br />
+本文将引导您将内外的UOJ对外网开放。您可以选择以下方案中的一种。</p>
 </blockquote>
-<p>下面是<code>A+B Problem</code>的校验器：</p>
-<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;testlib.h&quot;</span><span class="cp"></span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-    <span class="n">registerTestlibCmd</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
-
-    <span class="kt">int</span> <span class="n">pans</span><span class="p">,</span><span class="n">jans</span><span class="p">;</span>
-    <span class="n">pans</span><span class="o">=</span><span class="n">ouf</span><span class="p">.</span><span class="n">readInt</span><span class="p">();</span>      <span class="c1">// 读取选手输出</span>
-    <span class="n">jans</span><span class="o">=</span><span class="n">ans</span><span class="p">.</span><span class="n">readInt</span><span class="p">();</span>      <span class="c1">// 读取答案</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">pans</span> <span class="o">==</span> <span class="n">jans</span><span class="p">)</span>
-        <span class="n">quitf</span><span class="p">(</span><span class="n">_ok</span><span class="p">,</span> <span class="s">&quot;Correct.&quot;</span><span class="p">);</span>
-    <span class="k">else</span>
-        <span class="n">quitf</span><span class="p">(</span><span class="n">_wa</span><span class="p">,</span> <span class="s">&quot;WA! expect=%d recieve=%d&quot;</span><span class="p">,</span> <span class="n">jans</span><span class="p">,</span> <span class="n">pans</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>在调用<code>registerTestlibCmd</code>之后，我们可以使用下面的三个流：</p>
+<h2>ngrok</h2>
+<p>ngrok是一款操作简单的软件，可以把内网的web服务映射到外网。</p>
+<p>大部分的ngrok服务是免费的。例如：<a href="https://www.ngrok.cc/">ngrok.cc</a></p>
+<blockquote class="note">
+<p>ngrok的缺点：</p>
 <ul>
-<li><code>inf</code> ： 输入数据</li>
-<li><code>ouf</code> ： 选手输出</li>
-<li><code>ans</code> ： 标准输出</li>
+<li>速度比较慢</li>
+<li>数据并不保密，ngrok服务提供者有能力监听OJ的通讯。</li>
 </ul>
-<p>从流中读取数据的方式，和【数据检验器】一致。</p>
-<p>如果程序AC或者爆零，您可以使用<code>quitf()</code>。但是如果您想给选手部分分，请使用下面的代码：</p>
-<div class="codehilite"><pre><span></span><span class="n">quitp</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="n">p</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="s">&quot;QAQ&quot;</span><span class="p">);</span>
+</blockquote>
+<p>虽然有这几个缺点，ngrok仍然不失为一个好的选择。具体的配置，请参见<a href="https://www.ngrok.cc/">ngrok.cc</a>网站。</p>
+<h2>ssh转发</h2>
+<p>这个方案需要您有一台VPS，且VPS需要拥有外网ip。<a href="http://pyoj.ml/">PYOJ</a>就是通过这种方式向外网开放的。</p>
+<p>首先，您需要在本地机器通过<code>ssh-keygen</code>来生成一个您的密钥：</p>
+<div class="codehilite"><pre><span></span>ssh-keygen -t rsa
 </pre></div>
 
 
-<p>这将会给选手p分。</p>
+<p>一直按<code>enter</code>键，然后您将会在<code>~/.ssh/id_rsa.pub</code>取得您的公钥。
+<img style="max-width:100%" alt="生成公钥" src="http://i2.muimg.com/567571/609c9db0c37658d2.png" /></p>
+<p>然后登录您的VPS，把上面的公钥扔进<code>~/.ssh/authorized_keys</code>，如下图所示：
+<img style="max-width:100%" alt="VPS" src="http://i1.piimg.com/567571/b764e26ccdf050b8.png" /></p>
 <blockquote class="note">
-<p>chk.cpp中不能出现中文！</p>
+<p>现在，您在本地机器上使用如下命令，应该可以免密码登录VPS：<br />
+<code>bash  
+ssh &lt;VPS_user&gt;@&lt;VPS_ip&gt;</code><br />
+如果不能登录，您可能对上面过程的理解存在偏差。  </p>
 </blockquote>
+<p>接下来，在本地机器上安装<code>autossh</code>，它是稳定的ssh连接工具：  </p>
+<div class="codehilite"><pre><span></span>sudo apt install autossh
+</pre></div>
+
+
+<p>最后运行下面的指令，将本地的<code>80</code>端口映射到VPS的<code>80</code>端口：  </p>
+<div class="codehilite"><pre><span></span>autossh -M <span class="m">5698</span> -NfR &lt;VPS的ip&gt;:80:&lt;本地机器的ip&gt;:80 &lt;VPS用户名&gt;@&lt;VPS的ip&gt;  
+
+<span class="c1"># 例如：</span>
+<span class="c1"># autossh -M 5698 -NfR 23.23.23.23:80:127.0.0.1:80 blue@23.23.23.23</span>
+<span class="c1"># 5698是监听端口，用于测试ssh连接是否稳定。如果您运行了多个autossh，请保证它们的监听端口不同。</span>
+</pre></div>
+
+
+<p>访问VPS的ip，您应该可以看到UOJ了。</p>
+<blockquote class="note">
+<p>如果您有域名，请添加一条A记录，指向VPS的ip，然后就能用域名访问了。</p>
+</blockquote>
+<h2>ssh转发的高级配置</h2>
+<p>如果一台VPS需要映射多个网站，那么显然不能都映射到<code>80</code>端口。</p>
+<p>在这种情况下，您可以将网站分别映射到<code>10000</code>,<code>10001</code>,<code>10002</code>……然后用nginx来做反代。访问不同的域名将会反代到不同的网站。</p>
+<p>VPS上的配置文件（<code>/etc/nginx/conf.d/uoj.conf</code>）大概如下：</p>
+<p><a href="http://paste.ubuntu.com/24334214/">http://paste.ubuntu.com/24334214/</a></p>
 
 								<hr>
 
 								<!-- 多说评论框 start -->
-								<div class="ds-thread" data-thread-key="post/自定义校验器" data-title="自定义校验器" data-url="/post/自定义校验器.html"></div>
+								<div class="ds-thread" data-thread-key="post/外网映射教程" data-title="外网映射教程" data-url="/post/外网映射教程.html"></div>
 								<!-- 多说评论框 end -->
 
 								</div>
