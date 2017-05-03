@@ -121,7 +121,7 @@ service docker restart
 </pre></div>
 
 
-<p>接下来，UOJ将在后台运行。</p>
+<p>接下来，UOJ将在后台运行。<code>root</code>账户的密码是<code>uojuoj</code>。</p>
 <blockquote class="note">
 <p>上面的代码是用于<strong>新建一个UOJ容器</strong>，重启服务器后<strong>不要</strong>使用<code>docker run</code>来启动容器。具体参阅维护文档。<br />
 如果您不希望用80端口来运行uoj，您可以把上面的<code>-p 80:80</code>改成<code>-p &lt;port&gt;:80</code>。  </p>

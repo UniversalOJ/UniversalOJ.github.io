@@ -29,7 +29,7 @@ service docker restart
 sudo docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE ruanxingzhi/uoj
 ```
 
-接下来，UOJ将在后台运行。
+接下来，UOJ将在后台运行。`root`账户的密码是`uojuoj`。
 
 > 上面的代码是用于**新建一个UOJ容器**，重启服务器后**不要**使用`docker run`来启动容器。具体参阅维护文档。  
 > 如果您不希望用80端口来运行uoj，您可以把上面的`-p 80:80`改成`-p <port>:80`。  
