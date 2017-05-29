@@ -52,10 +52,16 @@
 									<a class="waves-attach" href="/post/一键安装UOJ.html">一键安装UOJ</a>
 								</li><li class="active">
 									<a class="waves-attach" href="/post/传统安装UOJ.html">传统安装UOJ</a>
-								</li><li>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#配置与维护">配置与维护</a>	
+								<ul class="menu-collapse collapse in" id="配置与维护">
+
+								<li>
 									<a class="waves-attach" href="/post/维护UOJ.html">维护UOJ</a>
 								</li><li>
 									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li>
+									<a class="waves-attach" href="/post/个性化.html">个性化</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
 								<ul class="menu-collapse collapse in" id="题目">
@@ -102,24 +108,21 @@
 <h2>安装前的准备</h2>
 <p>您需要准备一台<strong>64位</strong>的Linux系统。</p>
 <p>然后您需要安装<code>docker</code>。它是一个容器技术，暂且可以理解成虚拟机。</p>
-<div class="codehilite"><pre><span></span>sudo apt install docker.io          <span class="c1"># ubuntu, debian系统请使用这条指令</span>
-sudo yum install docker             <span class="c1"># CentOS系统请使用这条指令</span>
+<pre class="codehilite"><code class="language-bash">sudo apt install docker.io          # ubuntu, debian系统请使用这条指令
+sudo yum install docker             # CentOS系统请使用这条指令
 
 
-sudo service docker start           <span class="c1"># 启动docker服务</span>
-</pre></div>
+sudo service docker start           # 启动docker服务</code></pre>
 
 
 <p>另外，您可以通过下面的代码安装docker加速器（强烈推荐）：</p>
-<div class="codehilite"><pre><span></span>sudo su
-curl -sSL https://get.daocloud.io/daotools/set_mirror.sh <span class="p">|</span> sh -s http://3a834d99.m.daocloud.io
-service docker restart
-</pre></div>
+<pre class="codehilite"><code class="language-bash">sudo su
+curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://3a834d99.m.daocloud.io
+service docker restart</code></pre>
 
 
 <p>下载UOJ的源码：  </p>
-<div class="codehilite"><pre><span></span>git clone https://github.com/UniversalOJ/UOJ-System.git
-</pre></div>
+<pre class="codehilite"><code class="language-bash">git clone https://github.com/UniversalOJ/UOJ-System.git</code></pre>
 
 
 <blockquote class="note">
@@ -132,8 +135,7 @@ service docker restart
 </blockquote>
 <h2>安装</h2>
 <p>接着，您需要执行下面的指令来开始安装。请注意不是<code>docker/</code>目录下的同名文件。</p>
-<div class="codehilite"><pre><span></span>sudo ./install 
-</pre></div>
+<pre class="codehilite"><code class="language-bash">sudo ./install </code></pre>
 
 
 <p>如果安装过程顺利的话，您将会看到<code>Successfully built</code>。</p>
@@ -143,8 +145,7 @@ service docker restart
 <p><img style="max-width:100%" alt="安装完成" src="https://i4.buimg.com/519918/2f19d46c1b742c0f.png" /></p>
 <h2>启动</h2>
 <p>安装完成后，您取得了一个镜像。现在您需要建立一个容器，用于运行UOJ：</p>
-<div class="codehilite"><pre><span></span>sudo docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE uoj
-</pre></div>
+<pre class="codehilite"><code class="language-bash">sudo docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE uoj</code></pre>
 
 
 <p>接下来这个容器将在后台运行。</p>

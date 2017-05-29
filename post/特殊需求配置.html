@@ -52,10 +52,16 @@
 									<a class="waves-attach" href="/post/一键安装UOJ.html">一键安装UOJ</a>
 								</li><li>
 									<a class="waves-attach" href="/post/传统安装UOJ.html">传统安装UOJ</a>
-								</li><li>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#配置与维护">配置与维护</a>	
+								<ul class="menu-collapse collapse in" id="配置与维护">
+
+								<li>
 									<a class="waves-attach" href="/post/维护UOJ.html">维护UOJ</a>
 								</li><li>
 									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li>
+									<a class="waves-attach" href="/post/个性化.html">个性化</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
 								<ul class="menu-collapse collapse in" id="题目">
@@ -98,7 +104,7 @@
 <p>子任务模式中，必须把某个subtest的数据全部通过才能拿到对应的分数。</p>
 <p>在<code>problem.conf</code>中，可以设置每个子任务在哪个测试点结束，并给每个子任务分配对应的分数。</p>
 <p>它的写法如下：</p>
-<div class="codehilite"><pre><span></span>n_tests 40
+<pre class="codehilite"><code>n_tests 40
 
 ...
 
@@ -114,14 +120,13 @@ subtask_score_4 20
 subtask_end_5 25
 subtask_score_5 20
 subtask_end_6 40
-subtask_score_6 30
-</pre></div>
+subtask_score_6 30</code></pre>
 
 
 <h2>每个测试点不同分值</h2>
 <p>如果需要对每个测试点给不同的分数，可以在<code>problem.conf</code>中用<code>point_score_x</code>实现。</p>
 <p>它的写法如下：</p>
-<div class="codehilite"><pre><span></span>n_tests 7
+<pre class="codehilite"><code>n_tests 7
 
 ... 
 
@@ -131,8 +136,7 @@ point_score_3 15
 point_score_4 30
 point_score_5 10
 point_score_6 15
-point_score_7 15
-</pre></div>
+point_score_7 15</code></pre>
 
 
 <h2>ACM模式</h2>

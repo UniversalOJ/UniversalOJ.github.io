@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+	<title>个性化 - UOJ部署指北</title>
+
+	<!-- css -->
+	<link href="/css/base.min.css" rel="stylesheet">
+	<link href="/css/project.min.css" rel="stylesheet">
+	<link href="/css/styles.css" rel="stylesheet">
+
+</head>
+<body class="page-brand">
+	
+	<header class="header header-transparent header-waterfall ui-header">
+		<ul class="nav nav-list pull-left">
+			<li>
+				<a data-toggle="menu" href="#menu">
+					<span class="icon icon-lg">menu</span>
+				</a>
+			</li>
+		</ul>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">个性化</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">个性化</span>
+
+		<ul class="nav nav-list pull-right">
+			<li>
+				<a data-toggle="menu" href="/">
+					<span class="avatar avatar-sm"><img alt="logo" src="https://i2.buimg.com/519918/1da8328ee5b4147a.png"></span>
+				</a>
+			</li>
+		</ul>
+
+	</header>
+
+	<nav aria-hidden="true" class="menu" id="menu" tabindex="-1">
+		<div class="menu-scroll">
+			<div class="menu-content">
+				<a class="menu-logo" href="/">UOJ部署指北</a>
+				<ul class="nav">
+					<li>
+					
+						
+							
+							
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#安装">安装</a>	
+								<ul class="menu-collapse collapse in" id="安装">
+
+								<li>
+									<a class="waves-attach" href="/post/一键安装UOJ.html">一键安装UOJ</a>
+								</li><li>
+									<a class="waves-attach" href="/post/传统安装UOJ.html">传统安装UOJ</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#配置与维护">配置与维护</a>	
+								<ul class="menu-collapse collapse in" id="配置与维护">
+
+								<li>
+									<a class="waves-attach" href="/post/维护UOJ.html">维护UOJ</a>
+								</li><li>
+									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li class="active">
+									<a class="waves-attach" href="/post/个性化.html">个性化</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
+								<ul class="menu-collapse collapse in" id="题目">
+
+								<li>
+									<a class="waves-attach" href="/post/题目管理概述.html">题目管理概述</a>
+								</li><li>
+									<a class="waves-attach" href="/post/传统题配置.html">传统题配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
+								</li><li>
+									<a class="waves-attach" href="/post/自定义校验器.html">自定义校验器</a>
+								</li></ul>						
+
+
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<main class="content">
+		<div class="content-header ui-content-header">
+			<div class="container">
+				<tit class="content-heading">个性化</tit>
+			</div>
+		</div>
+		<div class="container">
+			<section class="content-inner margin-top-no">
+				<div class="row">
+					<div class="col-lg-13 col-md-13">
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner page-card-inner">
+						
+<h2>全局配置文件</h2>
+<p>全局配置文件中包含了网站的基础信息。要修改全局配置文件，请先进入 Docker 容器的终端。</p>
+<pre class="codehilite"><code class="language-sh">sudo docker exec -it uoj /bin/bash</code></pre>
+
+
+<p>全局配置文件的路径是<code>/var/www/uoj/app/.config.php</code>，您可能需要用 Vim 编辑该文件。</p>
+<blockquote class="note">
+<p>Vim 幸存指南：按 <code>i</code> 进入插入模式，然后完全用键盘进行编辑。编辑完成后，按<code>Esc</code>键返回正常模式，输入<code>:wq</code>保存退出。</p>
+</blockquote>
+<p>这个文件大概是这个样子的：</p>
+<pre class="codehilite"><code class="language-php">&lt;?php
+return array (
+  'profile' =&gt;                                   // 网站相关信息
+  array (
+    'oj-name' =&gt; 'Universal Online Judge',           // 网站全称
+    'oj-name-short' =&gt; 'UOJ',                        // 网站简称
+    'administrator' =&gt; 'root',                       // 管理员 id（仅在关于中显示）
+    'admin-email' =&gt; 'admin@local_uoj.ac',           // 管理员邮箱（仅在关于中显示）
+    'QQ-group' =&gt; '',                                // OJ QQ 交流群（仅在关于中显示）
+    'ICP-license' =&gt; '',                             // ICP 备案信息
+  ),
+  'database' =&gt;                                  // 数据库相关
+  array (
+    'database' =&gt; 'app_uoj233',                      // 数据库名称
+    'username' =&gt; 'root',                            // 用户名
+    'password' =&gt; 'root',                            // 密码
+    'host' =&gt; '127.0.0.1',                           // 数据库主机名
+  ),
+  'web' =&gt;                                       // 网址相关 TODO
+  array (
+    'domain' =&gt; NULL,
+    'main' =&gt;
+    array (
+      'protocol' =&gt; 'http',
+      'host' =&gt; isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ''),
+      'port' =&gt; 80,
+    ),
+    'blog' =&gt;
+    array (
+      'protocol' =&gt; 'http',
+      'host' =&gt; isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ''),
+      'port' =&gt; 80,
+    ),
+  ),
+  'security' =&gt;                                  // 安全相关（勿动）
+  array (
+    'user' =&gt;
+    array (
+      'client_salt' =&gt; 'salt',
+    ),
+    'cookie' =&gt;
+    array (
+      'checksum_salt' =&gt;
+      array (
+        0 =&gt; 'salt',
+        1 =&gt; 'salt',
+        2 =&gt; 'salt',
+      ),
+    ),
+  ),
+  'mail' =&gt;                                      // 邮件相关（SMTP 协议发送）
+  array (
+    'noreply' =&gt;                                     // noreply 邮箱（建议使用 sina 邮箱）
+    array (
+      'username' =&gt; 'noreply@none',
+      'password' =&gt; 'noreply',
+    ),
+  ),
+  'judger' =&gt;                                    // 测评相关（勿动）
+  array (
+    'socket' =&gt;                                      // 与测评机的 socket 服务器通讯的设置
+    array (
+      'port' =&gt; 2333,                                // 端口
+      'password' =&gt; 'pass',                          // 认证密码（证明自己 UOJ 服务器）
+    ),
+  ),
+  'svn' =&gt;                                       // svn 相关（勿动）
+  array (
+    'our-root' =&gt;                                    // 每个题目的 svn 仓库自带的仓库管理员
+    array (
+      'username' =&gt; 'our-root',                          // 管理员用户名
+      'password' =&gt; 'pass',                              // 密码
+    ),
+  ),
+  'switch' =&gt;                                    // 一些开关
+  array (
+    'ICP-license' =&gt; false,                          // 是否显示 ICP 备案信息（默认为否）
+    'web-analytics' =&gt; false,                        // 是否进行网站统计（默认为否，记 uoj.ac 名下，想统计自己的得改代码）
+    'blog-use-subdomain' =&gt; false,                   // 博客是否使用子域名（默认为否，不建议使用）
+  ),
+);</code></pre>
+
+
+<h2>LOGO</h2>
+<p>LOGO 图片位于网站的<code>/picture</code>目录下，使用 SVN 管理。</p>
+<blockquote class="note">
+<p>请您先阅读“开发”中关于 svn 的介绍。</p>
+</blockquote>
+<p>首先，需要 checkout UOJ 的 web 目录：</p>
+<pre class="codehilite"><code class="language-sh">svn checkout svn://&lt;UOJ-ip&gt;/uoj
+cd uoj/pictures</code></pre>
+
+
+<p>在 <code>/pictures</code> 目录下替换对应的图片，然后 commit。</p>
+<pre class="codehilite"><code class="language-sh">svn commit -m &quot;Changed logo&quot; *</code></pre>
+
+								<hr>
+
+								<!-- 多说评论框 start -->
+								<div class="ds-thread" data-thread-key="post/个性化" data-title="个性化" data-url="/post/个性化.html"></div>
+								<!-- 多说评论框 end -->
+
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			
+			<hr>
+			<center>[CC协议 BY-NC-SA] 署名 - 非商业性使用 - 相同方式共享  @ UOJ部署指北 2017.</center>
+
+		</div>
+
+
+	</main>
+	
+	<div class="fbtn-container">
+		<div class="fbtn-inner">
+			<a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown">
+				<span class="fbtn-text fbtn-text-left">Home</span>
+				<span class="fbtn-ori icon">apps</span>
+				<span class="fbtn-sub icon">close</span>
+			</a>
+			<div class="fbtn-dropup">
+				<a class="fbtn waves-attach waves-circle" href="https://github.com/UniversalOJ/UniversalOJ.github.io/issues" target="_blank">
+					<span class="fbtn-text fbtn-text-left">反馈</span><span class="icon">feedback</span>
+				</a>
+				<a class="fbtn fbtn-green waves-attach waves-circle" href="/" target="_self">
+					<span class="fbtn-text fbtn-text-left">返回主页</span><span class="icon">home</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<!-- js -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/base.min.js"></script>
+
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"uojuoj"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'https://dn-hb0716.qbox.me/duoshuo.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</body>
+</html>

@@ -52,10 +52,16 @@
 									<a class="waves-attach" href="/post/一键安装UOJ.html">一键安装UOJ</a>
 								</li><li>
 									<a class="waves-attach" href="/post/传统安装UOJ.html">传统安装UOJ</a>
-								</li><li>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#配置与维护">配置与维护</a>	
+								<ul class="menu-collapse collapse in" id="配置与维护">
+
+								<li>
 									<a class="waves-attach" href="/post/维护UOJ.html">维护UOJ</a>
 								</li><li>
 									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li>
+									<a class="waves-attach" href="/post/个性化.html">个性化</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
 								<ul class="menu-collapse collapse in" id="题目">
@@ -104,7 +110,7 @@
 </ul>
 <h2>题目配置文件</h2>
 <p>题目配置文件应当命名为<code>problem.conf</code>。这是一份配置的样例：</p>
-<div class="codehilite"><pre><span></span>n_tests 10
+<pre class="codehilite"><code>n_tests 10
 n_ex_tests 1
 n_sample_tests 1
 input_pre www
@@ -115,43 +121,38 @@ time_limit 1
 memory_limit 512
 output_limit 64
 use_builtin_judger on
-use_builtin_checker ncmp
-</pre></div>
+use_builtin_checker ncmp</code></pre>
 
 
 <h3>测试点</h3>
-<div class="codehilite"><pre><span></span>n_tests 10
+<pre class="codehilite"><code>n_tests 10
 n_ex_tests 1
-n_sample_tests 1
-</pre></div>
+n_sample_tests 1</code></pre>
 
 
 <p>这三行分别代表标准测试点、额外测试点和测试样例的数量。其中，额外测试点的前几个一定是测试样例，所以你必须把题目中给出的测试样例放到额外测试点当中。</p>
 <p>UOJ 的 extra test 是指在 AC 的情况下会测额外数据，如果某个额外数据通不过会被倒扣3分。</p>
-<div class="codehilite"><pre><span></span>input_pre www
+<pre class="codehilite"><code>input_pre www
 input_suf in
 output_pre www
-output_suf out
-</pre></div>
+output_suf out</code></pre>
 
 
 <p>这四行分别指明了每个测试点输入文件的前缀、扩展名、输出文件的前缀、扩展名。</p>
 <p>标准测试点的文件名应当形如：<code>www1.in</code>、<code>www1.out</code>、<code>www2.in</code>、<code>www2.out</code>……</p>
 <p>额外测试点的文件名应当形如：<code>ex_www1.in</code>、<code>ex_www1.out</code>、<code>ex_www2.in</code>、<code>ex_www2.out</code>……</p>
 <h3>限制</h3>
-<div class="codehilite"><pre><span></span>time_limit 1
+<pre class="codehilite"><code>time_limit 1
 memory_limit 512
-output_limit 64
-</pre></div>
+output_limit 64</code></pre>
 
 
 <p>这三行配置了评测时对选手程序的时间限制、内存空间限制和输出限制。</p>
 <p>时间限制的单位为秒，不能为小数。内存空间和输出限制的单位为 MB。</p>
 <h3>校验器（checker）</h3>
 <p>校验器用来检查选手程序的输出是否正确。</p>
-<div class="codehilite"><pre><span></span>use_builtin_judger on
-use_builtin_checker ncmp
-</pre></div>
+<pre class="codehilite"><code>use_builtin_judger on
+use_builtin_checker ncmp</code></pre>
 
 
 <p>第一行表示使用内建校验器，第二行表示使用的校验器类型。testlib 提供了很多奇奇怪怪的校验器。</p>

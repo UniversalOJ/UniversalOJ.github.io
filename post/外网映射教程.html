@@ -52,10 +52,16 @@
 									<a class="waves-attach" href="/post/一键安装UOJ.html">一键安装UOJ</a>
 								</li><li>
 									<a class="waves-attach" href="/post/传统安装UOJ.html">传统安装UOJ</a>
-								</li><li>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#配置与维护">配置与维护</a>	
+								<ul class="menu-collapse collapse in" id="配置与维护">
+
+								<li>
 									<a class="waves-attach" href="/post/维护UOJ.html">维护UOJ</a>
 								</li><li class="active">
 									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li>
+									<a class="waves-attach" href="/post/个性化.html">个性化</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
 								<ul class="menu-collapse collapse in" id="题目">
@@ -111,8 +117,7 @@
 <h2>ssh转发</h2>
 <p>这个方案需要您有一台VPS，且VPS需要拥有外网ip。<a href="http://pyoj.ml/">PYOJ</a>就是通过这种方式向外网开放的。</p>
 <p>首先，您需要在本地机器通过<code>ssh-keygen</code>来生成一个您的密钥：</p>
-<div class="codehilite"><pre><span></span>ssh-keygen -t rsa
-</pre></div>
+<pre class="codehilite"><code class="language-bash">ssh-keygen -t rsa</code></pre>
 
 
 <p>一直按<code>enter</code>键，然后您将会在<code>~/.ssh/id_rsa.pub</code>取得您的公钥。
@@ -126,17 +131,15 @@ ssh &lt;VPS_user&gt;@&lt;VPS_ip&gt;</code><br />
 如果不能登录，您可能对上面过程的理解存在偏差。  </p>
 </blockquote>
 <p>接下来，在本地机器上安装<code>autossh</code>，它是稳定的ssh连接工具：  </p>
-<div class="codehilite"><pre><span></span>sudo apt install autossh
-</pre></div>
+<pre class="codehilite"><code class="language-bash">sudo apt install autossh</code></pre>
 
 
 <p>最后运行下面的指令，将本地的<code>80</code>端口映射到VPS的<code>80</code>端口：  </p>
-<div class="codehilite"><pre><span></span>autossh -M <span class="m">5698</span> -NfR &lt;VPS的ip&gt;:80:&lt;本地机器的ip&gt;:80 &lt;VPS用户名&gt;@&lt;VPS的ip&gt;  
+<pre class="codehilite"><code class="language-bash">autossh -M 5698 -NfR &lt;VPS的ip&gt;:80:&lt;本地机器的ip&gt;:80 &lt;VPS用户名&gt;@&lt;VPS的ip&gt;  
 
-<span class="c1"># 例如：</span>
-<span class="c1"># autossh -M 5698 -NfR 23.23.23.23:80:127.0.0.1:80 blue@23.23.23.23</span>
-<span class="c1"># 5698是监听端口，用于测试ssh连接是否稳定。如果您运行了多个autossh，请保证它们的监听端口不同。</span>
-</pre></div>
+# 例如：
+# autossh -M 5698 -NfR 23.23.23.23:80:127.0.0.1:80 blue@23.23.23.23
+# 5698是监听端口，用于测试ssh连接是否稳定。如果您运行了多个autossh，请保证它们的监听端口不同。</code></pre>
 
 
 <p>访问VPS的ip，您应该可以看到UOJ了。</p>
