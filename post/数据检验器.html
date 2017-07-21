@@ -76,6 +76,12 @@
 									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
 								</li><li>
 									<a class="waves-attach" href="/post/自定义校验器.html">自定义校验器</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
+								<ul class="menu-collapse collapse in" id="开发">
+
+								<li>
+									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
 								</li></ul>						
 
 
@@ -101,7 +107,7 @@
 						
 <p>uoj的数据检验器(<code>val.cpp</code>)使用testlib。</p>
 <p>下面是<code>A+B Problem</code>的检验器：</p>
-<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;testlib.h&quot;</span><span class="cp"></span>
+<div class="codehilite"><pre><span class="cp">#include</span> <span class="cpf">&quot;testlib.h&quot;</span><span class="cp"></span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
@@ -129,7 +135,7 @@
 </ul>
 <p>上面的读取中，只要有任意一个出现了偏差，则判定数据无效。</p>
 <p>如果数据需要保证某个要求，您可以使用<code>ensuref()</code>：</p>
-<div class="codehilite"><pre><span></span><span class="n">ensuref</span><span class="p">(</span><span class="n">cmd</span><span class="o">==</span><span class="sc">&#39;Q&#39;</span> <span class="o">||</span> <span class="n">cmd</span><span class="o">==</span><span class="sc">&#39;A&#39;</span> <span class="o">||</span> <span class="n">cmd</span><span class="o">==</span><span class="sc">&#39;C&#39;</span> <span class="p">,</span> <span class="s">&quot;您输入的操作不合法&quot;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="n">ensuref</span><span class="p">(</span><span class="n">cmd</span><span class="o">==</span><span class="sc">&#39;Q&#39;</span> <span class="o">||</span> <span class="n">cmd</span><span class="o">==</span><span class="sc">&#39;A&#39;</span> <span class="o">||</span> <span class="n">cmd</span><span class="o">==</span><span class="sc">&#39;C&#39;</span> <span class="p">,</span> <span class="s">&quot;您输入的操作不合法&quot;</span><span class="p">);</span>
 </pre></div>
 
 

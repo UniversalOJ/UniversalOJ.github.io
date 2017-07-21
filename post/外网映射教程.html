@@ -76,6 +76,12 @@
 									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
 								</li><li>
 									<a class="waves-attach" href="/post/自定义校验器.html">自定义校验器</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
+								<ul class="menu-collapse collapse in" id="开发">
+
+								<li>
+									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
 								</li></ul>						
 
 
@@ -117,7 +123,7 @@
 <h2>ssh转发</h2>
 <p>这个方案需要您有一台VPS，且VPS需要拥有外网ip。<a href="http://pyoj.ml/">PYOJ</a>就是通过这种方式向外网开放的。</p>
 <p>首先，您需要在本地机器通过<code>ssh-keygen</code>来生成一个您的密钥：</p>
-<div class="codehilite"><pre><span></span>ssh-keygen -t rsa
+<div class="codehilite"><pre>ssh-keygen -t rsa
 </pre></div>
 
 
@@ -132,12 +138,12 @@ ssh &lt;VPS_user&gt;@&lt;VPS_ip&gt;</code><br />
 如果不能登录，您可能对上面过程的理解存在偏差。  </p>
 </blockquote>
 <p>接下来，在本地机器上安装<code>autossh</code>，它是稳定的ssh连接工具：  </p>
-<div class="codehilite"><pre><span></span>sudo apt install autossh
+<div class="codehilite"><pre>sudo apt install autossh
 </pre></div>
 
 
 <p>最后运行下面的指令，将本地的<code>80</code>端口映射到VPS的<code>80</code>端口：  </p>
-<div class="codehilite"><pre><span></span>autossh -M <span class="m">5698</span> -NfR &lt;VPS的ip&gt;:80:&lt;本地机器的ip&gt;:80 &lt;VPS用户名&gt;@&lt;VPS的ip&gt;  
+<div class="codehilite"><pre>autossh -M <span class="m">5698</span> -NfR &lt;VPS的ip&gt;:80:&lt;本地机器的ip&gt;:80 &lt;VPS用户名&gt;@&lt;VPS的ip&gt;  
 
 <span class="c1"># 例如：</span>
 <span class="c1"># autossh -M 5698 -NfR 23.23.23.23:80:127.0.0.1:80 blue@23.23.23.23</span>

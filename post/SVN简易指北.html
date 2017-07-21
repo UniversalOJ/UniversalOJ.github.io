@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<title>特殊需求配置 - UOJ部署指北</title>
+	<title>SVN简易指北 - UOJ部署指北</title>
 
 	<!-- css -->
 	<link href="/css/base.min.css" rel="stylesheet">
@@ -22,8 +22,8 @@
 				</a>
 			</li>
 		</ul>
-		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">特殊需求配置</a>
-		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">特殊需求配置</span>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">SVN简易指北</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">SVN简易指北</span>
 
 		<ul class="nav nav-list pull-right">
 			<li>
@@ -70,7 +70,7 @@
 									<a class="waves-attach" href="/post/题目管理概述.html">题目管理概述</a>
 								</li><li>
 									<a class="waves-attach" href="/post/传统题配置.html">传统题配置</a>
-								</li><li class="active">
+								</li><li>
 									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
 								</li><li>
 									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
@@ -80,7 +80,7 @@
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
 								<ul class="menu-collapse collapse in" id="开发">
 
-								<li>
+								<li class="active">
 									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
 								</li></ul>						
 
@@ -94,7 +94,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<tit class="content-heading">特殊需求配置</tit>
+				<tit class="content-heading">SVN简易指北</tit>
 			</div>
 		</div>
 		<div class="container">
@@ -105,56 +105,65 @@
 							<div class="card-main">
 								<div class="card-inner page-card-inner">
 						
-<p>由于很多题目有乱七八糟的配置，uoj用了一些不清真的方法来实现。</p>
-<h2>子任务</h2>
-<p>子任务模式中，必须把某个subtest的数据全部通过才能拿到对应的分数。</p>
-<p>在<code>problem.conf</code>中，可以设置每个子任务在哪个测试点结束，并给每个子任务分配对应的分数。</p>
-<p>它的写法如下：</p>
-<div class="codehilite"><pre>n_tests 40
-
-...
-
-n_subtasks 6
-subtask_end_1 5
-subtask_score_1 10
-subtask_end_2 10
-subtask_score_2 10
-subtask_end_3 15
-subtask_score_3 10
-subtask_end_4 20
-subtask_score_4 20
-subtask_end_5 25
-subtask_score_5 20
-subtask_end_6 40
-subtask_score_6 30
+<blockquote class="note">
+<p>这是一份简易的 SVN 指北，帮您在满是 SVN 的 UOJ 中幸存下来。<br />
+题目数据管理的 SVN 在将来可能会被移除。
+这份指北以 Ubuntu 终端中的 SVN 客户端为例，其他版本与之相似。
+请您不要在 Docker 容器中运行 SVN 命令。</p>
+</blockquote>
+<h2>SVN 的安装</h2>
+<p>在 Ubuntu 终端（非 Docker 中）中执行：</p>
+<div class="codehilite"><pre>sudo apt-get install subversion
 </pre></div>
 
 
-<h2>每个测试点不同分值</h2>
-<p>如果需要对每个测试点给不同的分数，可以在<code>problem.conf</code>中用<code>point_score_x</code>实现。</p>
-<p>它的写法如下：</p>
-<div class="codehilite"><pre>n_tests 7
-
-... 
-
-point_score_1 5
-point_score_2 10
-point_score_3 15
-point_score_4 30
-point_score_5 10
-point_score_6 15
-point_score_7 15
+<p>在 Windows 下，您可以安装 <a href="https://tortoisesvn.net/">TortoiseSVN</a>。</p>
+<h2>UOJ 的 SVN 仓库</h2>
+<p>UOJ 代码的 SVN 仓库地址是：<code>svn://&lt;local-uoj-address&gt;/uoj</code>（网页部分）和 <code>svn://local_uoj.ac/judge_client</code>（主评测机部分）。  </p>
+<p>UOJ 代码仓库需要您手动添加权限。<br />
+首先，您需要进入 Docker 容器，运行下面的命令：</p>
+<div class="codehilite"><pre><span class="nb">echo</span> <span class="s2">&quot;uoj=666666&quot;</span> &gt;&gt;/var/svn/uoj/conf/passwd    <span class="c1">#增加一位名为 &quot;uoj&quot;，密码为 &quot;666666&quot; 的 svn 仓库管理员</span>
 </pre></div>
 
 
-<h2>ACM模式</h2>
-<p>ACM模式的题目，如果错掉任何一个测试点就不得分。  </p>
-<p>可以通过将所有的数据都放进一个subtask来实现。</p>
+<p><strong>注意</strong>：请不要在 Docker 容器中修改除 <code>.config.php</code> 以外的文件，这样可能导致 SVN 仓库混乱。</p>
+<h2>SVN 的基本用法</h2>
+<h3>检出</h3>
+<div class="codehilite"><pre>svn co svn://svn地址 <span class="o">[</span>本地目录全路径<span class="o">]</span> --username 用户名 --password 密码
+</pre></div>
+
+
+<p>若不指定本地目录全路径，则检出到当前目录下。</p>
+<h3>添加新文件</h3>
+<div class="codehilite"><pre>svn add 文件名
+</pre></div>
+
+
+<p>您可以在检出的目录的任意地方执行此命令。<br />
+此命令将新文件纳入版本库（与 Git 不同）。</p>
+<h3>删除文件</h3>
+<div class="codehilite"><pre>svn delete 文件名
+</pre></div>
+
+
+<p>此命令将文件从版本库和目录中删除。   </p>
+<h3>提交</h3>
+<div class="codehilite"><pre>svn　commit　-m　<span class="s2">&quot;提交备注信息文本&quot;</span> 文件名
+</pre></div>
+
+
+<p>此命令将本地文件提交到远程版本库（与 Git 不同）。</p>
+<h3>更新文件</h3>
+<div class="codehilite"><pre>svn　update
+</pre></div>
+
+
+<p>此命令从远程版本库获取最新版本代码。</p>
 
 								<hr>
 
 								<!-- 多说评论框 start -->
-								<div class="ds-thread" data-thread-key="post/特殊需求配置" data-title="特殊需求配置" data-url="/post/特殊需求配置.html"></div>
+								<div class="ds-thread" data-thread-key="post/SVN简易指北" data-title="SVN简易指北" data-url="/post/SVN简易指北.html"></div>
 								<!-- 多说评论框 end -->
 
 								</div>
