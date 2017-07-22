@@ -10,6 +10,7 @@
 	<link href="/css/base.min.css" rel="stylesheet">
 	<link href="/css/project.min.css" rel="stylesheet">
 	<link href="/css/styles.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
 
 </head>
 <body class="page-brand">
@@ -143,9 +144,11 @@ service docker restart
 
 								<hr>
 
-								<!-- 多说评论框 start -->
-								<div class="ds-thread" data-thread-key="post/一键安装UOJ" data-title="一键安装UOJ" data-url="/post/一键安装UOJ.html"></div>
-								<!-- 多说评论框 end -->
+								<!-- Gitment 评论框 start -->
+
+								<div id="container"></div>
+
+								<!-- Gitment 评论框 end -->
 
 								</div>
 							</div>
@@ -186,19 +189,21 @@ service docker restart
 	<!-- js -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/base.min.js"></script>
-
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"uojuoj"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'https://dn-hb0716.qbox.me/duoshuo.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
+    
+    <!-- Gitment JS 代码 start -->
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      owner: 'UniversalOJ',
+      repo: 'UniversalOJ.github.io',
+      oauth: {
+        client_id: '0dc093a9aefa1d501df2',
+        client_secret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
+      },
+    })
+    gitment.render('container')
+    </script>
+    <!-- Gitment JS 代码 end -->
+    
 </body>
 </html>
