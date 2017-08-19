@@ -27,7 +27,7 @@ service docker restart
 您需要执行下面的指令来开始安装安装UOJ：
 
 ```bash
-sudo docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE ruanxingzhi/uoj
+sudo docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE universaloj/uoj
 ```
 
 接下来，UOJ将在后台运行。`root`账户的密码是`uojuoj`。
