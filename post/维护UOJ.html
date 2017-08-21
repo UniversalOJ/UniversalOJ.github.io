@@ -29,7 +29,7 @@
 		<ul class="nav nav-list pull-right">
 			<li>
 				<a data-toggle="menu" href="/">
-					<span class="avatar avatar-sm"><img alt="logo" src="https://i2.buimg.com/519918/1da8328ee5b4147a.png"></span>
+					<span class="avatar avatar-sm"><img alt=" logo" src="/logo.png"></span>
 				</a>
 			</li>
 		</ul>

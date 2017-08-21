@@ -6,15 +6,12 @@
 
 ### 依赖
 
-首先，您需要 Python3，PHP 这些比较基本的东西。
-
-> 我们需要特别注意 Python 2.x 和 3.x 的区别，最好直接调用`python3`和`pip3`。
-
-其次，您需要用 pip 安装一个 Python3 的包 python-markdown。
+您需要安装这些包：`Python3`、`PHP`、`pip3`、`python-markdown`、`pygments`。
 
 ```sh
 sudo apt-get install pip3
 pip3 install markdown
+sudo apt-get install pygments
 ```
 
 ### 使用
