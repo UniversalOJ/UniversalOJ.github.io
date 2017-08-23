@@ -106,60 +106,63 @@
 							<div class="card-main">
 								<div class="card-inner page-card-inner">
 						
-<h2>docker简介</h2>
-<p>之前说过，docker相当于一台虚拟机。</p>
-<p>我们把虚拟机称作“容器”，容器需要基于“镜像”来运行。</p>
+<h2>Docker简介</h2>
+<p>之前说过，Docker 相当于一台虚拟机。</p>
+<p>我们把虚拟机称作“容器（container）”，容器需要基于“镜像（image）”来运行。</p>
 <h2>容器维护</h2>
 <p>docker容器很容易维护。您只需要掌握以下命令：</p>
-<div class="codehilite"><pre>docker start uoj                <span class="c1"># 启动uoj容器</span>
-docker stop uoj                 <span class="c1"># 暂停uoj容器</span>
-docker restart uoj              <span class="c1"># 重启uoj容器</span>
+<div class="codehilite"><pre>docker start uoj                <span class="c1"># 启动 uoj 容器</span>
+docker stop uoj                 <span class="c1"># 暂停 uoj 容器</span>
+docker restart uoj              <span class="c1"># 重启 uoj 容器</span>
 
-docker <span class="nb">exec</span> -it uoj /bin/bash   <span class="c1"># 进入uoj容器的终端</span>
+docker <span class="nb">exec</span> -it uoj /bin/bash   <span class="c1"># 进入 uoj 容器的终端</span>
 
-docker rm uoj                   <span class="c1"># 删除uoj容器（慎用）</span>
+docker commit uoj uoj_back:tag  <span class="c1"># 将 uoj 容器保存为标签为 tag 的 uoj_back 镜像</span>
 
-docker commit uoj uoj_back      <span class="c1"># 保存uoj容器的快照为&quot;uoj_back&quot;镜像</span>
+docker ps -a                    <span class="c1"># 查看所有的容器</span>
+docker images                   <span class="c1"># 查看所有的镜像</span>
+docker rm uoj                   <span class="c1"># 删除 uoj 容器（慎用）</span>
+docker rmi uoj_back:tag         <span class="c1"># 删除标签为 tag 的 uoj_back 镜像，</span>
 </pre></div>
 
 
 <p>在docker中，每个容器需要基于一个镜像来运行。最开始，我们的<code>uoj</code>容器是基于安装过程中构建的镜像。</p>
 <p>下面是一次典型的数据恢复：</p>
-<div class="codehilite"><pre>docker commit uoj uoj_back_20170101     <span class="c1"># 例行备份</span>
-docker commit uoj uoj_back_20170201     <span class="c1"># 例行备份</span>
-docker commit uoj uoj_back_20170301     <span class="c1"># 例行备份</span>
+<div class="codehilite"><pre>docker commit uoj uoj_back:20170101     <span class="c1"># 例行备份</span>
+docker commit uoj uoj_back:20170201     <span class="c1"># 例行备份</span>
+docker commit uoj uoj_back:20170301     <span class="c1"># 例行备份</span>
 
-<span class="c1"># 3月15日，黑恶势力破坏了uoj，uoj容器已经无用，必须恢复</span>
+<span class="c1"># 3月15日，黑恶势力破坏了 uoj，uoj 容器已经无用，必须恢复</span>
 
 docker stop uoj
 docker rm uoj                           <span class="c1"># 删除uoj容器</span>
-docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back_20170301
-<span class="c1"># 创建新的uoj容器，使用3月1日的备份</span>
+docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back:20170301
+<span class="c1"># 创建新的 uoj 容器，使用3月1日的备份</span>
 </pre></div>
 
 
 <h2>数据迁移</h2>
-<p>下面的命令可以把<code>uoj_back</code>这个容器导出为<code>uoj.tar</code>这个文件：</p>
+<p>下面的命令可以把 <code>uoj_back</code> 这个容器导出为 <code>uoj.tar</code> 这个文件：</p>
 <div class="codehilite"><pre>docker save -o uoj.tar uoj_back
 </pre></div>
 
 
-<p>把<code>uoj.tar</code>复制到其他机器上，然后可以运行下面的命令导入<code>uoj_back</code>镜像：</p>
+<p>把 <code>uoj.tar</code> 复制到其他机器上，然后可以运行下面的命令导入 <code>uoj_back</code> 镜像：</p>
 <div class="codehilite"><pre>docker load --input uoj.tar
 </pre></div>
 
 
 <p>下面是一次典型的数据迁移：</p>
-<div class="codehilite"><pre><span class="c1"># 服务器A：</span>
+<div class="codehilite"><pre><span class="c1"># 服务器 A：</span>
 docker commit uoj uoj_back              <span class="c1"># 把uoj容器存储为镜像</span>
 docker save -o uoj.tar uoj_back         <span class="c1"># 把uoj_back镜像导出</span>
-<span class="c1"># 然后通过某些恶毒的手段把uoj.tar拷到服务器B</span>
+<span class="c1"># 然后通过某些恶毒的手段把 uoj.tar 拷到服务器 B</span>
 
 
-<span class="c1"># 服务器B：</span>
+<span class="c1"># 服务器 B：</span>
 docker load --input uoj.tar             <span class="c1"># 导入uoj_back镜像</span>
 docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back
-<span class="c1"># 建立uoj容器，基于之前服务器A的数据，迁移完成</span>
+<span class="c1"># 建立 uoj 容器，基于之前服务器 A 的数据，迁移完成</span>
 </pre></div>
 
 								<hr>

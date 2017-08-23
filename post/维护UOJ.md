@@ -1,8 +1,8 @@
-## docker简介
+## Docker简介
 
-之前说过，docker相当于一台虚拟机。
+之前说过，Docker 相当于一台虚拟机。
 
-我们把虚拟机称作“容器”，容器需要基于“镜像”来运行。
+我们把虚拟机称作“容器（container）”，容器需要基于“镜像（image）”来运行。
 
 
 
@@ -11,15 +11,18 @@
 docker容器很容易维护。您只需要掌握以下命令：
 
 ```bash
-docker start uoj                # 启动uoj容器
-docker stop uoj                 # 暂停uoj容器
-docker restart uoj              # 重启uoj容器
+docker start uoj                # 启动 uoj 容器
+docker stop uoj                 # 暂停 uoj 容器
+docker restart uoj              # 重启 uoj 容器
 
-docker exec -it uoj /bin/bash   # 进入uoj容器的终端
+docker exec -it uoj /bin/bash   # 进入 uoj 容器的终端
 
-docker rm uoj                   # 删除uoj容器（慎用）
+docker commit uoj uoj_back:tag  # 将 uoj 容器保存为标签为 tag 的 uoj_back 镜像
 
-docker commit uoj uoj_back      # 保存uoj容器的快照为"uoj_back"镜像
+docker ps -a                    # 查看所有的容器
+docker images                   # 查看所有的镜像
+docker rm uoj                   # 删除 uoj 容器（慎用）
+docker rmi uoj_back:tag         # 删除标签为 tag 的 uoj_back 镜像，
 ```
 
 在docker中，每个容器需要基于一个镜像来运行。最开始，我们的`uoj`容器是基于安装过程中构建的镜像。
@@ -27,39 +30,39 @@ docker commit uoj uoj_back      # 保存uoj容器的快照为"uoj_back"镜像
 下面是一次典型的数据恢复：
 
 ```bash
-docker commit uoj uoj_back_20170101     # 例行备份
-docker commit uoj uoj_back_20170201     # 例行备份
-docker commit uoj uoj_back_20170301     # 例行备份
+docker commit uoj uoj_back:20170101     # 例行备份
+docker commit uoj uoj_back:20170201     # 例行备份
+docker commit uoj uoj_back:20170301     # 例行备份
 
-# 3月15日，黑恶势力破坏了uoj，uoj容器已经无用，必须恢复
+# 3月15日，黑恶势力破坏了 uoj，uoj 容器已经无用，必须恢复
 
 docker stop uoj
 docker rm uoj                           # 删除uoj容器
-docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back_20170301
-# 创建新的uoj容器，使用3月1日的备份
+docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back:20170301
+# 创建新的 uoj 容器，使用3月1日的备份
 ```
 
 ## 数据迁移
 
-下面的命令可以把`uoj_back`这个容器导出为`uoj.tar`这个文件：
+下面的命令可以把 `uoj_back` 这个容器导出为 `uoj.tar` 这个文件：
 ```bash
 docker save -o uoj.tar uoj_back
 ```
-把`uoj.tar`复制到其他机器上，然后可以运行下面的命令导入`uoj_back`镜像：
+把 `uoj.tar` 复制到其他机器上，然后可以运行下面的命令导入 `uoj_back` 镜像：
 ```bash
 docker load --input uoj.tar
 ```
 
 下面是一次典型的数据迁移：
 ```bash
-# 服务器A：
+# 服务器 A：
 docker commit uoj uoj_back              # 把uoj容器存储为镜像
 docker save -o uoj.tar uoj_back         # 把uoj_back镜像导出
-# 然后通过某些恶毒的手段把uoj.tar拷到服务器B
+# 然后通过某些恶毒的手段把 uoj.tar 拷到服务器 B
 
 
-# 服务器B：
+# 服务器 B：
 docker load --input uoj.tar             # 导入uoj_back镜像
 docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE  uoj_back
-# 建立uoj容器，基于之前服务器A的数据，迁移完成
+# 建立 uoj 容器，基于之前服务器 A 的数据，迁移完成
 ```
