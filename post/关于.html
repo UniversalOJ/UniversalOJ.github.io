@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<title>一键安装UOJ - UOJ部署指北</title>
+	<title>关于 - UOJ部署指北</title>
 
 	<!-- css -->
 	<link href="/css/base.min.css" rel="stylesheet">
@@ -23,8 +23,8 @@
 				</a>
 			</li>
 		</ul>
-		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">一键安装UOJ</a>
-		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">一键安装UOJ</span>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">关于</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">关于</span>
 
 		<ul class="nav nav-list pull-right">
 			<li>
@@ -46,23 +46,17 @@
 						
 							
 							
-								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#安装">安装</a>	
-								<ul class="menu-collapse collapse in" id="安装">
-
-								<li class="active">
-									<a class="waves-attach" href="/post/一键安装UOJ.html">一键安装UOJ</a>
-								</li><li>
-									<a class="waves-attach" href="/post/传统安装UOJ.html">传统安装UOJ</a>
-								</li></ul>
-								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#配置与维护">配置与维护</a>	
-								<ul class="menu-collapse collapse in" id="配置与维护">
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#入门">入门</a>	
+								<ul class="menu-collapse collapse in" id="入门">
 
 								<li>
-									<a class="waves-attach" href="/post/维护UOJ.html">维护UOJ</a>
+									<a class="waves-attach" href="/post/安装.html">安装</a>
+								</li><li>
+									<a class="waves-attach" href="/post/维护.html">维护</a>
 								</li><li>
 									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
 								</li><li>
-									<a class="waves-attach" href="/post/个性化.html">个性化</a>
+									<a class="waves-attach" href="/post/系统管理.html">系统管理</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
 								<ul class="menu-collapse collapse in" id="题目">
@@ -83,6 +77,14 @@
 
 								<li>
 									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
+								</li><li>
+									<a class="waves-attach" href="/post/本地构建镜像.html">本地构建镜像</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#关于">关于</a>	
+								<ul class="menu-collapse collapse in" id="关于">
+
+								<li class="active">
+									<a class="waves-attach" href="/post/关于.html">关于</a>
 								</li></ul>						
 
 
@@ -95,7 +97,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<tit class="content-heading">一键安装UOJ</tit>
+				<tit class="content-heading">关于</tit>
 			</div>
 		</div>
 		<div class="container">
@@ -106,41 +108,7 @@
 							<div class="card-main">
 								<div class="card-inner page-card-inner">
 						
-<blockquote class="note">
-<p>这篇文档将指导您快速安装UOJ。<br />
-本文与《传统安装UOJ》只需选择一个执行。<br />
-相较于传统安装，一键安装消耗的时间更短。</p>
-</blockquote>
-<h2>安装前的准备</h2>
-<p>您需要准备一台<strong>64位</strong>的Linux系统。</p>
-<p>然后您需要安装<code>docker</code>。它是一个容器技术，暂且可以理解成虚拟机。</p>
-<div class="codehilite"><pre>sudo apt install docker.io          <span class="c1"># ubuntu, debian系统请使用这条指令</span>
-sudo yum install docker             <span class="c1"># CentOS系统请使用这条指令</span>
-
-
-sudo service docker start           <span class="c1"># 启动docker服务</span>
-</pre></div>
-
-
-<p>另外，您可以通过下面的代码安装docker加速器（强烈推荐）：</p>
-<div class="codehilite"><pre>sudo su
-curl -sSL https://get.daocloud.io/daotools/set_mirror.sh <span class="p">|</span> sh -s http://3a834d99.m.daocloud.io
-service docker restart
-</pre></div>
-
-
-<h2>安装</h2>
-<p>您需要执行下面的指令来开始安装安装UOJ：</p>
-<div class="codehilite"><pre>sudo docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE universaloj/uoj
-</pre></div>
-
-
-<p>接下来，UOJ将在后台运行。<code>root</code>账户的密码是<code>uojuoj</code>。</p>
-<blockquote class="note">
-<p>上面的代码是用于<strong>新建一个UOJ容器</strong>，重启服务器后<strong>不要</strong>使用<code>docker run</code>来启动容器。具体参阅维护文档。<br />
-如果您不希望用80端口来运行uoj，您可以把上面的<code>-p 80:80</code>改成<code>-p &lt;port&gt;:80</code>。  </p>
-</blockquote>
-<p>访问服务器的ip，您现在应该能看到UOJ正在运行了。下一步，请参阅《维护UOJ》。</p>
+<p>文档建造中～</p>
 
 								<hr>
 

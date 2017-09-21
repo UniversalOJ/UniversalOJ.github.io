@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<title>个性化 - UOJ部署指北</title>
+	<title>系统管理 - UOJ部署指北</title>
 
 	<!-- css -->
 	<link href="/css/base.min.css" rel="stylesheet">
@@ -23,8 +23,8 @@
 				</a>
 			</li>
 		</ul>
-		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">个性化</a>
-		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">个性化</span>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">系统管理</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">系统管理</span>
 
 		<ul class="nav nav-list pull-right">
 			<li>
@@ -46,23 +46,17 @@
 						
 							
 							
-								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#安装">安装</a>	
-								<ul class="menu-collapse collapse in" id="安装">
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#入门">入门</a>	
+								<ul class="menu-collapse collapse in" id="入门">
 
 								<li>
-									<a class="waves-attach" href="/post/一键安装UOJ.html">一键安装UOJ</a>
+									<a class="waves-attach" href="/post/安装.html">安装</a>
 								</li><li>
-									<a class="waves-attach" href="/post/传统安装UOJ.html">传统安装UOJ</a>
-								</li></ul>
-								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#配置与维护">配置与维护</a>	
-								<ul class="menu-collapse collapse in" id="配置与维护">
-
-								<li>
-									<a class="waves-attach" href="/post/维护UOJ.html">维护UOJ</a>
+									<a class="waves-attach" href="/post/维护.html">维护</a>
 								</li><li>
 									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
 								</li><li class="active">
-									<a class="waves-attach" href="/post/个性化.html">个性化</a>
+									<a class="waves-attach" href="/post/系统管理.html">系统管理</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
 								<ul class="menu-collapse collapse in" id="题目">
@@ -83,6 +77,14 @@
 
 								<li>
 									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
+								</li><li>
+									<a class="waves-attach" href="/post/本地构建镜像.html">本地构建镜像</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#关于">关于</a>	
+								<ul class="menu-collapse collapse in" id="关于">
+
+								<li>
+									<a class="waves-attach" href="/post/关于.html">关于</a>
 								</li></ul>						
 
 
@@ -95,7 +97,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<tit class="content-heading">个性化</tit>
+				<tit class="content-heading">系统管理</tit>
 			</div>
 		</div>
 		<div class="container">
@@ -106,6 +108,10 @@
 							<div class="card-main">
 								<div class="card-inner page-card-inner">
 						
+<h2>管理员账户</h2>
+<p>按照套路，UOJ 安装完成后，注册的第一个账户会被设为<strong>管理员</strong>账户。</p>
+<p>当您以管理员账户登录 UOJ 后，您就可以依次点击页面右上角<code>您的用户名</code>、<code>系统管理</code>来进入管理界面。</p>
+<p>管理员账户有发布公告、新建题目和比赛等权限。但是，管理员并不能参加比赛。</p>
 <h2>全局配置文件</h2>
 <p>全局配置文件中包含了网站的基础信息。要修改全局配置文件，请先进入 Docker 容器的终端。</p>
 <div class="codehilite"><pre>sudo docker <span class="nb">exec</span> -it uoj /bin/bash
