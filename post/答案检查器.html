@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<title>首页 - UOJ部署指北</title>
+	<title>答案检查器 - UOJ部署指北</title>
 
 	<!-- css -->
 	<link href="/css/base.min.css" rel="stylesheet">
@@ -23,8 +23,8 @@
 				</a>
 			</li>
 		</ul>
-		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">首页</a>
-		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">首页</span>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">答案检查器</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">答案检查器</span>
 
 		<ul class="nav nav-list pull-right">
 			<li>
@@ -69,7 +69,7 @@
 									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
 								</li><li>
 									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
-								</li><li>
+								</li><li class="active">
 									<a class="waves-attach" href="/post/答案检查器.html">答案检查器</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
@@ -99,7 +99,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<tit class="content-heading">首页</tit>
+				<tit class="content-heading">答案检查器</tit>
 			</div>
 		</div>
 		<div class="container">
@@ -110,20 +110,46 @@
 							<div class="card-main">
 								<div class="card-inner page-card-inner">
 						
-<p>这是一份 UOJ 部署指北。</p>
-<p>自从 UOJ 于 2016 年开源以来，我们走了很多的弯路，踩了很多的坑（捂脸）。<br />
-我们希望后来人不要重复我们踩的坑，于是有了这份文档。  </p>
-<p>文章在左边。请从《安装》开始。  </p>
-<h2>新闻</h2>
+<p>本文将引导您写一个自定义的checker（<code>chk.cpp</code>）。<br />
+按照套路，uoj的校验器也应该使用testlib编写。</p>
+<blockquote class="note">
+<p>如果您准备使用自定义校验器，请在<code>problem.conf</code>中去掉<code>use_builtin_checker</code>那一行。</p>
+</blockquote>
+<p>下面是<code>A+B Problem</code>的校验器：</p>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;testlib.h&quot;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">registerTestlibCmd</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">pans</span><span class="p">,</span><span class="n">jans</span><span class="p">;</span>
+    <span class="n">pans</span><span class="o">=</span><span class="n">ouf</span><span class="p">.</span><span class="n">readInt</span><span class="p">();</span>      <span class="c1">// 读取选手输出</span>
+    <span class="n">jans</span><span class="o">=</span><span class="n">ans</span><span class="p">.</span><span class="n">readInt</span><span class="p">();</span>      <span class="c1">// 读取答案</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">pans</span> <span class="o">==</span> <span class="n">jans</span><span class="p">)</span>
+        <span class="n">quitf</span><span class="p">(</span><span class="n">_ok</span><span class="p">,</span> <span class="s">&quot;Correct.&quot;</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">quitf</span><span class="p">(</span><span class="n">_wa</span><span class="p">,</span> <span class="s">&quot;WA! expect=%d recieve=%d&quot;</span><span class="p">,</span> <span class="n">jans</span><span class="p">,</span> <span class="n">pans</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>在调用<code>registerTestlibCmd</code>之后，我们可以使用下面的三个流：</p>
 <ul>
-<li>20170922: 开始使用全新的安装模式！</li>
-<li>20170820: 一键安装镜像已更新到 <code>1.1</code> 版！</li>
-<li>20170723: 部署指北评论已换为 Gitment。</li>
-<li>20170721: 新增 SVN 简易指北。</li>
+<li><code>inf</code> ： 输入数据</li>
+<li><code>ouf</code> ： 选手输出</li>
+<li><code>ans</code> ： 标准输出</li>
 </ul>
-<p>如果您对本项目有兴趣，请加入 Universal OJ 社区群：560621197。<br />
-如果我们的项目对您有帮助，欢迎给我们颗 Star；如果您发现了 bug 或者有任何的建议，请提出 issue：<a href="https://github.com/UniversalOJ/UOJ-System">UOJ-System</a><br />
-在 Github 上找到我们：<a href="https://github.com/UniversalOJ">UOJ 开源社区</a>。</p>
+<p>从流中读取数据的方式，和【数据检验器】一致。</p>
+<p>如果程序AC或者爆零，您可以使用<code>quitf()</code>。但是如果您想给选手部分分，请使用下面的代码：</p>
+<div class="codehilite"><pre><span></span><span class="n">quitp</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="n">p</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="s">&quot;QAQ&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>这将会给选手p分。</p>
+<blockquote class="note">
+<p>chk.cpp中不能出现中文！</p>
+</blockquote>
 
 								<hr>
 
