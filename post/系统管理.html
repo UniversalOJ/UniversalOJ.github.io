@@ -70,7 +70,7 @@
 								</li><li>
 									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
 								</li><li>
-									<a class="waves-attach" href="/post/自定义校验器.html">自定义校验器</a>
+									<a class="waves-attach" href="/post/答案检查器.html">答案检查器</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
 								<ul class="menu-collapse collapse in" id="开发">
@@ -79,6 +79,8 @@
 									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
 								</li><li>
 									<a class="waves-attach" href="/post/本地构建镜像.html">本地构建镜像</a>
+								</li><li>
+									<a class="waves-attach" href="/post/贡献.html">贡献</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#关于">关于</a>	
 								<ul class="menu-collapse collapse in" id="关于">
@@ -114,7 +116,7 @@
 <p>管理员账户有发布公告、新建题目和比赛等权限。但是，管理员并不能参加比赛。</p>
 <h2>全局配置文件</h2>
 <p>全局配置文件中包含了网站的基础信息。要修改全局配置文件，请先进入 Docker 容器的终端。</p>
-<div class="codehilite"><pre>sudo docker <span class="nb">exec</span> -it uoj /bin/bash
+<div class="codehilite"><pre><span></span>sudo docker <span class="nb">exec</span> -it uoj /bin/bash
 </pre></div>
 
 
@@ -123,7 +125,7 @@
 <p>Vim 幸存指南：按 <code>i</code> 进入插入模式，然后完全用键盘进行编辑。编辑完成后，按<code>Esc</code>键返回正常模式，输入<code>:wq</code>保存退出。</p>
 </blockquote>
 <p>这个文件大概是这个样子的：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="k">return</span> <span class="k">array</span> <span class="p">(</span>
   <span class="s1">&#39;profile&#39;</span> <span class="o">=&gt;</span>                                   <span class="c1">// 网站相关信息</span>
   <span class="k">array</span> <span class="p">(</span>
@@ -213,13 +215,13 @@
 <p>请您先阅读“开发”中关于 svn 的介绍。</p>
 </blockquote>
 <p>首先，需要 checkout UOJ 的 web 目录：</p>
-<div class="codehilite"><pre>svn checkout svn://&lt;local-uoj-address&gt;/uoj
+<div class="codehilite"><pre><span></span>svn checkout svn://&lt;local-uoj-address&gt;/uoj
 <span class="nb">cd</span> uoj/1/pictures
 </pre></div>
 
 
 <p>在 <code>/pictures</code> 目录下替换对应的图片，然后 commit。</p>
-<div class="codehilite"><pre>svn commit -m <span class="s2">&quot;Changed logo&quot;</span> *
+<div class="codehilite"><pre><span></span>svn commit -m <span class="s2">&quot;Changed logo&quot;</span> *
 </pre></div>
 
 								<hr>

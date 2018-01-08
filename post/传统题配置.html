@@ -70,7 +70,7 @@
 								</li><li>
 									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
 								</li><li>
-									<a class="waves-attach" href="/post/自定义校验器.html">自定义校验器</a>
+									<a class="waves-attach" href="/post/答案检查器.html">答案检查器</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
 								<ul class="menu-collapse collapse in" id="开发">
@@ -79,6 +79,8 @@
 									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
 								</li><li>
 									<a class="waves-attach" href="/post/本地构建镜像.html">本地构建镜像</a>
+								</li><li>
+									<a class="waves-attach" href="/post/贡献.html">贡献</a>
 								</li></ul>
 								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#关于">关于</a>	
 								<ul class="menu-collapse collapse in" id="关于">
@@ -119,7 +121,7 @@
 </ul>
 <h2>题目配置文件</h2>
 <p>题目配置文件应当命名为<code>problem.conf</code>。这是一份配置的样例：</p>
-<div class="codehilite"><pre>n_tests 10
+<div class="codehilite"><pre><span></span>n_tests 10
 n_ex_tests 1
 n_sample_tests 1
 input_pre www
@@ -135,7 +137,7 @@ use_builtin_checker ncmp
 
 
 <h3>测试点</h3>
-<div class="codehilite"><pre>n_tests 10
+<div class="codehilite"><pre><span></span>n_tests 10
 n_ex_tests 1
 n_sample_tests 1
 </pre></div>
@@ -143,7 +145,7 @@ n_sample_tests 1
 
 <p>这三行分别代表标准测试点、额外测试点和测试样例的数量。其中，额外测试点的前几个一定是测试样例，所以你必须把题目中给出的测试样例放到额外测试点当中。</p>
 <p>UOJ 的 extra test 是指在 AC 的情况下会测额外数据，如果某个额外数据通不过会被倒扣3分。</p>
-<div class="codehilite"><pre>input_pre www
+<div class="codehilite"><pre><span></span>input_pre www
 input_suf in
 output_pre www
 output_suf out
@@ -154,7 +156,7 @@ output_suf out
 <p>标准测试点的文件名应当形如：<code>www1.in</code>、<code>www1.out</code>、<code>www2.in</code>、<code>www2.out</code>……</p>
 <p>额外测试点的文件名应当形如：<code>ex_www1.in</code>、<code>ex_www1.out</code>、<code>ex_www2.in</code>、<code>ex_www2.out</code>……</p>
 <h3>限制</h3>
-<div class="codehilite"><pre>time_limit 1
+<div class="codehilite"><pre><span></span>time_limit 1
 memory_limit 512
 output_limit 64
 </pre></div>
@@ -164,7 +166,7 @@ output_limit 64
 <p>时间限制的单位为秒，不能为小数。内存空间和输出限制的单位为 MB。</p>
 <h3>校验器（checker）</h3>
 <p>校验器用来检查选手程序的输出是否正确。</p>
-<div class="codehilite"><pre>use_builtin_judger on
+<div class="codehilite"><pre><span></span>use_builtin_judger on
 use_builtin_checker ncmp
 </pre></div>
 
