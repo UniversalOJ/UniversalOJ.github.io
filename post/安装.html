@@ -116,7 +116,7 @@
 <h2>安装前的准备</h2>
 <p>您需要准备一台<strong>64位</strong>的Linux系统。</p>
 <p>然后您需要安装<code>docker</code>。它是一个容器技术，暂且可以理解成虚拟机。</p>
-<div class="codehilite"><pre><span></span>sudo apt install docker.io          <span class="c1"># ubuntu, debian系统请使用这条指令</span>
+<div class="codehilite"><pre>sudo apt install docker.io          <span class="c1"># ubuntu, debian系统请使用这条指令</span>
 sudo yum install docker             <span class="c1"># CentOS系统请使用这条指令</span>
 
 
@@ -125,7 +125,7 @@ sudo service docker start           <span class="c1"># 启动docker服务</span>
 
 
 <p>另外，您可以通过下面的代码安装docker加速器（强烈推荐）：</p>
-<div class="codehilite"><pre><span></span>sudo su
+<div class="codehilite"><pre>sudo su
 curl -sSL https://get.daocloud.io/daotools/set_mirror.sh <span class="p">|</span> sh -s http://3a834d99.m.daocloud.io
 service docker restart
 </pre></div>
@@ -133,8 +133,8 @@ service docker restart
 
 <h2>安装</h2>
 <p>您需要执行下面的指令来开始安装安装UOJ：</p>
-<div class="codehilite"><pre><span></span>sudo docker pull universaloj/uoj-system:stable
-sudo docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE universaloj/uoj-system:stable
+<div class="codehilite"><pre>sudo docker pull universaloj/uoj-system:stable
+sudo docker run --name uoj -dit -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE universaloj/uoj-system:stable
 </pre></div>
 
 

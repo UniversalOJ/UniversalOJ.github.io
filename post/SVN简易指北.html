@@ -118,7 +118,7 @@
 </blockquote>
 <h2>SVN 的安装</h2>
 <p>在 Ubuntu 终端（非 Docker 中）中执行：</p>
-<div class="codehilite"><pre><span></span>sudo apt-get install subversion
+<div class="codehilite"><pre>sudo apt-get install subversion
 </pre></div>
 
 
@@ -127,39 +127,39 @@
 <p>UOJ 代码的 SVN 仓库地址是：<code>svn://&lt;local-uoj-address&gt;/uoj</code>（网页部分）和 <code>svn://local_uoj.ac/judge_client</code>（主评测机部分）。  </p>
 <p>UOJ 代码仓库需要您手动添加权限。<br />
 首先，您需要进入 Docker 容器，运行下面的命令：</p>
-<div class="codehilite"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;uoj=666666&quot;</span> &gt;&gt;/var/svn/uoj/conf/passwd    <span class="c1">#增加一位名为 &quot;uoj&quot;，密码为 &quot;666666&quot; 的 svn 仓库管理员</span>
+<div class="codehilite"><pre><span class="nb">echo</span> <span class="s2">&quot;uoj=666666&quot;</span> &gt;&gt;/var/svn/uoj/conf/passwd    <span class="c1">#增加一位名为 &quot;uoj&quot;，密码为 &quot;666666&quot; 的 svn 仓库管理员</span>
 </pre></div>
 
 
 <p><strong>注意</strong>：请不要在 Docker 容器中修改除 <code>.config.php</code> 以外的文件，这样可能导致 SVN 仓库混乱。</p>
 <h2>SVN 的基本用法</h2>
 <h3>检出</h3>
-<div class="codehilite"><pre><span></span>svn co svn://svn地址 <span class="o">[</span>本地目录全路径<span class="o">]</span> --username 用户名 --password 密码
+<div class="codehilite"><pre>svn co svn://svn地址 <span class="o">[</span>本地目录全路径<span class="o">]</span> --username 用户名 --password 密码
 </pre></div>
 
 
 <p>若不指定本地目录全路径，则检出到当前目录下。</p>
 <h3>添加新文件</h3>
-<div class="codehilite"><pre><span></span>svn add 文件名
+<div class="codehilite"><pre>svn add 文件名
 </pre></div>
 
 
 <p>您可以在检出的目录的任意地方执行此命令。<br />
 此命令将新文件纳入版本库（与 Git 不同）。</p>
 <h3>删除文件</h3>
-<div class="codehilite"><pre><span></span>svn delete 文件名
+<div class="codehilite"><pre>svn delete 文件名
 </pre></div>
 
 
 <p>此命令将文件从版本库和目录中删除。   </p>
 <h3>提交</h3>
-<div class="codehilite"><pre><span></span>svn　commit　-m　<span class="s2">&quot;提交备注信息文本&quot;</span> 文件名
+<div class="codehilite"><pre>svn　commit　-m　<span class="s2">&quot;提交备注信息文本&quot;</span> 文件名
 </pre></div>
 
 
 <p>此命令将本地文件提交到远程版本库（与 Git 不同）。</p>
 <h3>更新文件</h3>
-<div class="codehilite"><pre><span></span>svn　update
+<div class="codehilite"><pre>svn　update
 </pre></div>
 
 
