@@ -1,10 +1,8 @@
 								<hr>
 
-								<!-- Gitment 评论框 start -->
-
-								<div id="container"></div>
-
-								<!-- Gitment 评论框 end -->
+								<!-- Gitalk 评论框 start -->
+								<div id="gitalk-container"></div>
+								<!-- Gitalk 评论框 end -->
 
 								</div>
 							</div>
@@ -46,21 +44,21 @@
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/base.min.js"></script>
     
-    <!-- Gitment JS 代码 start -->
-    <script src="/js/gitment.browser.js"></script>
+    <!-- Gitalk JS 代码 start -->
+    <script src="/js/gitalk.min.js"></script>
     <script>
-    var gitment = new Gitment({
-      id: location.href,
-      owner: 'cebarobot',
+    const gitalk = new Gitalk({
+      clientID: '0dc093a9aefa1d501df2',
+      clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
       repo: 'UniversalOJ.github.io',
-      oauth: {
-        client_id: '0dc093a9aefa1d501df2',
-        client_secret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
-      },
+      owner: 'cebarobot',
+      admin: ['cebarobot'],
+      labels: [],
     })
-    gitment.render('container')
+    
+    gitalk.render('gitalk-container')
     </script>
-    <!-- Gitment JS 代码 end -->
+    <!-- Gitalk JS 代码 end -->
     
 </body>
 </html>
