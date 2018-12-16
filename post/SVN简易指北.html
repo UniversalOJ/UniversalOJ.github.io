@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+	<title>SVN简易指北 - UOJ部署指北</title>
+
+	<!-- css -->
+	<link href="/css/base.min.css" rel="stylesheet">
+	<link href="/css/project.min.css" rel="stylesheet">
+	<link href="/css/styles.css" rel="stylesheet">
+	<link href="/css/gitalk.css" rel="stylesheet">
+
+</head>
+<body class="page-brand">
+	
+	<header class="header header-transparent header-waterfall ui-header">
+		<ul class="nav nav-list pull-left">
+			<li>
+				<a data-toggle="menu" href="#menu">
+					<span class="icon icon-lg">menu</span>
+				</a>
+			</li>
+		</ul>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">SVN简易指北</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">SVN简易指北</span>
+
+		<ul class="nav nav-list pull-right">
+			<li>
+				<a data-toggle="menu" href="/">
+					<span class="avatar avatar-sm"><img alt="logo" src="/img/logo.png"></span>
+				</a>
+			</li>
+		</ul>
+
+	</header>
+
+	<nav aria-hidden="true" class="menu" id="menu" tabindex="-1">
+		<div class="menu-scroll">
+			<div class="menu-content">
+				<a class="menu-logo" href="/">UOJ部署指北</a>
+				<ul class="nav">
+					<li>
+					
+						
+							
+							
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#入门">入门</a>	
+								<ul class="menu-collapse collapse in" id="入门">
+
+								<li>
+									<a class="waves-attach" href="/post/安装.html">安装</a>
+								</li><li>
+									<a class="waves-attach" href="/post/维护.html">维护</a>
+								</li><li>
+									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li>
+									<a class="waves-attach" href="/post/系统管理.html">系统管理</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
+								<ul class="menu-collapse collapse in" id="题目">
+
+								<li>
+									<a class="waves-attach" href="/post/题目管理概述.html">题目管理概述</a>
+								</li><li>
+									<a class="waves-attach" href="/post/传统题配置.html">传统题配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
+								</li><li>
+									<a class="waves-attach" href="/post/答案检查器.html">答案检查器</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
+								<ul class="menu-collapse collapse in" id="开发">
+
+								<li class="active">
+									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
+								</li><li>
+									<a class="waves-attach" href="/post/本地构建镜像.html">本地构建镜像</a>
+								</li><li>
+									<a class="waves-attach" href="/post/贡献.html">贡献</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#关于">关于</a>	
+								<ul class="menu-collapse collapse in" id="关于">
+
+								<li>
+									<a class="waves-attach" href="/post/关于.html">关于</a>
+								</li></ul>						
+
+
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<main class="content">
+		<div class="content-header ui-content-header">
+			<div class="container">
+				<tit class="content-heading">SVN简易指北</tit>
+			</div>
+		</div>
+		<div class="container">
+			<section class="content-inner margin-top-no">
+				<div class="row">
+					<div class="col-lg-13 col-md-13">
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner page-card-inner">
+						<blockquote class="note">
+<p>这是一份简易的 SVN 指北，帮您在满是 SVN 的 UOJ 中幸存下来。<br />
+题目数据管理的 SVN 在将来可能会被移除。
+这份指北以 Ubuntu 终端中的 SVN 客户端为例，其他版本与之相似。
+请您不要在 Docker 容器中运行 SVN 命令。</p>
+</blockquote>
+<h2>SVN 的安装</h2>
+<p>在 Ubuntu 终端（非 Docker 中）中执行：</p>
+<div class="codehilite"><pre><span></span>sudo apt-get install subversion
+</pre></div>
+
+
+<p>在 Windows 下，您可以安装 <a href="https://tortoisesvn.net/">TortoiseSVN</a>。</p>
+<h2>UOJ 的 SVN 仓库</h2>
+<p>UOJ 代码的 SVN 仓库地址是：<code>svn://&lt;local-uoj-address&gt;/uoj</code>（网页部分）和 <code>svn://local_uoj.ac/judge_client</code>（主评测机部分）。  </p>
+<p>UOJ 代码仓库需要您手动添加权限。<br />
+首先，您需要进入 Docker 容器，运行下面的命令：</p>
+<div class="codehilite"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;uoj=666666&quot;</span> &gt;&gt;/var/svn/uoj/conf/passwd    <span class="c1">#增加一位名为 &quot;uoj&quot;，密码为 &quot;666666&quot; 的 svn 仓库管理员</span>
+</pre></div>
+
+
+<p><strong>注意</strong>：请不要在 Docker 容器中修改除 <code>.config.php</code> 以外的文件，这样可能导致 SVN 仓库混乱。</p>
+<h2>SVN 的基本用法</h2>
+<h3>检出</h3>
+<div class="codehilite"><pre><span></span>svn co svn://svn地址 <span class="o">[</span>本地目录全路径<span class="o">]</span> --username 用户名 --password 密码
+</pre></div>
+
+
+<p>若不指定本地目录全路径，则检出到当前目录下。</p>
+<h3>添加新文件</h3>
+<div class="codehilite"><pre><span></span>svn add 文件名
+</pre></div>
+
+
+<p>您可以在检出的目录的任意地方执行此命令。<br />
+此命令将新文件纳入版本库（与 Git 不同）。</p>
+<h3>删除文件</h3>
+<div class="codehilite"><pre><span></span>svn delete 文件名
+</pre></div>
+
+
+<p>此命令将文件从版本库和目录中删除。   </p>
+<h3>提交</h3>
+<div class="codehilite"><pre><span></span>svn　commit　-m　<span class="s2">&quot;提交备注信息文本&quot;</span> 文件名
+</pre></div>
+
+
+<p>此命令将本地文件提交到远程版本库（与 Git 不同）。</p>
+<h3>更新文件</h3>
+<div class="codehilite"><pre><span></span>svn　update
+</pre></div>
+
+
+<p>此命令从远程版本库获取最新版本代码。</p>
+								<hr>
+
+								<!-- Gitalk 评论框 start -->
+								<div id="gitalk-container"></div>
+								<!-- Gitalk 评论框 end -->
+
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			
+			<hr>
+			<center>[CC协议 BY-NC-SA] 署名 - 非商业性使用 - 相同方式共享  @ UOJ部署指北 2018</center>
+
+		</div>
+
+
+	</main>
+	
+	<div class="fbtn-container">
+		<div class="fbtn-inner">
+			<a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown">
+				<span class="fbtn-text fbtn-text-left">Home</span>
+				<span class="fbtn-ori icon">apps</span>
+				<span class="fbtn-sub icon">close</span>
+			</a>
+			<div class="fbtn-dropup">
+				<a class="fbtn waves-attach waves-circle" href="https://github.com/UniversalOJ/UniversalOJ.github.io/issues" target="_blank">
+					<span class="fbtn-text fbtn-text-left">反馈</span><span class="icon">feedback</span>
+				</a>
+				<a class="fbtn fbtn-green waves-attach waves-circle" href="/" target="_self">
+					<span class="fbtn-text fbtn-text-left">返回主页</span><span class="icon">home</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<!-- js -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/base.min.js"></script>
+    
+    <!-- Gitalk JS 代码 start -->
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+    const gitalk = new Gitalk({
+      clientID: '0dc093a9aefa1d501df2',
+      clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
+      repo: 'UniversalOJ.github.io',
+      owner: 'cebarobot',
+      admin: ['cebarobot'],
+      labels: [],
+    })
+    
+    gitalk.render('gitalk-container')
+    </script>
+    <!-- Gitalk JS 代码 end -->
+    
+</body>
+</html>

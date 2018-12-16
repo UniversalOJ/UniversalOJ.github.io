@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+	<title>系统管理 - UOJ部署指北</title>
+
+	<!-- css -->
+	<link href="/css/base.min.css" rel="stylesheet">
+	<link href="/css/project.min.css" rel="stylesheet">
+	<link href="/css/styles.css" rel="stylesheet">
+	<link href="/css/gitalk.css" rel="stylesheet">
+
+</head>
+<body class="page-brand">
+	
+	<header class="header header-transparent header-waterfall ui-header">
+		<ul class="nav nav-list pull-left">
+			<li>
+				<a data-toggle="menu" href="#menu">
+					<span class="icon icon-lg">menu</span>
+				</a>
+			</li>
+		</ul>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">系统管理</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">系统管理</span>
+
+		<ul class="nav nav-list pull-right">
+			<li>
+				<a data-toggle="menu" href="/">
+					<span class="avatar avatar-sm"><img alt="logo" src="/img/logo.png"></span>
+				</a>
+			</li>
+		</ul>
+
+	</header>
+
+	<nav aria-hidden="true" class="menu" id="menu" tabindex="-1">
+		<div class="menu-scroll">
+			<div class="menu-content">
+				<a class="menu-logo" href="/">UOJ部署指北</a>
+				<ul class="nav">
+					<li>
+					
+						
+							
+							
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#入门">入门</a>	
+								<ul class="menu-collapse collapse in" id="入门">
+
+								<li>
+									<a class="waves-attach" href="/post/安装.html">安装</a>
+								</li><li>
+									<a class="waves-attach" href="/post/维护.html">维护</a>
+								</li><li>
+									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li class="active">
+									<a class="waves-attach" href="/post/系统管理.html">系统管理</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
+								<ul class="menu-collapse collapse in" id="题目">
+
+								<li>
+									<a class="waves-attach" href="/post/题目管理概述.html">题目管理概述</a>
+								</li><li>
+									<a class="waves-attach" href="/post/传统题配置.html">传统题配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
+								</li><li>
+									<a class="waves-attach" href="/post/答案检查器.html">答案检查器</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
+								<ul class="menu-collapse collapse in" id="开发">
+
+								<li>
+									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
+								</li><li>
+									<a class="waves-attach" href="/post/本地构建镜像.html">本地构建镜像</a>
+								</li><li>
+									<a class="waves-attach" href="/post/贡献.html">贡献</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#关于">关于</a>	
+								<ul class="menu-collapse collapse in" id="关于">
+
+								<li>
+									<a class="waves-attach" href="/post/关于.html">关于</a>
+								</li></ul>						
+
+
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<main class="content">
+		<div class="content-header ui-content-header">
+			<div class="container">
+				<tit class="content-heading">系统管理</tit>
+			</div>
+		</div>
+		<div class="container">
+			<section class="content-inner margin-top-no">
+				<div class="row">
+					<div class="col-lg-13 col-md-13">
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner page-card-inner">
+						<h2>管理员账户</h2>
+<p>按照套路，UOJ 安装完成后，注册的第一个账户会被设为<strong>管理员</strong>账户。</p>
+<p>当您以管理员账户登录 UOJ 后，您就可以依次点击页面右上角<code>您的用户名</code>、<code>系统管理</code>来进入管理界面。</p>
+<p>管理员账户有发布公告、新建题目和比赛等权限。但是，管理员并不能参加比赛。</p>
+<h2>全局配置文件</h2>
+<p>全局配置文件中包含了网站的基础信息。要修改全局配置文件，请先进入 Docker 容器的终端。</p>
+<div class="codehilite"><pre><span></span>sudo docker <span class="nb">exec</span> -it uoj /bin/bash
+</pre></div>
+
+
+<p>全局配置文件的路径是<code>/var/www/uoj/app/.config.php</code>，您可能需要用 Vim 编辑该文件。</p>
+<blockquote class="note">
+<p>Vim 幸存指南：按 <code>i</code> 进入插入模式，然后完全用键盘进行编辑。编辑完成后，按<code>Esc</code>键返回正常模式，输入<code>:wq</code>保存退出。</p>
+</blockquote>
+<p>这个文件大概是这个样子的：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">return</span> <span class="k">array</span> <span class="p">(</span>
+  <span class="s1">&#39;profile&#39;</span> <span class="o">=&gt;</span>                                   <span class="c1">// 网站相关信息</span>
+  <span class="k">array</span> <span class="p">(</span>
+    <span class="s1">&#39;oj-name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Universal Online Judge&#39;</span><span class="p">,</span>           <span class="c1">// 网站全称</span>
+    <span class="s1">&#39;oj-name-short&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;UOJ&#39;</span><span class="p">,</span>                        <span class="c1">// 网站简称</span>
+    <span class="s1">&#39;administrator&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>                       <span class="c1">// 管理员 id（仅在关于中显示）</span>
+    <span class="s1">&#39;admin-email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin@local_uoj.ac&#39;</span><span class="p">,</span>           <span class="c1">// 管理员邮箱（仅在关于中显示）</span>
+    <span class="s1">&#39;QQ-group&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>                                <span class="c1">// OJ QQ 交流群（仅在关于中显示）</span>
+    <span class="s1">&#39;ICP-license&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>                             <span class="c1">// ICP 备案信息</span>
+  <span class="p">),</span>
+  <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span>                                  <span class="c1">// 数据库相关</span>
+  <span class="k">array</span> <span class="p">(</span>
+    <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;app_uoj233&#39;</span><span class="p">,</span>                      <span class="c1">// 数据库名称</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>                            <span class="c1">// 用户名</span>
+    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>                            <span class="c1">// 密码</span>
+    <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>                           <span class="c1">// 数据库主机名</span>
+  <span class="p">),</span>
+  <span class="s1">&#39;web&#39;</span> <span class="o">=&gt;</span>                                       <span class="c1">// 网址相关 TODO</span>
+  <span class="k">array</span> <span class="p">(</span>
+    <span class="s1">&#39;domain&#39;</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="s1">&#39;main&#39;</span> <span class="o">=&gt;</span>
+    <span class="k">array</span> <span class="p">(</span>
+      <span class="s1">&#39;protocol&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_X_FORWARDED_HOST&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_X_FORWARDED_HOST&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_HOST&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_HOST&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+      <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;blog&#39;</span> <span class="o">=&gt;</span>
+    <span class="k">array</span> <span class="p">(</span>
+      <span class="s1">&#39;protocol&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_X_FORWARDED_HOST&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_X_FORWARDED_HOST&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_HOST&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_HOST&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+      <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+    <span class="p">),</span>
+  <span class="p">),</span>
+  <span class="s1">&#39;security&#39;</span> <span class="o">=&gt;</span>                                  <span class="c1">// 安全相关（勿动），仅为示例</span>
+  <span class="k">array</span> <span class="p">(</span>
+    <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span>
+    <span class="k">array</span> <span class="p">(</span>
+      <span class="s1">&#39;client_salt&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;salt&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;cookie&#39;</span> <span class="o">=&gt;</span>
+    <span class="k">array</span> <span class="p">(</span>
+      <span class="s1">&#39;checksum_salt&#39;</span> <span class="o">=&gt;</span>
+      <span class="k">array</span> <span class="p">(</span>
+        <span class="mi">0</span> <span class="o">=&gt;</span> <span class="s1">&#39;salt&#39;</span><span class="p">,</span>
+        <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;salt&#39;</span><span class="p">,</span>
+        <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">&#39;salt&#39;</span><span class="p">,</span>
+      <span class="p">),</span>
+    <span class="p">),</span>
+  <span class="p">),</span>
+  <span class="s1">&#39;mail&#39;</span> <span class="o">=&gt;</span>                                      <span class="c1">// 邮件相关（SMTP 协议发送）</span>
+  <span class="k">array</span> <span class="p">(</span>
+    <span class="s1">&#39;noreply&#39;</span> <span class="o">=&gt;</span>                                     <span class="c1">// noreply 邮箱（建议使用 sina 邮箱）</span>
+    <span class="k">array</span> <span class="p">(</span>
+      <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;noreply@none&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;noreply&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+  <span class="p">),</span>
+  <span class="s1">&#39;judger&#39;</span> <span class="o">=&gt;</span>                                    <span class="c1">// 测评相关（勿动）</span>
+  <span class="k">array</span> <span class="p">(</span>
+    <span class="s1">&#39;socket&#39;</span> <span class="o">=&gt;</span>                                      <span class="c1">// 与测评机的 socket 服务器通讯的设置</span>
+    <span class="k">array</span> <span class="p">(</span>
+      <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="mi">2333</span><span class="p">,</span>                                <span class="c1">// 端口</span>
+      <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;pass&#39;</span><span class="p">,</span>                          <span class="c1">// 认证密码（证明自己 UOJ 服务器），仅为示例</span>
+    <span class="p">),</span>
+  <span class="p">),</span>
+  <span class="s1">&#39;svn&#39;</span> <span class="o">=&gt;</span>                                       <span class="c1">// svn 相关（勿动）</span>
+  <span class="k">array</span> <span class="p">(</span>
+    <span class="s1">&#39;our-root&#39;</span> <span class="o">=&gt;</span>                                    <span class="c1">// 每个题目的 svn 仓库自带的仓库管理员</span>
+    <span class="k">array</span> <span class="p">(</span>
+      <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;our-root&#39;</span><span class="p">,</span>                          <span class="c1">// 管理员用户名</span>
+      <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;pass&#39;</span><span class="p">,</span>                              <span class="c1">// 密码，仅为示例</span>
+    <span class="p">),</span>
+  <span class="p">),</span>
+  <span class="s1">&#39;switch&#39;</span> <span class="o">=&gt;</span>                                    <span class="c1">// 一些开关</span>
+  <span class="k">array</span> <span class="p">(</span>
+    <span class="s1">&#39;ICP-license&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>                          <span class="c1">// 是否显示 ICP 备案信息（默认为否）</span>
+    <span class="s1">&#39;web-analytics&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>                        <span class="c1">// 是否进行网站统计（默认为否，记 uoj.ac 名下，想统计自己的得改代码）</span>
+    <span class="s1">&#39;blog-use-subdomain&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>                   <span class="c1">// 博客是否使用子域名（默认为否，不建议使用）</span>
+  <span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+
+
+<h2>LOGO</h2>
+<p>LOGO 图片位于网站的<code>/picture</code>目录下，使用 SVN 管理。</p>
+<blockquote class="note">
+<p>请您先阅读“开发”中关于 svn 的介绍。</p>
+</blockquote>
+<p>首先，需要 checkout UOJ 的 web 目录：</p>
+<div class="codehilite"><pre><span></span>svn checkout svn://&lt;local-uoj-address&gt;/uoj
+<span class="nb">cd</span> uoj/1/pictures
+</pre></div>
+
+
+<p>在 <code>/pictures</code> 目录下替换对应的图片，然后 commit。</p>
+<div class="codehilite"><pre><span></span>svn commit -m <span class="s2">&quot;Changed logo&quot;</span> *
+</pre></div>
+								<hr>
+
+								<!-- Gitalk 评论框 start -->
+								<div id="gitalk-container"></div>
+								<!-- Gitalk 评论框 end -->
+
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			
+			<hr>
+			<center>[CC协议 BY-NC-SA] 署名 - 非商业性使用 - 相同方式共享  @ UOJ部署指北 2018</center>
+
+		</div>
+
+
+	</main>
+	
+	<div class="fbtn-container">
+		<div class="fbtn-inner">
+			<a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown">
+				<span class="fbtn-text fbtn-text-left">Home</span>
+				<span class="fbtn-ori icon">apps</span>
+				<span class="fbtn-sub icon">close</span>
+			</a>
+			<div class="fbtn-dropup">
+				<a class="fbtn waves-attach waves-circle" href="https://github.com/UniversalOJ/UniversalOJ.github.io/issues" target="_blank">
+					<span class="fbtn-text fbtn-text-left">反馈</span><span class="icon">feedback</span>
+				</a>
+				<a class="fbtn fbtn-green waves-attach waves-circle" href="/" target="_self">
+					<span class="fbtn-text fbtn-text-left">返回主页</span><span class="icon">home</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<!-- js -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/base.min.js"></script>
+    
+    <!-- Gitalk JS 代码 start -->
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+    const gitalk = new Gitalk({
+      clientID: '0dc093a9aefa1d501df2',
+      clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
+      repo: 'UniversalOJ.github.io',
+      owner: 'cebarobot',
+      admin: ['cebarobot'],
+      labels: [],
+    })
+    
+    gitalk.render('gitalk-container')
+    </script>
+    <!-- Gitalk JS 代码 end -->
+    
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+	<title>安装 - UOJ部署指北</title>
+
+	<!-- css -->
+	<link href="/css/base.min.css" rel="stylesheet">
+	<link href="/css/project.min.css" rel="stylesheet">
+	<link href="/css/styles.css" rel="stylesheet">
+	<link href="/css/gitalk.css" rel="stylesheet">
+
+</head>
+<body class="page-brand">
+	
+	<header class="header header-transparent header-waterfall ui-header">
+		<ul class="nav nav-list pull-left">
+			<li>
+				<a data-toggle="menu" href="#menu">
+					<span class="icon icon-lg">menu</span>
+				</a>
+			</li>
+		</ul>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">安装</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">安装</span>
+
+		<ul class="nav nav-list pull-right">
+			<li>
+				<a data-toggle="menu" href="/">
+					<span class="avatar avatar-sm"><img alt="logo" src="/img/logo.png"></span>
+				</a>
+			</li>
+		</ul>
+
+	</header>
+
+	<nav aria-hidden="true" class="menu" id="menu" tabindex="-1">
+		<div class="menu-scroll">
+			<div class="menu-content">
+				<a class="menu-logo" href="/">UOJ部署指北</a>
+				<ul class="nav">
+					<li>
+					
+						
+							
+							
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#入门">入门</a>	
+								<ul class="menu-collapse collapse in" id="入门">
+
+								<li class="active">
+									<a class="waves-attach" href="/post/安装.html">安装</a>
+								</li><li>
+									<a class="waves-attach" href="/post/维护.html">维护</a>
+								</li><li>
+									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li>
+									<a class="waves-attach" href="/post/系统管理.html">系统管理</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
+								<ul class="menu-collapse collapse in" id="题目">
+
+								<li>
+									<a class="waves-attach" href="/post/题目管理概述.html">题目管理概述</a>
+								</li><li>
+									<a class="waves-attach" href="/post/传统题配置.html">传统题配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
+								</li><li>
+									<a class="waves-attach" href="/post/答案检查器.html">答案检查器</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
+								<ul class="menu-collapse collapse in" id="开发">
+
+								<li>
+									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
+								</li><li>
+									<a class="waves-attach" href="/post/本地构建镜像.html">本地构建镜像</a>
+								</li><li>
+									<a class="waves-attach" href="/post/贡献.html">贡献</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#关于">关于</a>	
+								<ul class="menu-collapse collapse in" id="关于">
+
+								<li>
+									<a class="waves-attach" href="/post/关于.html">关于</a>
+								</li></ul>						
+
+
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<main class="content">
+		<div class="content-header ui-content-header">
+			<div class="container">
+				<tit class="content-heading">安装</tit>
+			</div>
+		</div>
+		<div class="container">
+			<section class="content-inner margin-top-no">
+				<div class="row">
+					<div class="col-lg-13 col-md-13">
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner page-card-inner">
+						<blockquote class="note">
+<p>这篇文档将指导您安装UOJ。  </p>
+</blockquote>
+<h2>安装前的准备</h2>
+<p>您需要准备一台<strong>64位</strong>的Linux系统。</p>
+<p>然后您需要安装<code>docker</code>。它是一个容器技术，暂且可以理解成虚拟机。</p>
+<div class="codehilite"><pre><span></span>curl -fsSL get.docker.com -o get-docker.sh
+sudo chmod +x get-docker.sh
+sudo ./get-docker.sh
+
+sudo service docker start           <span class="c1"># 启动docker服务</span>
+</pre></div>
+
+
+<p>另外，您可以通过下面的代码安装docker加速器（强烈推荐）：</p>
+<div class="codehilite"><pre><span></span>sudo su
+curl -sSL https://get.daocloud.io/daotools/set_mirror.sh <span class="p">|</span> sh -s http://3a834d99.m.daocloud.io
+service docker restart
+</pre></div>
+
+
+<h2>安装</h2>
+<p>您需要执行下面的指令来开始安装 UOJ：</p>
+<div class="codehilite"><pre><span></span>sudo docker pull universaloj/uoj-system:stable
+sudo docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE universaloj/uoj-system:stable
+</pre></div>
+
+
+<p>接下来，UOJ将在后台运行。</p>
+<blockquote class="note">
+<p>上面的代码是用于<strong>新建一个 UOJ 容器</strong>，重启服务器后<strong>不要</strong>使用<code>docker run</code>来启动容器。具体参阅维护文档。<br />
+如果您不希望用80端口来运行uoj，您可以把上面的<code>-p 80:80</code>改成<code>-p &lt;port&gt;:80</code>。  </p>
+</blockquote>
+<p>稍等几分钟，访问服务器的地址，您现在应该能看到UOJ正在运行了。</p>
+<p>UOJ 当前版本镜像的管理员用户名为 <code>root</code>，密码为 <code>uojuoj</code>。</p>
+<p>下一步，请参阅《维护UOJ》。</p>
+								<hr>
+
+								<!-- Gitalk 评论框 start -->
+								<div id="gitalk-container"></div>
+								<!-- Gitalk 评论框 end -->
+
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			
+			<hr>
+			<center>[CC协议 BY-NC-SA] 署名 - 非商业性使用 - 相同方式共享  @ UOJ部署指北 2018</center>
+
+		</div>
+
+
+	</main>
+	
+	<div class="fbtn-container">
+		<div class="fbtn-inner">
+			<a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown">
+				<span class="fbtn-text fbtn-text-left">Home</span>
+				<span class="fbtn-ori icon">apps</span>
+				<span class="fbtn-sub icon">close</span>
+			</a>
+			<div class="fbtn-dropup">
+				<a class="fbtn waves-attach waves-circle" href="https://github.com/UniversalOJ/UniversalOJ.github.io/issues" target="_blank">
+					<span class="fbtn-text fbtn-text-left">反馈</span><span class="icon">feedback</span>
+				</a>
+				<a class="fbtn fbtn-green waves-attach waves-circle" href="/" target="_self">
+					<span class="fbtn-text fbtn-text-left">返回主页</span><span class="icon">home</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<!-- js -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/base.min.js"></script>
+    
+    <!-- Gitalk JS 代码 start -->
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+    const gitalk = new Gitalk({
+      clientID: '0dc093a9aefa1d501df2',
+      clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
+      repo: 'UniversalOJ.github.io',
+      owner: 'cebarobot',
+      admin: ['cebarobot'],
+      labels: [],
+    })
+    
+    gitalk.render('gitalk-container')
+    </script>
+    <!-- Gitalk JS 代码 end -->
+    
+</body>
+</html>

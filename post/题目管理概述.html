@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+	<title>题目管理概述 - UOJ部署指北</title>
+
+	<!-- css -->
+	<link href="/css/base.min.css" rel="stylesheet">
+	<link href="/css/project.min.css" rel="stylesheet">
+	<link href="/css/styles.css" rel="stylesheet">
+	<link href="/css/gitalk.css" rel="stylesheet">
+
+</head>
+<body class="page-brand">
+	
+	<header class="header header-transparent header-waterfall ui-header">
+		<ul class="nav nav-list pull-left">
+			<li>
+				<a data-toggle="menu" href="#menu">
+					<span class="icon icon-lg">menu</span>
+				</a>
+			</li>
+		</ul>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">题目管理概述</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">题目管理概述</span>
+
+		<ul class="nav nav-list pull-right">
+			<li>
+				<a data-toggle="menu" href="/">
+					<span class="avatar avatar-sm"><img alt="logo" src="/img/logo.png"></span>
+				</a>
+			</li>
+		</ul>
+
+	</header>
+
+	<nav aria-hidden="true" class="menu" id="menu" tabindex="-1">
+		<div class="menu-scroll">
+			<div class="menu-content">
+				<a class="menu-logo" href="/">UOJ部署指北</a>
+				<ul class="nav">
+					<li>
+					
+						
+							
+							
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#入门">入门</a>	
+								<ul class="menu-collapse collapse in" id="入门">
+
+								<li>
+									<a class="waves-attach" href="/post/安装.html">安装</a>
+								</li><li>
+									<a class="waves-attach" href="/post/维护.html">维护</a>
+								</li><li>
+									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li>
+									<a class="waves-attach" href="/post/系统管理.html">系统管理</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
+								<ul class="menu-collapse collapse in" id="题目">
+
+								<li class="active">
+									<a class="waves-attach" href="/post/题目管理概述.html">题目管理概述</a>
+								</li><li>
+									<a class="waves-attach" href="/post/传统题配置.html">传统题配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
+								</li><li>
+									<a class="waves-attach" href="/post/答案检查器.html">答案检查器</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
+								<ul class="menu-collapse collapse in" id="开发">
+
+								<li>
+									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
+								</li><li>
+									<a class="waves-attach" href="/post/本地构建镜像.html">本地构建镜像</a>
+								</li><li>
+									<a class="waves-attach" href="/post/贡献.html">贡献</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#关于">关于</a>	
+								<ul class="menu-collapse collapse in" id="关于">
+
+								<li>
+									<a class="waves-attach" href="/post/关于.html">关于</a>
+								</li></ul>						
+
+
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<main class="content">
+		<div class="content-header ui-content-header">
+			<div class="container">
+				<tit class="content-heading">题目管理概述</tit>
+			</div>
+		</div>
+		<div class="container">
+			<section class="content-inner margin-top-no">
+				<div class="row">
+					<div class="col-lg-13 col-md-13">
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner page-card-inner">
+						<h2>新建题目和管理界面</h2>
+<p>只有超级管理员有权限新建题目，每次新建题目都必须由超级管理员完成。</p>
+<p>请点击题库页面右下角的<code>添加新题</code>按钮，并确认添加新题。</p>
+<blockquote class="note">
+<p>请注意，UOJ 当前<strong>并没有</strong>删除题目的功能，因此添加新题的步骤是<strong>不可逆的</strong>。</p>
+</blockquote>
+<p>在题目页面，超级管理员或该题目的管理员可以通过<code>管理</code>按钮进入题目管理界面。题目管理界面分为三个选项卡：</p>
+<ul>
+<li>编辑：<strong>题面</strong>编辑页面</li>
+<li>管理者：<strong>题目管理员</strong>管理页面</li>
+<li>数据：<strong>题目数据</strong>管理页面</li>
+</ul>
+<p>以及用来退出题目管理界面的<code>返回</code>按钮。</p>
+<h2>编辑</h2>
+<h3>编辑题面</h3>
+<p>UOJ 的题面使用 Markdown 编写。</p>
+<p>理论上，题面是可以自由编写的，但还是有一些推荐的格式和规则：</p>
+<ol>
+<li>中文与英文、数字之间加一个空格隔开。</li>
+<li>输入输出样例视为代码块，使用Markdown的 <code>```</code> 语法。</li>
+<li>题面中最高级标题为三级标题。</li>
+<li>一切数字、数学符号、运算符、变量名、公式应当用 LaTeX 语法编写。UOJ 自带 MathJax 插件来显示数学公式，行中公式用<code>$ &lt;formula&gt; $</code>分隔，独立公式用<code>$$ &lt;formula&gt; $$</code>分隔。</li>
+</ol>
+<blockquote class="note">
+<p>上面的规则不必强行遵守。<br />
+这是一份示例：<a href="http://paste.ubuntu.com/24280516/"></a></p>
+</blockquote>
+<h3>编辑标签</h3>
+<p>直接填入文本框即可，用英文半角逗号分隔多个标签。</p>
+<p>理论上，标签是可以自由标定的，但还是有一些推荐的规则：</p>
+<ol>
+<li>标签的目的是标出题目类型，方便用户检索题目。一般来说，标签顺序基本为从小范围到大范围。</li>
+<li>最前面的几个标签是这题所需要的前置技能，这里假定 “二分查找” 之类过于基础的技能选手已经掌握。</li>
+<li>接下来是这道题的大方法，比如 “贪心”、“DP”、“乱搞”、“构造”、“分治”……</li>
+<li>接下来，如果这道题是非传统题，用一个标签注明非传统题类型，比如 “提交答案”、“交互式”、“通讯”。</li>
+<li>接下来，如果这道题是模板题，用一个标签注明 “模板题”。</li>
+<li>接下来，如果这道题是不用脑子想就能做出的题，例如 NOIP 第一题难度，用一个标签注明 “水题”。</li>
+<li>最后，如果这题的来源比较重要，用一个标签注明。比如 “UOJ Round”、“NOI”、“WC”。</li>
+<li>前置技能中，“数学” 太过宽泛不能作为标签，但 “数论” 可以作为前置技能。</li>
+<li>如果有多个解法，每个解法的前置技能和大方法都不太一样，那么尽可能都标上去。</li>
+<li>“乱搞” 标签不宜滥用。</li>
+</ol>
+<h2>管理者</h2>
+<p>这个选项卡用来增加和删除该题目的管理员。如果使用 <code>svn</code> ，则只有该题目的管理员可以管理这个题目的数据。</p>
+<h2>数据</h2>
+<p>UOJ 原版使用 svn 管理题目数据。在这份uoj版本中，svn仍然是有效的，但您可以使用<code>zip</code>数据包上传数据。</p>
+<p>首先您需要准备好一道题的数据，参见：<a href="https://vfleaking.github.io/uoj/problem/">vfk的文档</a></p>
+<p>您需要将所有的数据压缩到一个zip文件（注意不要建子目录），如下图所示：
+<img style="max-width:100%" alt="压缩" src="https://i.loli.net/2018/06/26/5b31b07962936.png" /></p>
+<p>点击右侧的<code>上传数据</code>按钮上传<code>*.zip</code>数据包，之后点击<code>与 svn 仓库同步</code>按钮。如果能在左侧看到数据解析的结果，就说明上传成功。</p>
+<blockquote class="note">
+<p>注意：如果您的题目不支持hack，请在上传数据后直接点击“禁止使用hack”。<br />
+这个按钮会在禁用hack之后自动同步数据。</p>
+</blockquote>
+								<hr>
+
+								<!-- Gitalk 评论框 start -->
+								<div id="gitalk-container"></div>
+								<!-- Gitalk 评论框 end -->
+
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			
+			<hr>
+			<center>[CC协议 BY-NC-SA] 署名 - 非商业性使用 - 相同方式共享  @ UOJ部署指北 2018</center>
+
+		</div>
+
+
+	</main>
+	
+	<div class="fbtn-container">
+		<div class="fbtn-inner">
+			<a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown">
+				<span class="fbtn-text fbtn-text-left">Home</span>
+				<span class="fbtn-ori icon">apps</span>
+				<span class="fbtn-sub icon">close</span>
+			</a>
+			<div class="fbtn-dropup">
+				<a class="fbtn waves-attach waves-circle" href="https://github.com/UniversalOJ/UniversalOJ.github.io/issues" target="_blank">
+					<span class="fbtn-text fbtn-text-left">反馈</span><span class="icon">feedback</span>
+				</a>
+				<a class="fbtn fbtn-green waves-attach waves-circle" href="/" target="_self">
+					<span class="fbtn-text fbtn-text-left">返回主页</span><span class="icon">home</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<!-- js -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/base.min.js"></script>
+    
+    <!-- Gitalk JS 代码 start -->
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+    const gitalk = new Gitalk({
+      clientID: '0dc093a9aefa1d501df2',
+      clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
+      repo: 'UniversalOJ.github.io',
+      owner: 'cebarobot',
+      admin: ['cebarobot'],
+      labels: [],
+    })
+    
+    gitalk.render('gitalk-container')
+    </script>
+    <!-- Gitalk JS 代码 end -->
+    
+</body>
+</html>

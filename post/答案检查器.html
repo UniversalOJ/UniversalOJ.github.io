@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+	<title>答案检查器 - UOJ部署指北</title>
+
+	<!-- css -->
+	<link href="/css/base.min.css" rel="stylesheet">
+	<link href="/css/project.min.css" rel="stylesheet">
+	<link href="/css/styles.css" rel="stylesheet">
+	<link href="/css/gitalk.css" rel="stylesheet">
+
+</head>
+<body class="page-brand">
+	
+	<header class="header header-transparent header-waterfall ui-header">
+		<ul class="nav nav-list pull-left">
+			<li>
+				<a data-toggle="menu" href="#menu">
+					<span class="icon icon-lg">menu</span>
+				</a>
+			</li>
+		</ul>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">答案检查器</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">答案检查器</span>
+
+		<ul class="nav nav-list pull-right">
+			<li>
+				<a data-toggle="menu" href="/">
+					<span class="avatar avatar-sm"><img alt="logo" src="/img/logo.png"></span>
+				</a>
+			</li>
+		</ul>
+
+	</header>
+
+	<nav aria-hidden="true" class="menu" id="menu" tabindex="-1">
+		<div class="menu-scroll">
+			<div class="menu-content">
+				<a class="menu-logo" href="/">UOJ部署指北</a>
+				<ul class="nav">
+					<li>
+					
+						
+							
+							
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#入门">入门</a>	
+								<ul class="menu-collapse collapse in" id="入门">
+
+								<li>
+									<a class="waves-attach" href="/post/安装.html">安装</a>
+								</li><li>
+									<a class="waves-attach" href="/post/维护.html">维护</a>
+								</li><li>
+									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li>
+									<a class="waves-attach" href="/post/系统管理.html">系统管理</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
+								<ul class="menu-collapse collapse in" id="题目">
+
+								<li>
+									<a class="waves-attach" href="/post/题目管理概述.html">题目管理概述</a>
+								</li><li>
+									<a class="waves-attach" href="/post/传统题配置.html">传统题配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
+								</li><li class="active">
+									<a class="waves-attach" href="/post/答案检查器.html">答案检查器</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
+								<ul class="menu-collapse collapse in" id="开发">
+
+								<li>
+									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
+								</li><li>
+									<a class="waves-attach" href="/post/本地构建镜像.html">本地构建镜像</a>
+								</li><li>
+									<a class="waves-attach" href="/post/贡献.html">贡献</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#关于">关于</a>	
+								<ul class="menu-collapse collapse in" id="关于">
+
+								<li>
+									<a class="waves-attach" href="/post/关于.html">关于</a>
+								</li></ul>						
+
+
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<main class="content">
+		<div class="content-header ui-content-header">
+			<div class="container">
+				<tit class="content-heading">答案检查器</tit>
+			</div>
+		</div>
+		<div class="container">
+			<section class="content-inner margin-top-no">
+				<div class="row">
+					<div class="col-lg-13 col-md-13">
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner page-card-inner">
+						<p>本文将引导您写一个自定义的checker（<code>chk.cpp</code>）。<br />
+按照套路，uoj的校验器也应该使用testlib编写。</p>
+<blockquote class="note">
+<p>如果您准备使用自定义校验器，请在<code>problem.conf</code>中去掉<code>use_builtin_checker</code>那一行。</p>
+</blockquote>
+<p>下面是<code>A+B Problem</code>的校验器：</p>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;testlib.h&quot;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">registerTestlibCmd</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">pans</span><span class="p">,</span><span class="n">jans</span><span class="p">;</span>
+    <span class="n">pans</span><span class="o">=</span><span class="n">ouf</span><span class="p">.</span><span class="n">readInt</span><span class="p">();</span>      <span class="c1">// 读取选手输出</span>
+    <span class="n">jans</span><span class="o">=</span><span class="n">ans</span><span class="p">.</span><span class="n">readInt</span><span class="p">();</span>      <span class="c1">// 读取答案</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">pans</span> <span class="o">==</span> <span class="n">jans</span><span class="p">)</span>
+        <span class="n">quitf</span><span class="p">(</span><span class="n">_ok</span><span class="p">,</span> <span class="s">&quot;Correct.&quot;</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">quitf</span><span class="p">(</span><span class="n">_wa</span><span class="p">,</span> <span class="s">&quot;WA! expect=%d recieve=%d&quot;</span><span class="p">,</span> <span class="n">jans</span><span class="p">,</span> <span class="n">pans</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>在调用<code>registerTestlibCmd</code>之后，我们可以使用下面的三个流：</p>
+<ul>
+<li><code>inf</code> ： 输入数据</li>
+<li><code>ouf</code> ： 选手输出</li>
+<li><code>ans</code> ： 标准输出</li>
+</ul>
+<p>从流中读取数据的方式，和【数据检验器】一致。</p>
+<p>如果程序AC或者爆零，您可以使用<code>quitf()</code>。但是如果您想给选手部分分，请使用下面的代码：</p>
+<div class="codehilite"><pre><span></span><span class="n">quitp</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="n">p</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="s">&quot;QAQ&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>这将会给选手p分。</p>
+<blockquote class="note">
+<p>chk.cpp中不能出现中文！</p>
+</blockquote>
+								<hr>
+
+								<!-- Gitalk 评论框 start -->
+								<div id="gitalk-container"></div>
+								<!-- Gitalk 评论框 end -->
+
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			
+			<hr>
+			<center>[CC协议 BY-NC-SA] 署名 - 非商业性使用 - 相同方式共享  @ UOJ部署指北 2018</center>
+
+		</div>
+
+
+	</main>
+	
+	<div class="fbtn-container">
+		<div class="fbtn-inner">
+			<a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown">
+				<span class="fbtn-text fbtn-text-left">Home</span>
+				<span class="fbtn-ori icon">apps</span>
+				<span class="fbtn-sub icon">close</span>
+			</a>
+			<div class="fbtn-dropup">
+				<a class="fbtn waves-attach waves-circle" href="https://github.com/UniversalOJ/UniversalOJ.github.io/issues" target="_blank">
+					<span class="fbtn-text fbtn-text-left">反馈</span><span class="icon">feedback</span>
+				</a>
+				<a class="fbtn fbtn-green waves-attach waves-circle" href="/" target="_self">
+					<span class="fbtn-text fbtn-text-left">返回主页</span><span class="icon">home</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<!-- js -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/base.min.js"></script>
+    
+    <!-- Gitalk JS 代码 start -->
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+    const gitalk = new Gitalk({
+      clientID: '0dc093a9aefa1d501df2',
+      clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
+      repo: 'UniversalOJ.github.io',
+      owner: 'cebarobot',
+      admin: ['cebarobot'],
+      labels: [],
+    })
+    
+    gitalk.render('gitalk-container')
+    </script>
+    <!-- Gitalk JS 代码 end -->
+    
+</body>
+</html>

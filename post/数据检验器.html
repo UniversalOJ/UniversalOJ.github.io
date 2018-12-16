@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+	<title>数据检验器 - UOJ部署指北</title>
+
+	<!-- css -->
+	<link href="/css/base.min.css" rel="stylesheet">
+	<link href="/css/project.min.css" rel="stylesheet">
+	<link href="/css/styles.css" rel="stylesheet">
+	<link href="/css/gitalk.css" rel="stylesheet">
+
+</head>
+<body class="page-brand">
+	
+	<header class="header header-transparent header-waterfall ui-header">
+		<ul class="nav nav-list pull-left">
+			<li>
+				<a data-toggle="menu" href="#menu">
+					<span class="icon icon-lg">menu</span>
+				</a>
+			</li>
+		</ul>
+		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">数据检验器</a>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">数据检验器</span>
+
+		<ul class="nav nav-list pull-right">
+			<li>
+				<a data-toggle="menu" href="/">
+					<span class="avatar avatar-sm"><img alt="logo" src="/img/logo.png"></span>
+				</a>
+			</li>
+		</ul>
+
+	</header>
+
+	<nav aria-hidden="true" class="menu" id="menu" tabindex="-1">
+		<div class="menu-scroll">
+			<div class="menu-content">
+				<a class="menu-logo" href="/">UOJ部署指北</a>
+				<ul class="nav">
+					<li>
+					
+						
+							
+							
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#入门">入门</a>	
+								<ul class="menu-collapse collapse in" id="入门">
+
+								<li>
+									<a class="waves-attach" href="/post/安装.html">安装</a>
+								</li><li>
+									<a class="waves-attach" href="/post/维护.html">维护</a>
+								</li><li>
+									<a class="waves-attach" href="/post/外网映射教程.html">外网映射教程</a>
+								</li><li>
+									<a class="waves-attach" href="/post/系统管理.html">系统管理</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#题目">题目</a>	
+								<ul class="menu-collapse collapse in" id="题目">
+
+								<li>
+									<a class="waves-attach" href="/post/题目管理概述.html">题目管理概述</a>
+								</li><li>
+									<a class="waves-attach" href="/post/传统题配置.html">传统题配置</a>
+								</li><li>
+									<a class="waves-attach" href="/post/特殊需求配置.html">特殊需求配置</a>
+								</li><li class="active">
+									<a class="waves-attach" href="/post/数据检验器.html">数据检验器</a>
+								</li><li>
+									<a class="waves-attach" href="/post/答案检查器.html">答案检查器</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#开发">开发</a>	
+								<ul class="menu-collapse collapse in" id="开发">
+
+								<li>
+									<a class="waves-attach" href="/post/SVN简易指北.html">SVN简易指北</a>
+								</li><li>
+									<a class="waves-attach" href="/post/本地构建镜像.html">本地构建镜像</a>
+								</li><li>
+									<a class="waves-attach" href="/post/贡献.html">贡献</a>
+								</li></ul>
+								<a class="collapsed waves-attach waves-effect" data-toggle="collapse" href="#关于">关于</a>	
+								<ul class="menu-collapse collapse in" id="关于">
+
+								<li>
+									<a class="waves-attach" href="/post/关于.html">关于</a>
+								</li></ul>						
+
+
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<main class="content">
+		<div class="content-header ui-content-header">
+			<div class="container">
+				<tit class="content-heading">数据检验器</tit>
+			</div>
+		</div>
+		<div class="container">
+			<section class="content-inner margin-top-no">
+				<div class="row">
+					<div class="col-lg-13 col-md-13">
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner page-card-inner">
+						<p>uoj的数据检验器(<code>val.cpp</code>)使用testlib。</p>
+<p>下面是<code>A+B Problem</code>的检验器：</p>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;testlib.h&quot;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">registerValidation</span><span class="p">();</span>
+
+    <span class="n">inf</span><span class="p">.</span><span class="n">readInt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000000000</span><span class="p">,</span><span class="s">&quot;A&quot;</span><span class="p">);</span>
+    <span class="n">inf</span><span class="p">.</span><span class="n">readSpace</span><span class="p">();</span>
+    <span class="n">inf</span><span class="p">.</span><span class="n">readInt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000000000</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">);</span>
+    <span class="n">inf</span><span class="p">.</span><span class="n">readEoln</span><span class="p">();</span>
+
+    <span class="n">inf</span><span class="p">.</span><span class="n">readEof</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>上面的代码是这样工作的：</p>
+<ul>
+<li><code>registerValidation()</code>：初始化。  </li>
+<li><code>inf.readInt(0,1000000000,"A")</code>：读入叫做“A”的整形变量，范围必须在<code>[0,1000000000]</code>以内。如果不满足要求，则判定数据无效。  </li>
+<li><code>inf.readSpace()</code>：读取一个空格。  </li>
+<li><code>inf.readEoln()</code>：读取一个换行符。  </li>
+<li><code>inf.readEof()</code>：读取文件结束符。  </li>
+</ul>
+<p>上面的读取中，只要有任意一个出现了偏差，则判定数据无效。</p>
+<p>如果数据需要保证某个要求，您可以使用<code>ensuref()</code>：</p>
+<div class="codehilite"><pre><span></span><span class="n">ensuref</span><span class="p">(</span><span class="n">cmd</span><span class="o">==</span><span class="sc">&#39;Q&#39;</span> <span class="o">||</span> <span class="n">cmd</span><span class="o">==</span><span class="sc">&#39;A&#39;</span> <span class="o">||</span> <span class="n">cmd</span><span class="o">==</span><span class="sc">&#39;C&#39;</span> <span class="p">,</span> <span class="s">&quot;您输入的操作不合法&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>在上面的代码中，如果<code>cmd</code>既不是'Q'，也不是'A'或'C'，则判定数据无效，并提示<code>您输入的操作不合法</code>。</p>
+<blockquote class="note">
+<p>val.cpp中不能出现中文！</p>
+</blockquote>
+<hr />
+<h2>函数表</h2>
+<table class="table">
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>void registerValidation()</code></td>
+<td>初始化，应该在程序开始时调用</td>
+</tr>
+<tr>
+<td><code>char readChar()</code></td>
+<td>读取一个字符</td>
+</tr>
+<tr>
+<td><code>char readChar(char ch)</code></td>
+<td>读取一个字符，必须是指定的<code>ch</code></td>
+</tr>
+<tr>
+<td><code>char readSpace()</code></td>
+<td>读取一个空格</td>
+</tr>
+<tr>
+<td><code>void unreadChar(char ch)</code></td>
+<td>将<code>ch</code>添加到输入流的最后面</td>
+</tr>
+<tr>
+<td><code>string readToken()</code></td>
+<td>读取一个字符串，相当于scanf中的<code>%s</code></td>
+</tr>
+<tr>
+<td><code>string readToken(string regex)</code></td>
+<td>读取一个字符串，必须满足给定的表达式<code>regex</code>，表达式语法类似于正则</td>
+</tr>
+<tr>
+<td><code>string readWord()</code></td>
+<td>同<code>readToken()</code></td>
+</tr>
+<tr>
+<td><code>string readWord(string regex)</code></td>
+<td>同<code>readToken(string regex)</code></td>
+</tr>
+<tr>
+<td><code>long long readLong()</code></td>
+<td>读取一个<code>long long</code>变量</td>
+</tr>
+<tr>
+<td><code>long long readLong(long long L, long long R)</code></td>
+<td>读取一个<code>long long</code>变量，必须在<code>[L,R]</code>以内</td>
+</tr>
+<tr>
+<td><code>int readInt()</code>或<code>readInteger()</code></td>
+<td>读取一个<code>int</code>变量</td>
+</tr>
+<tr>
+<td><code>int readInt(int L, int R)</code></td>
+<td>读取一个<code>int</code>变量，必须在<code>[L,R]</code>以内</td>
+</tr>
+<tr>
+<td><code>double readDouble()</code>或<code>readReal()</code></td>
+<td>读取一个<code>double</code>类型变量</td>
+</tr>
+<tr>
+<td><code>double readDouble(double L, double R)</code></td>
+<td>读取一个<code>double</code>类型变量，必须在<code>[L,R]</code>以内</td>
+</tr>
+<tr>
+<td><code>string readLine()</code>或<code>readString()</code></td>
+<td>读取一整行，相当于<code>gets()</code></td>
+</tr>
+<tr>
+<td><code>string readLine(string regex)</code></td>
+<td>读取一整行，必须满足给定的表达式<code>regex</code></td>
+</tr>
+<tr>
+<td><code>void readEoln()</code></td>
+<td>读取一个换行符</td>
+</tr>
+<tr>
+<td><code>void readEof()</code></td>
+<td>读取文件结束符</td>
+</tr>
+</tbody>
+</table>
+								<hr>
+
+								<!-- Gitalk 评论框 start -->
+								<div id="gitalk-container"></div>
+								<!-- Gitalk 评论框 end -->
+
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			
+			<hr>
+			<center>[CC协议 BY-NC-SA] 署名 - 非商业性使用 - 相同方式共享  @ UOJ部署指北 2018</center>
+
+		</div>
+
+
+	</main>
+	
+	<div class="fbtn-container">
+		<div class="fbtn-inner">
+			<a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown">
+				<span class="fbtn-text fbtn-text-left">Home</span>
+				<span class="fbtn-ori icon">apps</span>
+				<span class="fbtn-sub icon">close</span>
+			</a>
+			<div class="fbtn-dropup">
+				<a class="fbtn waves-attach waves-circle" href="https://github.com/UniversalOJ/UniversalOJ.github.io/issues" target="_blank">
+					<span class="fbtn-text fbtn-text-left">反馈</span><span class="icon">feedback</span>
+				</a>
+				<a class="fbtn fbtn-green waves-attach waves-circle" href="/" target="_self">
+					<span class="fbtn-text fbtn-text-left">返回主页</span><span class="icon">home</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<!-- js -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/base.min.js"></script>
+    
+    <!-- Gitalk JS 代码 start -->
+    <script src="/js/gitalk.min.js"></script>
+    <script>
+    const gitalk = new Gitalk({
+      clientID: '0dc093a9aefa1d501df2',
+      clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
+      repo: 'UniversalOJ.github.io',
+      owner: 'cebarobot',
+      admin: ['cebarobot'],
+      labels: [],
+    })
+    
+    gitalk.render('gitalk-container')
+    </script>
+    <!-- Gitalk JS 代码 end -->
+    
+</body>
+</html>
