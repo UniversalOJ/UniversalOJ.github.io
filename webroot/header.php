@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -29,7 +29,7 @@
 		<ul class="nav nav-list pull-right">
 			<li>
 				<a data-toggle="menu" href="/">
-					<span class="avatar avatar-sm"><img alt=" logo" src="/img/logo.png"></span>
+					<span class="avatar avatar-sm"><img alt="logo" src="/img/logo.png"></span>
 				</a>
 			</li>
 		</ul>
