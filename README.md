@@ -14,6 +14,8 @@ pip3 install "markdown<3.0.0" "pygments"
 
 ### 使用
 
+目前默认将 Markdown 文件和生成器分开放置。如果需要手动生成，请将它们放置在同一个目录内。
+
 Markdown 文件一般放在`/post`目录下。
 
 有一个叫做`content.php`的文件，里面描述了整个文档的目录。
