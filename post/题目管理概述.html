@@ -134,7 +134,7 @@
 </ol>
 <blockquote class="note">
 <p>上面的规则不必强行遵守。<br />
-这是一份示例：<a href="http://paste.ubuntu.com/24280516/"></a></p>
+这是一份示例：<a href="http://paste.ubuntu.com/24280516/">A + B problem</a></p>
 </blockquote>
 <h3>编辑标签</h3>
 <p>直接填入文本框即可，用英文半角逗号分隔多个标签。</p>
@@ -151,18 +151,48 @@
 <li>如果有多个解法，每个解法的前置技能和大方法都不太一样，那么尽可能都标上去。</li>
 <li>“乱搞” 标签不宜滥用。</li>
 </ol>
+<p>请注意，如果您加入了“模板题”这一标签，这道题目便会进入模板题库。这一特性不能推广。</p>
 <h2>管理者</h2>
-<p>这个选项卡用来增加和删除该题目的管理员。如果使用 <code>svn</code> ，则只有该题目的管理员可以管理这个题目的数据。</p>
+<p>这个选项卡用来增加和删除<strong>该题目</strong>的管理员。如果使用 <code>svn</code> ，则只有该题目的管理员可以管理这个题目的数据。</p>
+<p>请注意，系统的<strong>超级管理员</strong>并不默认具备管理题目 svn 仓库的权限，您需要首先将自己添加到这个题目题目管理员中。</p>
+<p>您的 svn 用户的用户名即为您 UOJ 的用户名，密码显示在“数据”选项卡中。</p>
 <h2>数据</h2>
-<p>UOJ 原版使用 svn 管理题目数据。在这份uoj版本中，svn仍然是有效的，但您可以使用<code>zip</code>数据包上传数据。</p>
+<p>UOJ 原版使用 svn 管理题目数据。SVN 的使用指南请参考《<a href="https://universaloj.github.io/post/简易svn指北.html">SVN 简易指北</a>》。在这份uoj版本中，svn仍然是有效的，但您可以使用<code>zip</code>数据包上传数据。</p>
 <p>首先您需要准备好一道题的数据，参见：<a href="https://vfleaking.github.io/uoj/problem/">vfk的文档</a></p>
-<p>您需要将所有的数据压缩到一个zip文件（注意不要建子目录），如下图所示：
+<h3>svn 上传</h3>
+<p>如果您打算使用 svn 上传数据，请 checkout 这道题目的 svn 仓库，<strong>在工作目录下新建名为<code>1</code>的文件夹</strong>，将您的数据放到文件夹<code>1</code>中。</p>
+<p>完成后的目录格式应当类似于这样：</p>
+<div class="codehilite"><pre><span></span>|- Problem 123
+    |- 1
+        |- problem.conf
+        |- std.cpp（可选）
+        |- val.cpp（可选）
+        |- chk.cpp（可选）
+        |- www1.in
+        |- www1.out
+        |- www2.in
+        |- www2.out
+        ...
+        |- ex_www1.in
+        |- ex_www2.out
+        ...
+</pre></div>
+
+
+<p>搞完之后，请 commit，然后点击网页上的<code>与 svn 仓库同步</code>按钮。</p>
+<blockquote class="note">
+<p>注意：如果您的题目不支持 hack，请在上传数据后<strong>直接点击</strong>“禁止使用hack”。<br />
+这个按钮会在禁用hack之后自动同步数据。</p>
+</blockquote>
+<h3>zip 数据包上传</h3>
+<p>如果您打算使用 zip 数据包上传数据，您需要将所有的数据压缩到一个zip文件（注意不要建子目录），如下图所示：
 <img style="max-width:100%" alt="压缩" src="https://i.loli.net/2018/06/26/5b31b07962936.png" /></p>
 <p>点击右侧的<code>上传数据</code>按钮上传<code>*.zip</code>数据包，之后点击<code>与 svn 仓库同步</code>按钮。如果能在左侧看到数据解析的结果，就说明上传成功。</p>
 <blockquote class="note">
-<p>注意：如果您的题目不支持hack，请在上传数据后直接点击“禁止使用hack”。<br />
+<p>注意：如果您的题目不支持 hack，请在上传数据后<strong>直接点击</strong>“禁止使用hack”。<br />
 这个按钮会在禁用hack之后自动同步数据。</p>
 </blockquote>
+<p>接下来请您阅读《题目》栏目下的其他内容。</p>
 								<hr>
 
 								<!-- Gitalk 评论框 start -->

@@ -113,7 +113,7 @@
 <p>这篇文档将指导您安装UOJ。  </p>
 </blockquote>
 <h2>安装前的准备</h2>
-<p>您需要准备一台<strong>64位</strong>的Linux系统。</p>
+<p>您需要准备一台<strong>64位</strong>的Linux系统，这里建议您使用 <a href="https://www.ubuntu.com/">Ubuntu</a>。</p>
 <p>然后您需要安装<code>docker</code>。它是一个容器技术，暂且可以理解成虚拟机。</p>
 <div class="codehilite"><pre><span></span>curl -fsSL get.docker.com -o get-docker.sh
 sudo chmod +x get-docker.sh
@@ -132,8 +132,8 @@ service docker restart
 
 <h2>安装</h2>
 <p>您需要执行下面的指令来开始安装 UOJ：</p>
-<div class="codehilite"><pre><span></span>sudo docker pull universaloj/uoj-system:stable
-sudo docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE universaloj/uoj-system:stable
+<div class="codehilite"><pre><span></span>sudo docker pull universaloj/uoj-system
+sudo docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE universaloj/uoj-system
 </pre></div>
 
 
@@ -143,8 +143,8 @@ sudo docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="
 如果您不希望用80端口来运行uoj，您可以把上面的<code>-p 80:80</code>改成<code>-p &lt;port&gt;:80</code>。  </p>
 </blockquote>
 <p>稍等几分钟，访问服务器的地址，您现在应该能看到UOJ正在运行了。</p>
-<p>UOJ 当前版本镜像的管理员用户名为 <code>root</code>，密码为 <code>uojuoj</code>。</p>
-<p>下一步，请参阅《维护UOJ》。</p>
+<p>您注册的第一个用户将被自动设为管理员。</p>
+<p>下一步，请参阅《<a href="https://universaloj.github.io/post/维护.html">维护</a>》。</p>
 								<hr>
 
 								<!-- Gitalk 评论框 start -->
