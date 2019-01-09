@@ -53,7 +53,7 @@
       repo: 'UniversalOJ.github.io',
 	  id: location.pathname,
       owner: 'UniversalOJ',
-      admin: ['cebarobot', 'MascoSkray', 'Ruanxingzhi'],
+      admin: ['cebarobot', 'MascoSkray', 'Ruanxingzhi', 'billchenchina'],
       labels: [],
     })
     
