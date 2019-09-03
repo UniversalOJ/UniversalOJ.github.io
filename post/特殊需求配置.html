@@ -114,40 +114,40 @@
 <p>子任务模式中，必须把某个subtest的数据全部通过才能拿到对应的分数。</p>
 <p>在<code>problem.conf</code>中，可以设置每个子任务在哪个测试点结束，并给每个子任务分配对应的分数。</p>
 <p>它的写法如下：</p>
-<div class="codehilite"><pre><span></span>n_tests 40
+<div class="codehilite"><pre><span></span><span class="n">n_tests</span> <span class="mi">40</span>
 
-...
+<span class="p">...</span>
 
-n_subtasks 6
-subtask_end_1 5
-subtask_score_1 10
-subtask_end_2 10
-subtask_score_2 10
-subtask_end_3 15
-subtask_score_3 10
-subtask_end_4 20
-subtask_score_4 20
-subtask_end_5 25
-subtask_score_5 20
-subtask_end_6 40
-subtask_score_6 30
+<span class="n">n_subtasks</span> <span class="mi">6</span>
+<span class="n">subtask_end_1</span> <span class="mi">5</span>
+<span class="n">subtask_score_1</span> <span class="mi">10</span>
+<span class="n">subtask_end_2</span> <span class="mi">10</span>
+<span class="n">subtask_score_2</span> <span class="mi">10</span>
+<span class="n">subtask_end_3</span> <span class="mi">15</span>
+<span class="n">subtask_score_3</span> <span class="mi">10</span>
+<span class="n">subtask_end_4</span> <span class="mi">20</span>
+<span class="n">subtask_score_4</span> <span class="mi">20</span>
+<span class="n">subtask_end_5</span> <span class="mi">25</span>
+<span class="n">subtask_score_5</span> <span class="mi">20</span>
+<span class="n">subtask_end_6</span> <span class="mi">40</span>
+<span class="n">subtask_score_6</span> <span class="mi">30</span>
 </pre></div>
 
 
 <h2>每个测试点不同分值</h2>
 <p>如果需要对每个测试点给不同的分数，可以在<code>problem.conf</code>中用<code>point_score_x</code>实现。</p>
 <p>它的写法如下：</p>
-<div class="codehilite"><pre><span></span>n_tests 7
+<div class="codehilite"><pre><span></span><span class="n">n_tests</span> <span class="mi">7</span>
 
-... 
+<span class="p">...</span> 
 
-point_score_1 5
-point_score_2 10
-point_score_3 15
-point_score_4 30
-point_score_5 10
-point_score_6 15
-point_score_7 15
+<span class="n">point_score_1</span> <span class="mi">5</span>
+<span class="n">point_score_2</span> <span class="mi">10</span>
+<span class="n">point_score_3</span> <span class="mi">15</span>
+<span class="n">point_score_4</span> <span class="mi">30</span>
+<span class="n">point_score_5</span> <span class="mi">10</span>
+<span class="n">point_score_6</span> <span class="mi">15</span>
+<span class="n">point_score_7</span> <span class="mi">15</span>
 </pre></div>
 
 

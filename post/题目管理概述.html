@@ -157,25 +157,25 @@
 <p>请注意，系统的<strong>超级管理员</strong>并不默认具备管理题目 svn 仓库的权限，您需要首先将自己添加到这个题目题目管理员中。</p>
 <p>您的 svn 用户的用户名即为您 UOJ 的用户名，密码显示在“数据”选项卡中。</p>
 <h2>数据</h2>
-<p>UOJ 原版使用 svn 管理题目数据。SVN 的使用指南请参考《<a href="https://universaloj.github.io/post/简易svn指北.html">SVN 简易指北</a>》。在这份uoj版本中，svn仍然是有效的，但您可以使用<code>zip</code>数据包上传数据。</p>
+<p>UOJ 原版使用 svn 管理题目数据。SVN 的使用指南请参考《<a href="https://universaloj.github.io/post/SVN简易指北.html">SVN 简易指北</a>》。在这份uoj版本中，svn仍然是有效的，但您可以使用<code>zip</code>数据包上传数据。</p>
 <p>首先您需要准备好一道题的数据，参见：<a href="https://vfleaking.github.io/uoj/problem/">vfk的文档</a></p>
 <h3>svn 上传</h3>
 <p>如果您打算使用 svn 上传数据，请 checkout 这道题目的 svn 仓库，<strong>在工作目录下新建名为<code>1</code>的文件夹</strong>，将您的数据放到文件夹<code>1</code>中。</p>
 <p>完成后的目录格式应当类似于这样：</p>
-<div class="codehilite"><pre><span></span>|- Problem 123
-    |- 1
-        |- problem.conf
-        |- std.cpp（可选）
-        |- val.cpp（可选）
-        |- chk.cpp（可选）
-        |- www1.in
-        |- www1.out
-        |- www2.in
-        |- www2.out
-        ...
-        |- ex_www1.in
-        |- ex_www2.out
-        ...
+<div class="codehilite"><pre><span></span><span class="o">|-</span> <span class="n">Problem</span> <span class="mi">123</span>
+    <span class="o">|-</span> <span class="mi">1</span>
+        <span class="o">|-</span> <span class="n">problem</span><span class="p">.</span><span class="n">conf</span>
+        <span class="o">|-</span> <span class="n">std</span><span class="p">.</span><span class="n">cpp</span><span class="err">（可选）</span>
+        <span class="o">|-</span> <span class="n">val</span><span class="p">.</span><span class="n">cpp</span><span class="err">（可选）</span>
+        <span class="o">|-</span> <span class="n">chk</span><span class="p">.</span><span class="n">cpp</span><span class="err">（可选）</span>
+        <span class="o">|-</span> <span class="n">www1</span><span class="p">.</span><span class="k">in</span>
+        <span class="o">|-</span> <span class="n">www1</span><span class="p">.</span><span class="k">out</span>
+        <span class="o">|-</span> <span class="n">www2</span><span class="p">.</span><span class="k">in</span>
+        <span class="o">|-</span> <span class="n">www2</span><span class="p">.</span><span class="k">out</span>
+        <span class="p">...</span>
+        <span class="o">|-</span> <span class="n">ex_www1</span><span class="p">.</span><span class="k">in</span>
+        <span class="o">|-</span> <span class="n">ex_www2</span><span class="p">.</span><span class="k">out</span>
+        <span class="p">...</span>
 </pre></div>
 
 
