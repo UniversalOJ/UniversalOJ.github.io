@@ -45,7 +45,7 @@
 	<script src="/js/base.min.js"></script>
     
     <!-- Gitalk JS 代码 start -->
-    <script src="/js/gitalk.min.js"></script>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
     const gitalk = new Gitalk({
       clientID: '0dc093a9aefa1d501df2',

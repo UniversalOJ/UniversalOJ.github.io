@@ -10,7 +10,7 @@
 	<link href="/css/base.min.css" rel="stylesheet">
 	<link href="/css/project.min.css" rel="stylesheet">
 	<link href="/css/styles.css" rel="stylesheet">
-	<link href="/css/gitalk.css" rel="stylesheet">
+	<link href="https://unpkg.com/gitalk/dist/gitalk.css" rel="stylesheet">
 
 </head>
 <body class="page-brand">
