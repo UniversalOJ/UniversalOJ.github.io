@@ -7,6 +7,7 @@ $content = array
         '维护' => 'post/维护.md',
         '外网映射教程' => 'post/外网映射教程.md',
         '系统管理' => 'post/系统管理.md'
+        '多评测机配置' => 'post/多评测机配置.md'
     ),
     
     '题目' => array(
