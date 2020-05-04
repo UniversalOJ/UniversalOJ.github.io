@@ -116,32 +116,43 @@
 <p>在安装之前，请确保您已经通过安装了新版的 UOJ 社区版；在下文中，我们称该容器为 UOJ 容器。 </p>
 </blockquote>
 <h2>在原 UOJ 容器所在物理机上安装</h2>
-<h3>使用 judger 标签自动构建（推荐）</h3>
-<p>首先，您需要查看 UOJ 容器的评测机配置并按照其配置配置新的评测机。请进入 UOJ 容器，并记录 <code>/opt/uoj/judger/.conf.json</code> 的内容。</p>
-<p>之后，您需要从 DockerHub 中获取评测机镜像：</p>
+<h3>使用自动构建的镜像（推荐）</h3>
+<p>首先，请进入 UOJ 容器，并记录 <code>/opt/uoj/judger/.conf.json</code> 的内容。</p>
+<p>执行下面的命令，从 DockerHub 中获取评测机镜像：</p>
 <div class="codehilite"><pre><span></span>sudo docker pull universaloj/uoj-system:judger
 </pre></div>
 
 
-<p>之后，您应该通过设置环境变量的方式修改该评测机的配置，请按照下文说明替换该命令中的相关信息并执行：</p>
-<div class="codehilite"><pre><span></span>sudo docker run --name &lt;judger-name&gt; -dit --env <span class="nv">UOJ_PROTOCOL</span><span class="o">=</span>http --env <span class="nv">UOJ_HOST</span><span class="o">=</span>&lt;uoj-host&gt; --env <span class="nv">JUDGER_NAME</span><span class="o">=</span>&lt;judger-name&gt; --env <span class="nv">JUDGER_PASSWORD</span><span class="o">=</span>&lt;judger-pwd&gt; --env <span class="nv">SOCKET_PORT</span><span class="o">=</span><span class="m">2333</span> --env <span class="nv">SOCKET_PASSWORD</span><span class="o">=</span>&lt;socket-pwd&gt; --cap-add SYS_PTRACE universaloj/uoj-system:judger
+<p>请新建文件 <code>judger_env.list</code>，请根据下文说明替换下面的文件内容：</p>
+<div class="codehilite"><pre><span></span><span class="err">UOJ_PROTOCOL=http</span>
+<span class="err">UOJ_HOST=&lt;uoj_host&gt;</span>
+<span class="err">JUDGER_NAME=&lt;judger_name&gt;</span>
+<span class="err">JUDGER_PASSWORD=&lt;judger_pwd&gt;</span>
+<span class="err">SOCKET_PORT=2333</span>
+<span class="err">SOCKET_PASSWORD=&lt;socket_pwd&gt;</span>
 </pre></div>
 
 
 <p>您需要替换：</p>
 <ul>
-<li><code>&lt;judger-name&gt;</code>：新评测机的名称，不应与之前的评测机重复，仅可由小写字母和数字组成。</li>
-<li><code>&lt;uoj-host&gt;</code>：UOJ 容器的<strong>容器IP</strong>（某容器的IP可通过命令<code>docker inspect --format '{{ .NetworkSettings.IPAddress }}' &lt;container-id&gt;</code>来获取） 。</li>
-<li><code>&lt;judger-pwd&gt;</code>：评测机密码，可以不修改。</li>
-<li><code>&lt;socket-pwd&gt;</code>：通讯密码，应与您在第一步中从 UOJ 容器中获得的密码相同。</li>
+<li><code>&lt;judger_name&gt;</code>：新评测机的名称，不应与之前的评测机重复，仅可由小写字母和数字组成。</li>
+<li><code>&lt;uoj_host&gt;</code>：UOJ 容器的<strong>容器 IP</strong>。</li>
+<li>可通过 <code>docker inspect --format '{{ .NetworkSettings.IPAddress }}' &lt;container_id&gt;</code> 来获得名为 <code>&lt;container_id&gt;</code> 的容器的 IP</li>
+<li><code>&lt;judger_pwd&gt;</code>：评测机密码，可以不修改。</li>
+<li><code>&lt;socket_pwd&gt;</code>：通讯密码，应与您在第一步中从 UOJ 容器中获得的密码相同。</li>
 </ul>
-<p>启动后，请您查看新启动的评测容器的 IP 并记录下来。之后，您应该进入 UOJ 容器中的 mysql 中的 <code>app_uoj233</code>， 并将新的评测机的信息用以下命令加入数据库（请不要在网页端后台操作添加）：</p>
-<div class="codehilite"><pre><span></span>insert into judger_info <span class="o">(</span>judger_name, password, ip<span class="o">)</span> values <span class="o">(</span><span class="s1">&#39;&lt;judger-name&gt;&#39;</span>, <span class="s1">&#39;&lt;judger-pwd&gt;&#39;</span>, <span class="s1">&#39;&lt;judger-ip&gt;&#39;</span><span class="o">)</span><span class="p">;</span>
+<p>接下来，在 <code>judger_env.list</code> 所在目录下，执行下面的命令来启动评测机。其中，请将 <code>&lt;judger_name&gt;</code> 替换为评测机的名称。</p>
+<div class="codehilite"><pre><span></span>sudo docker run --name &lt;judger_name&gt; -dit --env-file judger_env.list --cap-add SYS_PTRACE universaloj/uoj-system:judger
 </pre></div>
 
 
-<p>退出 mysql ，按组合键  <code>Ctrl+P+Q</code> 离开并不停止容器。</p>
-<p>此时，如果配置正确，您应该可以在网页端看到新的评测机了。</p>
+<p>启动后，请您查看新启动的评测容器的 IP 并记录下来。之后，您应该进入 UOJ 容器中的 mysql 中的 <code>app_uoj233</code> 数据库， 并将新的评测机的信息用以下命令加入数据库（请不要在网页端后台操作添加）：</p>
+<div class="codehilite"><pre><span></span><span class="k">insert</span> <span class="k">into</span> <span class="n">judger_info</span> <span class="p">(</span><span class="n">judger_name</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">ip</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="s1">&#39;&lt;judger_name&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;judger_pwd&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;judger_ip&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>最后，退出 mysql 和 docker。</p>
+<p>此时，如果配置正确，您应该可以在网页端看到新的评测机了。您可以通过同时提交数个死循环程序，来检查多个评测机是否工作正常。</p>
 <p><strong>注意：对于每道题，您需要在新评测机配置完成后点击题目管理页面中的“检查配置并同步数据”来将数据同步到每台评测机。</strong></p>
 <h3>使用 Dockerfile 手动构建</h3>
 <p>首先，您需要查看 UOJ 容器的 judger 配置并按照其配置配置新的评测机。请先在终端中进入一个临时文件夹，用于存放临时文件。之后，您需要从 UOJ 容器中复制出<code>/opt/uoj/judger/.conf.json</code>：</p>
