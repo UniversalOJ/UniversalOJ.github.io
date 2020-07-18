@@ -117,18 +117,23 @@
 <h2>安装前的准备</h2>
 <p>您需要准备一台<strong>64位</strong>的Linux系统，这里建议您使用 <a href="https://www.ubuntu.com/">Ubuntu</a>。</p>
 <p>然后您需要安装<code>docker</code>。它是一个容器技术，暂且可以理解成虚拟机。</p>
-<div class="codehilite"><pre><span></span>curl -fsSL get.docker.com -o get-docker.sh
-sudo chmod +x get-docker.sh
-sudo ./get-docker.sh
+<div class="codehilite"><pre><span></span>curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 
-sudo service docker start           <span class="c1"># 启动docker服务</span>
+sudo service docker start           <span class="c1"># 启动 docker 服务</span>
+sudo docker --version               <span class="c1"># 检查 docker 是否正常安装</span>
 </pre></div>
 
 
 <p>另外，您可以通过下面的代码安装docker加速器（强烈推荐）：</p>
-<div class="codehilite"><pre><span></span>sudo su
-curl -sSL https://get.daocloud.io/daotools/set_mirror.sh <span class="p">|</span> sh -s http://3a834d99.m.daocloud.io
-service docker restart
+<div class="codehilite"><pre><span></span>sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <span class="s">&lt;&lt;-&#39;EOF&#39;</span>
+<span class="s">{</span>
+<span class="s">  &quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+sudo service daemon-reload
+sudo service restart docker
 </pre></div>
 
 
