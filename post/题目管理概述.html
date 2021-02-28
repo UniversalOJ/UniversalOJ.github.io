@@ -164,20 +164,20 @@
 <h3>svn 上传</h3>
 <p>如果您打算使用 svn 上传数据，请 checkout 这道题目的 svn 仓库，<strong>在工作目录下新建名为<code>1</code>的文件夹</strong>，将您的数据放到文件夹<code>1</code>中。</p>
 <p>完成后的目录格式应当类似于这样：</p>
-<div class="codehilite"><pre><span></span><span class="err">|- Problem 123</span>
-<span class="err">    |- 1</span>
-<span class="err">        |- problem.conf</span>
-<span class="err">        |- std.cpp（可选）</span>
-<span class="err">        |- val.cpp（可选）</span>
-<span class="err">        |- chk.cpp（可选）</span>
-<span class="err">        |- www1.in</span>
-<span class="err">        |- www1.out</span>
-<span class="err">        |- www2.in</span>
-<span class="err">        |- www2.out</span>
-<span class="err">        ...</span>
-<span class="err">        |- ex_www1.in</span>
-<span class="err">        |- ex_www2.out</span>
-<span class="err">        ...</span>
+<div class="codehilite"><pre><span></span>|- Problem 123
+    |- 1
+        |- problem.conf
+        |- std.cpp（可选）
+        |- val.cpp（可选）
+        |- chk.cpp（可选）
+        |- www1.in
+        |- www1.out
+        |- www2.in
+        |- www2.out
+        ...
+        |- ex_www1.in
+        |- ex_www2.out
+        ...
 </pre></div>
 
 
@@ -245,6 +245,7 @@
     <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
     const gitalk = new Gitalk({
+      proxy: 'https://cors.pion1eer.workers.dev/?https://github.com/login/oauth/access_token',
       clientID: '0dc093a9aefa1d501df2',
       clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
       repo: 'UniversalOJ.github.io',

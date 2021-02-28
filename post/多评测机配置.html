@@ -124,12 +124,12 @@
 
 
 <p>请新建文件 <code>judger_env.list</code>，请根据下文说明替换下面的文件内容：</p>
-<div class="codehilite"><pre><span></span><span class="err">UOJ_PROTOCOL=http</span>
-<span class="err">UOJ_HOST=&lt;uoj_host&gt;</span>
-<span class="err">JUDGER_NAME=&lt;judger_name&gt;</span>
-<span class="err">JUDGER_PASSWORD=&lt;judger_pwd&gt;</span>
-<span class="err">SOCKET_PORT=2333</span>
-<span class="err">SOCKET_PASSWORD=&lt;socket_pwd&gt;</span>
+<div class="codehilite"><pre><span></span>UOJ_PROTOCOL=http
+UOJ_HOST=&lt;uoj_host&gt;
+JUDGER_NAME=&lt;judger_name&gt;
+JUDGER_PASSWORD=&lt;judger_pwd&gt;
+SOCKET_PORT=2333
+SOCKET_PASSWORD=&lt;socket_pwd&gt;
 </pre></div>
 
 
@@ -212,7 +212,7 @@
 
 
 <p>启动后，请您查看新启动的评测容器的 IP 并记录下来。之后，您应该进入 UOJ 容器中的 mysql 中的 <code>app_uoj233</code>， 并将新的评测机的信息加入数据库（请不要在网页端后台操作添加）：</p>
-<div class="codehilite"><pre><span></span><span class="k">insert</span> <span class="k">into</span> <span class="nf">judger_info</span> <span class="p">(</span><span class="n">judger_name</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">ip</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="s1">&#39;&lt;judger_name&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;judger_password&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;judger_ip&gt;&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><span class="k">insert</span> <span class="k">into</span> <span class="n">judger_info</span> <span class="p">(</span><span class="n">judger_name</span><span class="p">,</span> <span class="k">password</span><span class="p">,</span> <span class="n">ip</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="s1">&#39;&lt;judger_name&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;judger_password&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;judger_ip&gt;&#39;</span><span class="p">);</span>
 </pre></div>
 
 
@@ -281,6 +281,7 @@
     <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
     const gitalk = new Gitalk({
+      proxy: 'https://cors.pion1eer.workers.dev/?https://github.com/login/oauth/access_token',
       clientID: '0dc093a9aefa1d501df2',
       clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
       repo: 'UniversalOJ.github.io',

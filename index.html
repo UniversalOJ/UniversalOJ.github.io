@@ -181,6 +181,7 @@
     <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
     const gitalk = new Gitalk({
+      proxy: 'https://cors.pion1eer.workers.dev/?https://github.com/login/oauth/access_token',
       clientID: '0dc093a9aefa1d501df2',
       clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
       repo: 'UniversalOJ.github.io',

@@ -122,34 +122,34 @@
 </ul>
 <h2>题目配置文件</h2>
 <p>题目配置文件应当命名为<code>problem.conf</code>。这是一份配置的样例：</p>
-<div class="codehilite"><pre><span></span><span class="err">n_tests 10</span>
-<span class="err">n_ex_tests 1</span>
-<span class="err">n_sample_tests 1</span>
-<span class="err">input_pre www</span>
-<span class="err">input_suf in</span>
-<span class="err">output_pre www</span>
-<span class="err">output_suf out</span>
-<span class="err">time_limit 1</span>
-<span class="err">memory_limit 512</span>
-<span class="err">output_limit 64</span>
-<span class="err">use_builtin_judger on</span>
-<span class="err">use_builtin_checker ncmp</span>
+<div class="codehilite"><pre><span></span>n_tests 10
+n_ex_tests 1
+n_sample_tests 1
+input_pre www
+input_suf in
+output_pre www
+output_suf out
+time_limit 1
+memory_limit 512
+output_limit 64
+use_builtin_judger on
+use_builtin_checker ncmp
 </pre></div>
 
 
 <h3>测试点</h3>
-<div class="codehilite"><pre><span></span><span class="err">n_tests 10</span>
-<span class="err">n_ex_tests 1</span>
-<span class="err">n_sample_tests 1</span>
+<div class="codehilite"><pre><span></span>n_tests 10
+n_ex_tests 1
+n_sample_tests 1
 </pre></div>
 
 
 <p>这三行分别代表标准测试点、额外测试点和测试样例的数量。其中，额外测试点的前几个一定是测试样例，所以你必须把题目中给出的测试样例放到额外测试点当中。</p>
 <p>UOJ 的 extra test 是指在 AC 的情况下会测额外数据，如果某个额外数据通不过会被倒扣3分。</p>
-<div class="codehilite"><pre><span></span><span class="err">input_pre www</span>
-<span class="err">input_suf in</span>
-<span class="err">output_pre www</span>
-<span class="err">output_suf out</span>
+<div class="codehilite"><pre><span></span>input_pre www
+input_suf in
+output_pre www
+output_suf out
 </pre></div>
 
 
@@ -157,9 +157,9 @@
 <p>标准测试点的文件名应当形如：<code>www1.in</code>、<code>www1.out</code>、<code>www2.in</code>、<code>www2.out</code>……</p>
 <p>额外测试点的文件名应当形如：<code>ex_www1.in</code>、<code>ex_www1.out</code>、<code>ex_www2.in</code>、<code>ex_www2.out</code>……</p>
 <h3>限制</h3>
-<div class="codehilite"><pre><span></span><span class="err">time_limit 1</span>
-<span class="err">memory_limit 512</span>
-<span class="err">output_limit 64</span>
+<div class="codehilite"><pre><span></span>time_limit 1
+memory_limit 512
+output_limit 64
 </pre></div>
 
 
@@ -167,8 +167,8 @@
 <p>时间限制的单位为秒，不能为小数。内存空间和输出限制的单位为 MB。</p>
 <h3>校验器（checker）</h3>
 <p>校验器用来检查选手程序的输出是否正确。</p>
-<div class="codehilite"><pre><span></span><span class="err">use_builtin_judger on</span>
-<span class="err">use_builtin_checker ncmp</span>
+<div class="codehilite"><pre><span></span>use_builtin_judger on
+use_builtin_checker ncmp
 </pre></div>
 
 
@@ -307,6 +307,7 @@
     <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
     const gitalk = new Gitalk({
+      proxy: 'https://cors.pion1eer.workers.dev/?https://github.com/login/oauth/access_token',
       clientID: '0dc093a9aefa1d501df2',
       clientSecret: '3639aabd1bc6b0d9b543be1f13b6bcb2bf7364af',
       repo: 'UniversalOJ.github.io',
