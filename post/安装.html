@@ -120,7 +120,7 @@
 <div class="codehilite"><pre><span></span>curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 
-sudo service docker start           <span class="c1"># 启动 docker 服务</span>
+sudo systemctl start docker             <span class="c1"># 启动 docker 服务</span>
 sudo docker --version               <span class="c1"># 检查 docker 是否正常安装</span>
 </pre></div>
 
@@ -132,8 +132,8 @@ sudo tee /etc/docker/daemon.json <span class="s">&lt;&lt;-&#39;EOF&#39;</span>
 <span class="s">  &quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span>
 <span class="s">}</span>
 <span class="s">EOF</span>
-sudo service daemon-reload
-sudo service restart docker
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 </pre></div>
 
 
