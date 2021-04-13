@@ -111,7 +111,61 @@
 						<div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner page-card-inner">
-						<p>文档建造中～</p>
+						<blockquote class="note">
+<p>这篇文档将指导您在本地从源码构建 UOJ 服务镜像。</p>
+<p>构建 UOJ 可能需要较好的国际互联网连接。</p>
+</blockquote>
+<h2>构建前的准备</h2>
+<p>准备一个装有 <strong>64 位</strong> Linux 系统的服务器，这里建议使用 <a href="https://www.ubuntu.com/">Ubuntu</a>。在进行构建之前，建议先更新系统软件包，并安装必要的工具。</p>
+<div class="codehilite"><pre><span></span>sudo apt update
+sudo apt upgrade
+sudo apt install git curl
+</pre></div>
+
+
+<p>接下来需要安装 <code>docker</code>，它是一种容器技术，暂且可以大致地理解成虚拟机。</p>
+<div class="codehilite"><pre><span></span>curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo systemctl <span class="nb">enable</span> --now docker  <span class="c1"># 启用并启动 docker 服务</span>
+sudo docker --version               <span class="c1"># 检查 docker 是否正常安装</span>
+</pre></div>
+
+
+<!--
+
+另外，可以通过下面的命令安装 docker 加速器。
+
+
+wzxhzdk:2
+
+
+-->
+
+<h2>克隆 UOJ 源码</h2>
+<p>执行下面的命令，从 GitHub 克隆 UOJ 源码。</p>
+<div class="codehilite"><pre><span></span>git clone https://github.com/UniversalOJ/UOJ-System.git
+</pre></div>
+
+
+<h2>使用 Docker 构建 UOJ</h2>
+<p>执行下面的命令，从源码构建 UOJ 镜像。</p>
+<div class="codehilite"><pre><span></span><span class="nb">cd</span> UOJ-System/install/bundle/
+sudo docker build -t uoj-system .
+</pre></div>
+
+
+<p>可能需要等待一段时间才能完成构建。构建结束时，屏幕上会显示：</p>
+<div class="codehilite"><pre><span></span>Successfully built xxxxxx
+Successfully tagged uoj-system:latest
+</pre></div>
+
+
+<p>构建结束后，下列命令可以使用本地构建的镜像运行 UOJ 。</p>
+<div class="codehilite"><pre><span></span>sudo docker run --name uoj -dit -p <span class="m">80</span>:80 --cap-add SYS_PTRACE uoj-system
+</pre></div>
+
+
+<p>稍等几分钟，访问服务器的地址，应该就能看到 UOJ 的默认主页了，接下来的设置请参阅《<a href="https://universaloj.github.io/post/维护.html">维护</a>》和《<a href="https://universaloj.github.io/post/系统管理.html">系统管理</a>》。</p>
 								<hr>
 
 								<!-- Gitalk 评论框 start -->

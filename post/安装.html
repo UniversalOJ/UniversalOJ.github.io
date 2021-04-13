@@ -140,7 +140,7 @@ sudo systemctl restart docker
 <h2>安装</h2>
 <p>您需要执行下面的指令来开始安装 UOJ：</p>
 <div class="codehilite"><pre><span></span>sudo docker pull universaloj/uoj-system
-sudo docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE universaloj/uoj-system
+sudo docker run --name uoj -dit -p <span class="m">80</span>:80 --cap-add SYS_PTRACE universaloj/uoj-system
 </pre></div>
 
 

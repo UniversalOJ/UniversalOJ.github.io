@@ -141,7 +141,7 @@ docker commit uoj uoj_back:20170301     <span class="c1"># 例行备份</span>
 
 docker stop uoj
 docker rm uoj                           <span class="c1"># 删除uoj容器</span>
-docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE  uoj_back:20170301
+docker run --name uoj -dit -p <span class="m">80</span>:80 --cap-add SYS_PTRACE  uoj_back:20170301
 <span class="c1"># 创建新的 uoj 容器，使用3月1日的备份</span>
 </pre></div>
 
@@ -166,7 +166,7 @@ docker save -o uoj.tar uoj_back         <span class="c1"># 把uoj_back镜像导�
 
 <span class="c1"># 服务器 B：</span>
 docker load --input uoj.tar             <span class="c1"># 导入uoj_back镜像</span>
-docker run --name uoj -dit -p <span class="m">80</span>:80 -p <span class="m">3690</span>:3690 --cap-add SYS_PTRACE  uoj_back
+docker run --name uoj -dit -p <span class="m">80</span>:80 --cap-add SYS_PTRACE  uoj_back
 <span class="c1"># 建立 uoj 容器，基于之前服务器 A 的数据，迁移完成</span>
 </pre></div>
 
