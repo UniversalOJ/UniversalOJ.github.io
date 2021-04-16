@@ -20,7 +20,7 @@
 * 20170721: 新增 SVN 简易指北。
 
 
-如果您对本项目有兴趣，请加入 Universal OJ 社区群：560621197。
+<!-- 如果您对本项目有兴趣，请加入 Universal OJ 社区群：560621197。 -->
 如果您对 UOJ 开源项目有兴趣，请加入 Universal OJ 开源群：590822951。  
 如果我们的项目对您有帮助，欢迎给我们颗 Star；如果您发现了 bug 或者有任何的建议，请提出 issue：[UOJ-System](https://github.com/UniversalOJ/UOJ-System)  
 在 Github 上找到我们：[UOJ 开源社区](https://github.com/UniversalOJ)。
