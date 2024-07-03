@@ -10,6 +10,7 @@
 
 ## 新闻
 
+* 20240703: 切换到基于 Docker Compose 的部署方式。
 * 20210402: 将 service 更换为 systemctl，并移除 SVN 文档。
 * 20190903：更新了失效提醒。
 * 20190109：修正文档中 Gitalk 的 bug。
@@ -24,4 +25,3 @@
 如果您对 UOJ 开源项目有兴趣，请加入 Universal OJ 开源群：590822951。  
 如果我们的项目对您有帮助，欢迎给我们颗 Star；如果您发现了 bug 或者有任何的建议，请提出 issue：[UOJ-System](https://github.com/UniversalOJ/UOJ-System)  
 在 Github 上找到我们：[UOJ 开源社区](https://github.com/UniversalOJ)。
-
